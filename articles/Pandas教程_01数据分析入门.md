@@ -1,4 +1,4 @@
-![图片](https://uploader.shimo.im/f/hebPzvm91sYc2vIU.jpg!thumbnail)
+![图片](https://github.com/zhouyanasd/or-pandas/blob/master/articles/img/Chapter1/1-1.png)
 
 **编者按**：
 
