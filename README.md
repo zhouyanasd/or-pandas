@@ -5,6 +5,8 @@
 本书的特点是简单易上手，每一章节都有相应的jupyter文件，可以直接放在带有jupyter notebook的python环境中运行。
 
 ## 书籍目录
+预备章：Jupyter简介
+
 第一章：[数据分析入门](https://github.com/zhouyanasd/or-pandas/blob/master/articles/Pandas%E6%95%99%E7%A8%8B_01%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%85%A5%E9%97%A8.md)
 [(code)](https://github.com/zhouyanasd/or-pandas/blob/master/code/pandas%E6%95%99%E7%A8%8B_01%E5%85%A5%E9%97%A8.ipynb)
 
@@ -16,3 +18,13 @@
 
 第四章：[数据的索引、汇总和缺失处理](https://github.com/zhouyanasd/or-pandas/blob/master/articles/pandas%E6%95%99%E7%A8%8B_04%E7%B4%A2%E5%BC%95%E3%80%81%E6%B1%87%E6%80%BB%E5%92%8C%E5%A4%84%E7%90%86%E7%BC%BA%E5%A4%B1%E6%95%B0%E6%8D%AE.md)
 [(code)](https://github.com/zhouyanasd/or-pandas/blob/master/code/pandas%E6%95%99%E7%A8%8B_04%E7%B4%A2%E5%BC%95%E3%80%81%E6%B1%87%E6%80%BB%E5%92%8C%E5%A4%84%E7%90%86%E7%BC%BA%E5%A4%B1%E6%95%B0%E6%8D%AE.ipynb)
+
+---
+
+分析实例一：豆瓣电影分析--华语篇
+
+分析实例二：豆瓣电影分析--全球篇
+
+分析实例三：pandas分析篮球数据
+
+分析实例四：运筹学薪资分析

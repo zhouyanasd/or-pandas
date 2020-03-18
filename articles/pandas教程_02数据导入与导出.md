@@ -1,25 +1,14 @@
-**题目：**数据科学 | pandas数据导入与导出
-
-**封面图**
-
 ![图片](https://uploader.shimo.im/f/DplvFF8jn7Y4RbkH.png!thumbnail)
 
-**作者信息：**杨士锦，周岩，书生
-
-**公众号预览摘要：**数据导入和导出是数据分析中最基础的一个部分。本文介绍在pandas中如何导入与导出多种不同格式的数据。
-
-**编者按：**当我们开始着手做一个数据分析项目时，选择和导入数据集是第一个步骤，而导出数据虽然非必需，但有时候我们也需要保存处理或者分析后的结果，方便下次使用。在pandas中，它已经为我们提供了很多不同格式数据的导入和导出方法，下面这篇文章将具体介绍一些较为常用的方法，包括excel、csv文件以及数据库的导入导出等。
-
-**正文开始：**
+# 第二章：数据的导入与导出
 
 数据导入和导出是pandas中很基础且重要的一个部分。pandas提供了很多不同格式数据的导入和导出方法，可以将其他格式数据转为DataFrame格式。我们可以将list、dict格式数据转为dataFrame格式，也可以从本地的csv、json等文本格式数据和sql、MongoDB等数据库中读取和保存数据等等。下面就分别以三大类介绍一些常见的数据格式的导入与导出。
+## 引言：
+当我们开始着手做一个数据分析项目时，选择和导入数据集是第一个步骤，而导出数据虽然非必需，但有时候我们也需要保存处理或者分析后的结果，方便下次使用。在pandas中，它已经为我们提供了很多不同格式数据的导入和导出方法，本节将具体介绍一些较为常用的方法，包括excel、csv文件以及数据库的导入导出等。
 
-下文中所有的示例代码都是在jupyter notebook中创作，还不太了解jupyter的小伙伴，可以先看看这篇文章哦：[数据科学 | 始于Jupyter Notebooks：一份全面的初学者使用指南](https://mp.weixin.qq.com/s/QhvKxWp9xR_Ui3YHCKX3gQ)。
+## 1. list、dict、np.array 格式数据
 
-**1 list、dict、np.array 格式数据**
-
-**1.****1**** list**
-
+### 1.1 list
 一般读取一个list，生成的结果如下：
 
 ```
@@ -53,8 +42,7 @@ pd.DataFrame([(1,2,3,4),(2,3,4,5)],['value1','value2'])
 value1	1	2	3	4
 value2	2	3	4   5
 ```
-**1.****2**** dict**
-
+### 1.2 dict
 这里我们以一个字典为数据，看下不同操作的结果有何不同。
 
 ```
@@ -105,8 +93,7 @@ pd.DataFrame(list(data.items()),columns = ['key','value'])
 >>> 1	b	[2, 3]
 ```
 还有一种方法依然是利用from_dict,不过就需要将value中的list提前转化成字符串，然后再进行操作即可。
-**1.3 np.array**
-
+### 1.3 np.array
 numpy是比pandas更底层一些的数据操作工具，pandas的很多操作也是基于numpy进行的，比如numpy就支持直接读取txt文件。比如有这样一个txt文件：
 
 ```
@@ -139,8 +126,7 @@ Data = pd.DataFrame(data, index = np.arange(len(data)), columns=['a','b','c','d'
 2	3.0   30.0	0.071907	0.071907
 3	4.0	  40.0	0.066153	0.066153
 ```
-**1.****4 ****其****他方式**
-
+### 1.4 其他方式
 当然需要导入文本并不规则的时候，可以考虑直接利用python中的文件读取来一行一行的读取文件，然后利用json或者re等字符串处理包来处理数据，最后整合成DataFrame:
 
 ```
@@ -148,12 +134,10 @@ with open(path, "r") as load_f:
      l = f.readlines()
 ```
 当然这个方法要结合具体的数据来看，这里就不展开介绍了。
-**2 文本格式数据**
+## 2. 文本格式数据格式数据
 
-**2.1 CSV文件**
-
-**2.1.1 导入csv数据**
-
+### 2.1 CSV文件
+#### 2.1.1 导入CSV文件
 常用参数解析：
 
 ```
@@ -264,8 +248,7 @@ A002	小王	  20	杭州	  world
 A003	小北	  21	上海	  hello
 A004	张三	  18	北京	  pandas
 ```
-**2.1.2 导出csv数据**
-
+#### 2.1.2 导出csv数据
 参用参数解析：
 
 ```
@@ -280,10 +263,8 @@ DataFrame.to_csv(path_or_buf, index=True, header=True, sep=',', encoding='utf-8'
 # 导出文件
 df.to_csv("output/out_ex1.csv",index=False)
 ```
-**2.2 excel文件**
-
-**2.2.1 导入excel文件**
-
+### 2.2 excel文件
+#### 2.2.1 导入excel文件
 常用参数解析：
 
 ```
@@ -362,8 +343,7 @@ od['Sheet3']
 2	  iii	  jji	  kkk	  lll	  333
 3	  mmm	  jjj	  ooo	  ppp	  444
 ```
-**2.2.2 导出excel文件**
-
+#### 2.2.2 导出excel文件
 常用参数解析：
 
 ```
@@ -376,10 +356,8 @@ DataFrame.to_excel(excel_writer, sheet_name='Sheet1',index=True)
 df.to_excel('output/out_ex1.xlsx')
 df.to_excel('output/out_ex2.xlsx',sheet_name='结果',index=False)
 ```
-**2.3 txt文件**
-
-**2.3.1 导入txt文件**
-
+### 2.3 txt文件
+#### 2.3.1 导入txt文件
 常用参数解析：
 
 ```
@@ -434,15 +412,13 @@ df2
 2	A003	小北	  21	上海	    hello
 3	A004	张三	  18	北京	    pandas
 ```
-**2.3.2 导出txt文件**
-
+#### 2.3.2 导入txt文件
 使用to_csv的方法
 
 ```
 df2.to_csv('output/ex3.txt',sep='\t')
 ```
-**2.4 csv和xlsx的选择**
-
+### 2.4 csv和xlsx的选择
 当我们可以选择保存为csv或者xlsx格式，方便下次可以使用的时候，是选择保存为csv还是excel呢？除了考虑csv和excel文件大小之外（相同的数据下excel文件比csv文件小），这里可以考虑下read_csv和read_xlsx的性能问题。在stackoverflow上有人对这两种导入方法进行了一个简单的测试。
 
 测试文件：同样的数据集（分别是320MB的csv文件和16MB的xlsx文件）
@@ -457,11 +433,8 @@ python环境：Anaconda Python 3.5.3, pandas 0.19.2
 | pd.read_excel('foo.xlsx')   | 15.3s   | 
 | df.to_csv('bar.csv',index=False)   | 10.5s   | 
 | df.to_excel('bar.xlsx',index=False)   | 34.5s   | 
-
-**2.5 json**
-
-**2.5.1 导入json文件**
-
+### 2.5 json
+#### 2.5.1 导入json文件
 常用参数解析：
 
 ```
@@ -613,8 +586,7 @@ df5
 2	A003	小北	  21	上海
 3	A004	张三	  18	北京
 ```
-**2.5.2 导出json文件**
-
+#### 2.5.2 导出json文件
 常用参数解析：
 
 ```
@@ -633,11 +605,9 @@ series导出json，命名为out_ex5.json
 se = pd.read_json('examples/ex6.json',orient="index",typ="series")
 se.to_json("output/out_ex5.json")
 ```
+## 3 数据库
 
-**3 数据库**
-
-**3.1 MySQL**
-
+### 3.1 MySQL
 在开始之前，请确保环境中的python为3.x版本，且已经安装并开启mysql服务。这里我们使用pymysql库来连接mysql。首先需要通过pip安装pymysql。安装后，可以通过import语句检验是否已经安装成功。如果没有报错，则说明安装成功。
 
 ```
@@ -651,8 +621,7 @@ conn = pymysql.connect(host="localhost",user="username",password="password",db="
 # 创建一个游标对象
 cursor = conn.cursor()
 ```
-**3.1.1 数据导入mysql**
-
+#### 3.1.1 数据导入mysql
 ```
 # 创建数据库表
 sql_createTb = """CREATE TABLE user (
@@ -693,8 +662,7 @@ cursor.execute(sql_delete)
 # 提交事务
 conn.commit()
 ```
-**3.1.2 读取mysql数据**
-
+#### 3.1.2 读取mysql数据
 通过sql语句查询数据
 
 ```
@@ -733,12 +701,9 @@ df
 cursor.close()
 conn.close()
 ```
-**3.2 PostgreSQL**
-
+### 3.2 PostgreSQL
 psycopg2是Python语言的PostgreSQL数据库接口之一，这里我们使用psycopg2连接，首先同样请确保环境中已经安装postgreSQL，以及已通过pip安装psycopg2了。
-
-**3.2.1 读取postgreSQL的数据**
-
+#### 3.2.1 读取postgreSQL的数据
 ```
 import psycopg2
  
@@ -775,8 +740,7 @@ data = curs.fetchall()
 3. 以上sql命令可见，一条sql命令可以插入多条数据，只需要连接各个数据，最终commit一次就好；
 4. 另外在写入PG的时候，应该注意PG中的数据如果出现单引号“ ' ”会出现错误，所以必须先使用replace替换成其他的内容方可写入。
 
-**3.2.2 数据写入postgreSQL**
-
+#### 3.2.2 数据写入postgreSQL
 ```
 #编辑写入数据的sql    
 insert_sql = \
@@ -800,8 +764,7 @@ conn.commit()
 curs.close()
 conn.close()
 ```
-**3.3  支持多种数据库 — SQLAlchemy**
-
+### 3.3 支持多种数据库 — SQLAlchemy
 SQLAlchemy是python下的一款数据库对象关系映射工具（ORM工具），能满足大多数数据库操作需求，且支持多种数据库引擎，能连接上文提及的MySQL, PostgreSQL, Oracle之外，还支持Mircosoft SQL Server, SQLite等的数据库。另外在pandas中，配合使用SQLalchemy连接数据库，可以实现更简便高效的查询和导入数据的操作，因为pandas已经帮你写好一些常用的方法了。
 
 下面我们以连接mysql数据库为例子介绍用法，首先还是需要先通过pip安装sqlalchemy和pymysql。
@@ -817,8 +780,7 @@ engine = create_engine("mysql+pymysql://username:password@localhost:3306/%s?char
 # 如postgresql，create_engine('postgresql+psycopg2://scott:tiger@localhost/mydatabase')
 # 具体可以查看 https://docs.sqlalchemy.org/en/13/core/engines.html
 ```
-**3.3.1 读取数据库数据**
-
+#### 3.3.1 读取数据库数据
 在pandas中，我们可以通过read_sql_table和read_sql的方法来读取数据库，pandas会帮我们将结果直接转为dataframe的格式，这对于需要dataframe格式数据的来说是非常方便的。
 
 ```
@@ -864,8 +826,7 @@ pd.read_sql(sql, engine)
 0	A001	小明	  18	深圳
 1	A003	张三	  18	北京
 ```
-**3.3.2 数据导入数据库**
-
+#### 3.3.2 数据导入数据库
 将dataframe格式的数据导入到数据库中，我们可以使用to_sql的方法。
 
 ```
@@ -879,8 +840,7 @@ df = pd.read_csv('examples/sql.csv')
 table_name = 'user2'
 df.to_sql(table_name, engine, if_exists='append', index=False)
 ```
-**3.4 MongoDB**
-
+### 3.4 MongoDB
 MongoDB 是目前最流行的 NoSQL 数据库之一，使用的数据类型 BSON（类似 JSON）。这里我们使用PyMongo连接MongoDB数据库。
 
 ```
@@ -889,8 +849,7 @@ from pymongo import MongoClient
 # 连接mongoDB数据库 
 myclient = MongoClient('mongodb://localhost:27017/')
 ```
-**3.4.1 将数据导入数据库**
-
+#### 3.4.1 将数据导入数据库
 ```
 # 创建一个集合
 mydb = myclient["dbtest"]
@@ -912,8 +871,7 @@ def df2mongo(df, mycol):
 df = pd.read_table('examples/sql.csv')
 df2mongo(df,mycol)
 ```
-**3.4.2 读取数据库数据**
-
+#### 3.4.2 读取数据库数据
 ```
 # 读取mongo某个集合的所有数据
 mycol.find()
@@ -972,69 +930,20 @@ for x in mydoc:
 {'_id': ObjectId('5d51625fae73ac0c50b12779'), 'ID': 'A013', 'name': '小白', 'age': 30, 'city': '深圳'}
 {'_id': ObjectId('5d51625fae73ac0c50b12783'), 'ID': 'A009', 'name': '黎明', 'age': 25, 'city': '上海'}
 ```
-**正文结束：**
 
-# **参考文献：**
+**参考文献：**
 1. 《Python for Data Analysis》
 2. pandas官方文档：[https://pandas.pydata.org/pandas-docs/stable/index.html](https://pandas.pydata.org/pandas-docs/stable/index.html)
 3. [https://stackoverflow.com/questions/31362573/performance-difference-in-pandas-read-table-vs-read-csv-vs-from-csv-vs-read-e](https://stackoverflow.com/questions/31362573/performance-difference-in-pandas-read-table-vs-read-csv-vs-from-csv-vs-read-e)
 1. [https://www.runoob.com/python3/python3-mysql.html](https://www.runoob.com/python3/python3-mysql.html)
 2. [https://www.runoob.com/python3/python-mongodb.html](https://www.runoob.com/python3/python-mongodb.html)
 
-今天的文章就分享到这里啦！那么你想学习这部分的内容，主要是希望可以应用在学习中还是工作中呢？
 
-A. 学习
+**作者：杨士锦，周岩，书生**
 
-B. 工作
+**责编：杨士锦，邢昱**
 
-你希望这些技巧可以帮助你更好地应用在哪些场景呢？
+**审稿责编：书生，周岩**
 
-A. 导入数据集，后续对数据进行处理和分析
-
-B. 将其他格式数据导入数据库
-
-C. 查询和筛选数据库数据 
-
-D. 其他（可在留言区写下具体内容哦）
-
-欢迎参与投票让我们更了解你，我们才能提供更适合你的有趣内容哦！
-
-# **相关文章推荐**
-在数据科学领域，有大量随手可得的算法包可以直接使用。当我们了解了各种模型的数学原理、并清楚自己想要调用的模型后就可以直接调用相关的算法包来实现整个过程、分析结果，但是这些已经搭建好的算法包背后的数学原理却很少有人深究，所以在数据处理和分析过程中可能会得出很多谬论或者非理想的结果。随机森林模型现在为业界广泛使用的模型之一，所以下文将对Scikit-learn包对随机森林模型特征重要性分析存在的问题进行一些讨论，希望能对今后调用随机森林模型相关包的同学起到一些帮助。 
-
-**点击****蓝字标题****，即可阅读**[ ](https://mp.weixin.qq.com/s/Scx3fo587RpFpkb0za292A)[数据](https://mp.weixin.qq.com/s/6qpps08Gj2KLqRRD_7GocA)[科学 ](https://mp.weixin.qq.com/s/6qpps08Gj2KLqRRD_7GocA)[| 避坑！Python特征重要性分析中存在的问题](https://mp.weixin.qq.com/s/6qpps08Gj2KLqRRD_7GocA)
-
-其他
-
-[数据科学 | 『运筹OR帷幄』数据分析、可视化、爬虫系列教程征稿通知](https://mp.weixin.qq.com/s/fHvE5V7HWwn3t5m1xKy-jg)
-
-**号外！『运筹OR帷幄』入驻知识星球！**
-
- 随着算法相关专业热度和难度岗位对专业人才要求的提高，考研、读博、留学申请、求职的难度也在相应飙升。
-
-『运筹OR帷幄』特建立[『算法社区』](https://mp.weixin.qq.com/s?__biz=Mzg2MTA0NzA0Mw==&mid=2247488733&idx=1&sn=b81b60a8b0502b3cbd2c80d54e5f0e5d&scene=21#wechat_redirect)知识星球，依托社区30w+专业受众和25+细分领域硕博微信群，特邀国内外名校教授、博士及腾讯、百度、阿里、华为等公司大咖与大家一起聊算法。快来扫码加入，点对点提问50位大咖嘉宾！ ![图片](https://uploader.shimo.im/f/lmat0HBdrEQ4kgdv.png!thumbnail)
-
-**# 加入知识星球，您将收获以下福利**** ****#**
-
-* 全球Top名校教授|博士和名企研发高管一起交流算法相关学术|研发干货
-* 中国你能说出名字的几乎所有大厂|欧美数家大厂（资深）算法工程师入驻
-* 依托『运筹OR帷幄』30w+专业受众和25+细分领域硕博微信群的算法技术交流
-* 以上所有公司|高校独家内推招聘|实习机会、多家offer选择指导
-* 以面试题|作业题|业界项目为学习资料学习算法干货，从小白变成大咖
-* 不定期的线上、线下交流会和聚会，拓展人脉
-
-**关键字回复: 若有特殊关键词，请填写特殊关键词****，****并注明资料名称，如：**
-
-可以在 **本公众号后台 **回复关键词“ **数据导入**** **”获得本文的示例代码与文件。
-
-关键词：数据导入
-
-回复内容：[https://github.com/yeungsk/Pandas-Tutorial/tree/master/Data-Import-and-Export](https://github.com/yeungsk/Pandas-Tutorial/tree/master/Data-Import-and-Export)
-
-**作者：**杨士锦，周岩，书生
-
-**责编：**杨士锦
-
-**是否原创：是**
 
 
