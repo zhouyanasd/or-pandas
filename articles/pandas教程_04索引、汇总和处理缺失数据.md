@@ -127,7 +127,7 @@ print
 ```
 ![图片](https://uploader.shimo.im/f/DnLNkpWGpGQSM8SF.png!thumbnail)
 
-### **1.2 删除指定索引** 
+### **1.2 丢弃指定索引** 
 
 删除某一列或者行上的一个或多个项很容易，只需要这些数据的索引组成的数组或列表即可。由于需要执行一些数据整理和集合逻辑，所以drop方法返回的是一个在指定轴上删除了指定值的新对象：
 
@@ -366,20 +366,23 @@ print(df.ix['b'].ix[1])
 
 ## **2. 汇总和计算描述统计**
 * 常用方法选项
-  * axis：指定轴，DataFrame的行用0，列用1
-  * skipna：排除缺失值，默认值为True
-  * level：如果轴是层次化索引的，则根据level选取分组
->Pandas 常用描述和汇总统计函数
->count：非NA值得数量
->describe：针对Series或者各DataFrame列计算汇总统计
->min,max：计算最小值和最大值
->argmin,argmax：计算能够获取到的最小值和最大值的索引位置
->idxmin,idxmax：计算能够获取到的最小值和最大值的索引值
->sum：值的总和
->mean：值的平均数
->median：值得算术中位数
->mad：根据平均值计算平均绝对离差
-* 数值型和非数值型的区别
+    * axis：指定轴，DataFrame的行用0，列用1
+    * skipna：排除缺失值，默认值为True
+    * level：如果轴是层次化索引的，则根据level选取分组
+
+* Pandas 常用描述和汇总统计函数
+    * count：非NA值得数量
+    * describe：针对Series或者各DataFrame列计算汇总统计
+    * min,max：计算最小值和最大值
+    * argmin,argmax：计算能够获取到的最小值和最大值的索引位置
+    * idxmin,idxmax：计算能够获取到的最小值和最大值的索引值
+    * sum：值的总和
+    * mean：值的平均数
+    * median：值得算术中位数
+    * mad：根据平均值计算平均绝对离差
+
+* 数值型和非数值型的区别: 
+
 * NA值被自动排查，除非通过skipna选项
 ```
 print('求和')
@@ -412,12 +415,14 @@ print(obj.describe())
 ### **2.1 相关系数与协方差**
 * 相关系数：相关系数是用以反映变量之间相关关系密切程度的统计指标。（百度百科）
 * 协方差：从直观上来看，协方差表示的是两个变量总体误差的期望。如果两个变量的变化趋势一致，也就是说如果其中一个大于自身的期望值时另外一个也大于自身的期望值，那么两个变量之间的协方差就是正值；如果两个变量的变化趋势相反，即其中一个变量大于自身的期望值时另外一个却小于自身的期望值，那么两个变量之间的协方差就是负值。
-### **Pandas 汇总和计算描述统计 唯一值以及成员资格**
-常用方法
 
+
+### **2.2 唯一值以及成员资格**
+常用方法:
 * is_in：计算一个表示Series各值是否包含于传入的值序列中的布尔型数组
 * unique：计算Series中唯一值数组，按发现的顺序返回
 * value_counts：返回一个Series，其索引为唯一值，其值为频率，按计算数值降序排列
+
 ```
 print('去重')
 obj = Series(['c', 'a', 'd', 'a', 'a', 'b', 'b', 'c', 'c'])
@@ -652,9 +657,11 @@ print(p)
 ```
 
 
+
 **参考文献：**
-1. pandas toolkit
-2 . pandas官方文档：[https://pandas.pydata.org/pandas-docs/stable/index.html](https://pandas.pydata.org/pandas-docs/stable/index.html)
+
+* pandas toolkit
+* pandas官方文档：[https://pandas.pydata.org/pandas-docs/stable/index.html](https://pandas.pydata.org/pandas-docs/stable/index.html)
 
 **作者：**Paul
 
