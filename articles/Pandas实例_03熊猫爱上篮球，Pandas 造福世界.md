@@ -13,7 +13,7 @@
 
 08 年的中国，写满着苦难与辉煌。1 月，中国南方遭遇数十年未遇的雪灾，数 10 万房屋倒塌，直接经济损失 1500 多亿；5 月，汶川发生新中国历史上破坏力最大的地震，全国仅 3 省没有震感，近 7 万鲜活生命离我们远去；8 月，第 29 届夏季奥林匹克运动会在北京成功举办，中国以 51 枚金牌的成绩首次登顶奥运会奖牌榜；9 月，神舟七号载人飞船发射升空，翟志刚走出舱门，迈出中国人在太空的第一步。
 
-<div style="align: center">
+<div align='center'>
 <img src="https://uploader.shimo.im/f/1dX1uMCMn4kTTrmd.jpeg!thumbnail" width="69.5%"></img><br><br>
 <img src="https://uploader.shimo.im/f/6MYbT25L7FUQAs3S.jpeg!thumbnail"></img>
 </div>
@@ -21,7 +21,7 @@
 
 下面这张照片，是那一年，我为自己房间选择的床头灯。一只卡通熊猫，咬着一根竹子，怀抱一个篮球，篮球上倒写着三个字母：NBA.  熟悉篮球的朋友都知道， NBA 全称 National Basketball Association（国家篮球协会），是美国的职业篮球联赛。曾经有段时间央视要求改称 NBA 为美职篮，后来应该是取消了这个规定，现在比赛解说叫的都是 NBA。
 
-<div style="align: center">
+<div align='center'>
 <img src="https://uploader.shimo.im/f/8YO2d8xZmWM4i4Vv.jpg!thumbnail" width="70%"></img>
 </div>
 
@@ -178,7 +178,7 @@ print('数据已输出到外部文件：', os.getcwd() + '/shotInfo.csv')
 
 熊猫先森等待数据的 5 个小时里，万分焦急，他数次拿起电话筒，呼叫又会唱跳，又会 rap，又会篮球的坤坤，约他出来打球，坤坤的回复总是寥寥四字，简洁明了。熊猫先森强忍着内心的愤怒，决定分析完他的投篮数据后，再找坤坤算笔总账，熊猫先森心里嘀咕：“不是不报，时候未到。”
 
-<div style="align: center">
+<div align='center'>
 <img src="https://uploader.shimo.im/f/FFILGqPzEbg7KWon.gif" width="35%"></img>
 <img src="https://uploader.shimo.im/f/CzZnLdDbUHQUCix8.jpg!thumbnail" width="35%"></img>
 </div>
@@ -196,7 +196,7 @@ def convert_df(df):
     return df.astype(dic)
 ```
 
-<div style="align: center">
+<div align='center'>
 <img src="https://uploader.shimo.im/f/UAfRURti4U0hbEaL.jpg!thumbnail" width="35%"></img>
 <img src="https://uploader.shimo.im/f/3slxIrM3s6whlBqN.jpg!thumbnail" width="35%"></img>
 <img src="https://uploader.shimo.im/f/54R6VPq4y0ID6Mzx.jpg!thumbnail" width="70%"></img>
@@ -205,7 +205,7 @@ def convert_df(df):
 
 截止到 2018-19 赛季，这份包含 24 个变量的投篮数据，共计 446 万 3258 条（新赛季已经开始，总的数据量会继续增加）。稍有遗憾的是：这只是最近 20 多年的数据，因为 NBA 官方统计网站上只记载了 1996-97 赛季以来球员的详细投篮数据。
 
-<div style="align: center">
+<div align='center'>
 <img src="https://uploader.shimo.im/f/Haxrq0LXCOUKuGG6.png!thumbnail"></img><br><br>
 <img src="https://uploader.shimo.im/f/cab7st8SR04E3MEC.png!thumbnail"></img><br><br>
 <img src="https://uploader.shimo.im/f/LyjWRzyNPSQYEhrK.png!thumbnail"></img><br><br>
@@ -300,7 +300,7 @@ def exam_col_value(df, col):
 
 这些问题需要得到处理，一方面，当我们的分析需要用到这些存在问题的列时，进行预处理将有利于提高我们分析结果的准确性，另一方面，预处理后的干净数据可以存储起来，等将来有了相关的新数据，需要结合起来分析时，这部分已经预处理过的数据就无需处理了，这就省了不少事。可以说，**数据预处理，是功在当代，利在千秋的好事情**，所以啊，不要嫌麻烦，要做，一定要做，加班加点也要做。
 
-<div style="align: center">
+<div align='center'>
 <img src="https://uploader.shimo.im/f/8DgjNQTFhfUT4u5d.jpg!thumbnail" width="70%"></img><br><br>
 <img src="https://uploader.shimo.im/f/MTc4cQkBY7U2lROt.jpeg!thumbnail"></img>
 <img src="https://uploader.shimo.im/f/Utr3Mj76ed4G0uUs.jpeg!thumbnail"></img>
@@ -308,7 +308,7 @@ def exam_col_value(df, col):
 
 **接下来的 “扫黑除恶” 工作可能冗长而乏味，虽然它很重要，但如果你对此缺乏兴趣，不要硬着头皮上，使劲儿滑屏幕，滑到后面看数据分析部分吧，常言道：画条曲线，也可以拯救一个国家。**
 
-<div style="align: center">
+<div align='center'>
 <img src="https://uploader.shimo.im/f/mruEBqdOqFkXoAd1.jpg!thumbnail"></img>
 </div>
 
@@ -409,7 +409,7 @@ col1, col2 = 'TEAM_ID', 'TEAM_NAME'
 ```
 下面是截取的部分输出结果，在这张截图的最后两行，可以看到 LA Clippers 与 Los Angeles Clippers，这不是同一个名称吗，查询相关资料进一步确定了这个判断，因此这里需要将 LA 替换为 Los Angeles.
 
-<div style="align: center">
+<div align='center'>
 <img src="https://uploader.shimo.im/f/0GuFkL1NOqAbhiB9.png!thumbnail"></img>
 </div>
 
@@ -475,7 +475,7 @@ plt.scatter(xRC, yRC, s=1, alpha=0.3, color='blue')
 plt.scatter(xBC, yBC, s=1, alpha=0.3, color='black')
 plt.show()
 ```
-<div style="align: center">
+<div align='center'>
 <img src="https://uploader.shimo.im/f/5BT6wXnReUQKuaw9.png!thumbnail" width="90%"></img>
 </div>
 
@@ -496,7 +496,7 @@ NBA 篮球场全长 94 英尺，半场长 47.5 英尺，数据中的 LOC_X=0, LO
 
 我们能从这份数据中得到这两条直线的精确方程吗？答案是不能的，因为数据是不完美的。如果将图片放大仔细观察，你会发现，绿色、红色、蓝色的边界线并不笔直，怎么会不笔直呢？造成这种不笔直的原因可能有两个：一是 LOC_X、LOC_Y 只取整数而直线是实数域下的，二是部分数据本身存在错误。
 
-<div style="align: center">
+<div align='center'>
 <img src="https://uploader.shimo.im/f/QGMZRs2WvCIXwwur.png!thumbnail" width="25%"></img>
 <img src="https://uploader.shimo.im/f/3EeNWzCOpq4kR0GW.png!thumbnail" width="25%"></img> 
 </div>
@@ -596,13 +596,13 @@ shotDF = shotDF.assign(
 ```
 对修改以后的数据，再来画一下散点图，看看对上图中大部分黑色散点（注：本为前场非底角三分却被标记为后场投篮的部分，不包括 LOC_Y>417 即实际为后场投篮的部分）区域的分配是否合理。将上面画散点图的代码中定义 dataBC，xBC，yBC 的部分以及 plt.scatter(xBC, yBC...) 注释后，运行得到如下所示的图形
 
-<div style="align: center">
+<div align='center'>
 <img src="https://uploader.shimo.im/f/YfTjhl4wpREbCJEp.png!thumbnail"></img>
 </div>
 
 对比两张散点图，可以清晰地看到，对黑色散点所作的处理是成功的。至此，数据预处理工作就结束了。
 
-<div style="align: center">
+<div align='center'>
 <img src="https://uploader.shimo.im/f/eUiZFkMi4KggnMMk.png!thumbnail"></img>
 <img src="https://uploader.shimo.im/f/9aZysvzow50SwWR6.gif" width="26%"></img>
 </div>
@@ -621,7 +621,7 @@ shotDF = shotDF.assign(
 
 熊猫先森一边吃着他的**八角炒竹笋**，一边分析着他的数据。
 
-<div style="align: center">
+<div align='center'>
 <img src="https://uploader.shimo.im/f/sRMBX35OZXkBE3KC.jpeg!thumbnail" width="35%"></img>
 <img src="https://uploader.shimo.im/f/FhcdUr1V7mUeGuhh.jpg!thumbnail" width="35%"></img>
 </div>
@@ -680,7 +680,7 @@ c = (
 c.render_notebook()
 ```
 
-<div style="align: center">
+<div align='center'>
 <img src="https://uploader.shimo.im/f/dtqHlkGTHM06Yrt2.png!thumbnail" width="90%"></img>
 </div>
 
@@ -693,14 +693,14 @@ c.render_notebook()
 
 2012-13 赛季，或许是一个在当时看起来并不那么起眼的赛季，伤愈归来的库里，在他的第 4 个赛季里，投进了 272 记 3 分球，一举打破了尘封 7 年的常规赛 3 分球纪录：雷阿伦的 269 记 3 分球。那个赛季，库里以场均 22.9 分，4 个篮板，6.9 次助攻，1.6 次抢断的成绩单，成功带领勇士以西部第 6 的身份杀入季后赛。
 
-<div style="align: center">
+<div align='center'>
 <img src="https://uploader.shimo.im/f/sIY3NfsElsoh3RyQ.jpeg!thumbnail" width="70%"></img>
 </div>
 
 
 那时，人们不会想到，两个赛季后的 2014-15 赛季，库里以 286 记 3 分球再次打破自己所保持的 3 分球纪录，带领勇士时隔 40 年后再次捧起 NBA 总冠军奖杯，并以 98 记 3 分球打破季后赛三分球纪录。人们更不会想到，紧接着的 2015-16 赛季，库里以 402 记 3 分球第三次刷新常规赛 3 分球纪录，并带领勇士豪取 73 胜，打破了 1995-96 赛季公牛 72 胜纪录的同时成为史上第一支常规赛没有连败的球队。
 
-<div style="align: center">
+<div align='center'>
 <img src="https://uploader.shimo.im/f/NDYD21ZLu0wgbklH.jpeg!thumbnail" width="70%"></img>
 </div>
 
@@ -709,7 +709,7 @@ c.render_notebook()
 
 2015-16 赛季的库里是恐怖的，当一个球员运球过中场线后就可以出手投篮，将离着 3 分线两三米的区域视作常规投篮区域时，如何防守呢？那个赛季过后，我以为库里将成为下一个篮球之神，遗憾的是，他没有成为。NBA 历史上首个全票当选常规赛最有价值球员的库里，带着 73 胜光环的勇士，在 3-1 领先的情况下被骑士连扳 3 局，惨遭逆转，输掉了当年的总决赛。随后，在一片谩骂声中，杜兰特加盟勇士，在拥有杜兰特的三个赛季里，他们三次杀入总决赛，两夺总冠军。
 
-<div style="align: center">
+<div align='center'>
 <img src="https://uploader.shimo.im/f/5Wph2AyppTornkcc.jpeg!thumbnail" width="70%"></img>
 </div>
 
@@ -753,7 +753,7 @@ c = (
 c.render_notebook()
 ```
 
-<div style="align: center">
+<div align='center'>
 <img src="https://uploader.shimo.im/f/wyptYY4WVsIp2oRA.png!thumbnail" width="90%"></img>
 </div>
 
@@ -771,33 +771,33 @@ c.render_notebook()
 ```
 
 * 1997 年 11 月 14 日，菲尼克斯太阳 vs 波特兰开拓者
-<div style="align: center">
+<div align='center'>
 <img src="https://uploader.shimo.im/f/HB8NeB4yey427BaJ.png!thumbnail" width="70%"></img>
 </div>
 
 * 2012 年 3 月 25 日，犹他爵士 vs 亚特兰大老鹰 
-<div style="align: center">
+<div align='center'>
 <img src="https://uploader.shimo.im/f/Lg6wOAk1aZwBZZc5.png!thumbnail" width="70%"></img>
 </div>
 
 * 2015 年 12 月 18 日，底特律活塞 vs 芝加哥公牛
-<div style="align: center">
+<div align='center'>
 <img src="https://uploader.shimo.im/f/xbdwYiP6gVAVelvL.png!thumbnail" width="70%"></img>
 </div>
 
 * 2017 年 1 月 29 日，纽约尼克斯 vs 亚特兰大老鹰 
-<div style="align: center">
+<div align='center'>
 <img src="https://uploader.shimo.im/f/s1ycvIK4NYMDU1af.png!thumbnail" width="70%"></img>
 </div>
 
 * 2019 年 3 月 1 日，芝加哥公牛 vs 亚特兰大老鹰 
-<div style="align: center">
+<div align='center'>
 <img src="https://uploader.shimo.im/f/NLx4E1UBdwMBAp3c.png!thumbnail" width="70%"></img>
 </div>
 
 **进入 21 世纪之后，亚特兰大老鹰如有神助，在仅有的四场 4 加时比赛中豪取三场，同时拿下其中两场的胜利，更加出色的是这三场比赛都是老鹰的主场，嗯，体验 4 加时，我选择定居亚特兰大！**老鹰加入 NBA 70 年了，自 1957-58 赛季拿到 NBA 总冠军后，球队再也没有收获过总冠军奖杯，2015 年老鹰更换了队徽，新的老鹰还能展翅翱翔，再现辉煌吗？亚特兰大，这座在南北战争废墟里成长起来的城市，这座拥有美国三大理工学院之一的城市，一直在静静等待着。
 
-<div style="align: center">
+<div align='center'>
 <img src="https://uploader.shimo.im/f/PyR4bCWog7g8rPg3.jpeg!thumbnail" width="70%"></img>
 </div>
 
@@ -806,7 +806,7 @@ c.render_notebook()
 
 >NBA 篮球场与我们平常所见的篮球场有不少差异，最典型的就是 3 分线更远。此外，NBA 篮球场有自己独有的标记线，例如底线和罚球圈附近的 4 个用来标识低位防守区域的标记。低位防守区域的一个作用是：从该区域开始进攻的进攻球员若在限制区内冲撞事先占据合法防守位置的防守球员，可以吹罚进攻球员进攻犯规，也就是说限制区原本允许的合理冲撞在这种情况下失效了。法纳斯特公众号，乃至 NBA 官方统计网站，对 NBA 半个篮球场各标记线的绘制都是不完整的，此外它们还绘制了多余的两条标记线，这两条标记线标识以前的油漆区（12 英尺宽），在现今 NBA 比赛中已没有作用了（现在的油漆区是 16 英尺宽），当然 全美大学生篮球联赛仍旧使用 12 英尺宽的油漆区。
 
-<div style="align: center">
+<div align='center'>
 <img src="https://uploader.shimo.im/f/gd8BjuZ1z8U5lHCU.png!thumbnail" width="70%"></img>
 </div>
 
@@ -1005,7 +1005,7 @@ shot_plot('Stephen Curry', '2009-10')
 shot_plot('Stephen Curry', '2018-19')
 ```
 
-<div style="align: center">
+<div align='center'>
 <img src="https://uploader.shimo.im/f/AWEZmuxmjZIEokre.png!thumbnail" width="70%"></img>
 <img src="https://uploader.shimo.im/f/Bni2xL9wcIsf7ywf.png!thumbnail" width="70%"></img>
 </div>
@@ -1017,7 +1017,7 @@ shot_plot('Stephen Curry', '2018-19')
 shot_plot()
 ```
 
-<div style="align: center">
+<div align='center'>
 <img src="https://uploader.shimo.im/f/otvFn2elIyEqeydF.png!thumbnail" width="70%"></img>
 </div>
 
@@ -1038,7 +1038,7 @@ shot_plot()
 
 **这一年，史称 “嘻哈熊猫”。**
 
-<div style="align: center">
+<div align='center'>
 <img src="https://uploader.shimo.im/f/fH4rfQrYgrgBIPNr.jpeg!thumbnail" width="70%"></img>
 <img src="https://uploader.shimo.im/f/FqhAhE4BScIk6UDb.jpg!thumbnail" width="70%"></img>
 </div>
