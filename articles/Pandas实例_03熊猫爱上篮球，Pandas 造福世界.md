@@ -370,6 +370,7 @@ shotDF[con][col].unique().tolist()
 > 'Backcourt',<br>
 > 'Restricted Area',<br>
 > 'In The Paint (Non-RA)']
+
 SHOT_TYPE 列存在一个缺失值，这个问题并不严重，严重的是：SHOT_TYPE 列标识为 3 分的投篮，居然覆盖了 SHOT_ZONE_BASIC 的所有取值，**在油漆区和限制区投篮也被标记为 3 分，哦天哪，我以后也是可以随便投 3 分的人了！**下面的代码将依据 SHOT_ZONE_BASIC 的取值对 SHOT_TYPE 列重新赋值，这样也一并解决了 SHOT_TYPE 存在缺失的问题。
 
 ```Python
@@ -404,6 +405,7 @@ shotDF.ACTION_TYPE_BASIC.sort_values().unique()
 >'Jump Shot', 'Jump shot', 'Layup Shot', <br>
 >'Layup shot', 'No Shot', 'Roll Shot', <br>
 > 'Tip Shot'], dtype=object)
+
 这里我新增了 1 列 ACTION_TYPE_BASIC，它对应 ACTION_TYPE 列的最后两个单词，代表投篮动作类型的大类，查看去重后这列的取值情况，Bank Shot、Jump Shot 和 Layup Shot 都有两个，难道去重童鞋罢工了？并没有，仔细看发现，两个名称一个是 Shot，一个是 shot，这怎么可以，两个明明代表的是同一类事物，于是我们需要对 ACTION_TYPE 列统一大小写，这里使用字符串类型的 lower 方法，它能使字符串中所有单词变成小写字母。
 
 ```Python
@@ -457,6 +459,7 @@ col = 'SHOT_ZONE_BASIC'
 shotDF[con][col].unique().tolist()
 ```
 >['Backcourt', 'Above the Break 3']
+
 后场投篮（SHOT_ZONE_AREA='Back Court(BC)'，SHOT_ZONE_RANGE='Back Court Shot'）对应的 SHOT_ZONE_BASIC 应该是 Backcourt，怎么会出现 Above the Break 3 （前场非底角三分，或称前场正面三分）呢？
 
 接下来我们筛选出 SHOT_ZONE_BASIC 取 Above the Break 3 的数据，选择投篮点坐标列 LOC_X,  LOC_Y 画个二维散点图，并对 SHOT_ZONE_AREA 的不同取值 （Left Side Center(LC)、Center(C) 、Right Side Center(RC) 、Back Court(BC)） 分别标绿色、红色、蓝色和黑色。
@@ -562,6 +565,7 @@ else:
 ```
 >右侧直线方程：-11.3333x + 3.6667y = -4.0000
 >左侧直线方程：11.3333x + 3.6667y = -4.0000
+
 对上述方程左右两边同乘 3 得到：右侧直线方程为 -34x + 11y + 12 = 0，左侧直线方程为 34x + 11y + 12 = 0. 这样依据 LOC_X，LOC_Y 确定前场非底角三分的 SHOT_ZONE_AREA 取值的规则就有了，下面对 SHOT_ZONE_BASIC=‘Above the Break 3’ 的数据的 SHOT_ZONE_BASIC、SHOT_ZONE_AREA 和 SHOT_ZONE_RANGE 列重新赋值，由于整个数据集较大，重新赋值需要一定时间。
 
 ```Python
@@ -1076,6 +1080,7 @@ shot_plot()
 >
 >运筹OR帷幄火星总部
 >3091 年 12 月 5 日
+
 ## 6 参考资料
 
 1. [库里 2018-19 赛季常规赛投篮图](https://stats.nba.com/events/?flag=3&CFID=33&CFPARAMS=2018-19&PlayerID=201939&ContextMeasure=FGA&Season=2018-19&section=player&sct=plot)，NBA 官方统计网站
