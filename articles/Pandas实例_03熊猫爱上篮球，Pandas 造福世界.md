@@ -36,7 +36,116 @@
 
 为了获取全部球员的投篮数据，我需要全部球员的 ID 信息，上哪里找呢？万能的 Github 上，一个名为 [nba_py](https://github.com/seemethere/nba_py) 的项目，为我提供了答案。在这个项目的[文档](https://github.com/seemethere/nba_py/wiki/stats.nba.com-Endpoint-Documentation)中，提供了获取全部球员 ID 信息的 URL。该 URL 的方案、主机、路径部分为 https://stats.nba.com/stats/commonallplayers? ，其查询部分涉及 3 个参数：LeagueID、Season 和 IsOnlyCurrentSeason。这个文档中还提供了许多 URL，不过并没有说明通过请求这些 URL 可以获得什么数据，以后有时间再慢慢研究吧。
 
-至此，获取 NBA 所有球员投篮数据的途径就有了。这份数据的获取，包含上千次网络请求，其中第一次请求获取球员 ID 信息，后面的请求获取所有球员常规赛的详细投篮数据，不同球员对应的 URL 不同，有多少名球员，就有多少次请求。在我的个人电脑上，整个数据的获取花费了近 5 个小时，最终获得的数据量为 400 多万条，文件大小近 900 M。代码比较长，这里就不放了，如果需要，关注公众号后回复“熊猫”即可获得。
+至此，获取 NBA 所有球员投篮数据的途径就有了。这份数据的获取，包含上千次网络请求，其中第一次请求获取球员 ID 信息，后面的请求获取所有球员常规赛的详细投篮数据，不同球员对应的 URL 不同，有多少名球员，就有多少次请求。在我的个人电脑上，整个数据的获取花费了近 5 个小时，最终获得的数据量为 400 多万条，文件大小近 900 M。代码如下:
+
+``` python
+import requests
+import pandas as pd
+import os
+import re
+
+
+# 获取球员 ID 信息
+url = "https://stats.nba.com/js/data/ptsd/stats_ptsd.js"
+headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; '
+           'Win64; x64) AppleWebKit/537.36 (KHTML, like '
+           'Gecko) Chrome/77.0.3865.90 Safari/537.36',
+           'Referer': 'https://stats.nba.com/',
+           'Accept': 'application/json, text/plain, */*',
+           'Accept-Encoding': 'gzip, deflate, br',
+           'Accept-Language': 'en-US,en;q=0.9,zh-CN;'
+           'q=0.8,zh;q=0.7',
+           'Connection': 'keep-alive',
+           'Host': 'stats.nba.com',
+           'Sec-Fetch-Dest': 'empty',
+           'Sec-Fetch-Mode': 'cors',
+           'Sec-Fetch-Site': 'same-origin',
+           'x-nba-stats-origin': 'stats',
+           'x-nba-stats-token': 'true'
+           }
+colName = ['PERSON_ID','DISPLAY_LAST_COMMA_FIRST',
+           'ROSTERSTATUS','FROM_YEAR','TO_YEAR',
+           'TEAM_ID','GAMES_PLAYED_FLAG']
+try:
+    idInfo = (requests.get(url, params=params, 
+                           headers=headers)
+                      .json()["resultSets"][0]
+             )
+except Exception:
+    print("\n错误：球员 ID 信息获取失败，"
+          "请确认网络连接正常后重启程序！")
+    exit()
+else:
+    print("\n成功：球员 ID 信息获取成功\n")
+    idInfo = pd.DataFrame(idInfo["rowSet"], 
+                          columns=idInfo["headers"])
+    playerIDList = idInfo["PERSON_ID"].tolist()
+
+
+# 获取球员常规赛投篮数据
+shotDF, errorList, emptyList = pd.DataFrame(), [], []
+# 若要获取所有球员数据，清修改 playerIDList[0:50] 为 playerIDList
+for i, playerID in enumerate(playerIDList[0:50]):
+    url = 'https://stats.nba.com/stats/shotchartdetail?'
+    params = {
+        "SeasonType": "Regular Season",
+        "TeamID": 0,
+        "PlayerID": playerID,
+        "PlayerPosition": '',
+        "GameID": '',
+        "Outcome": '',
+        "Location": '',
+        "Month": 0,
+        "SeasonSegment": '',
+        "DateFrom": '',
+        "DateTo": '',
+        "OpponentTeamID": 0,
+        "VsConference": '',
+        "VsDivision": '',
+        "RookieYear": '',
+        "GameSegment": '',
+        "Period": 0,
+        "LastNGames": 0,
+        "ContextMeasure": "FGA",
+    }
+    try:
+        shotDFSec = (requests.get(url, params=params,                             
+                                  headers=headers)
+                             .json()["resultSets"][0]
+                    )
+    except Exception:
+        errorList.append(playerID)
+        print('错误：第{0}个球员（ID:{1}）数据获取失败'
+              .format(i + 1, playerID))
+    else:
+        print('成功：第{0}个球员（ID:{1}）数据获取成功'
+              .format(i + 1, playerID))
+        if shotDFSec["rowSet"] != []:
+            shotDFSec = pd.DataFrame(
+                shotDFSec["rowSet"],
+                columns=shotDFSec["headers"])
+            shotDF = shotDF.append(shotDFSec)
+        else:
+            emptyList.append(playerID)
+            print('警告：第{0}个球员（ID:{1}）数据为空'
+                  .format(i + 1, playerID))
+
+if emptyList != []:
+    print('警告：以下球员 ID 数据为空\n{0}\n'
+          .format(emptyList))
+
+if errorList != []:
+    print('错误：以下球员 ID 数据获取失败\n{0}\n'
+          .format(errorList))
+
+
+# 将数据保存到外部文件
+# os.getcwd() 用于获取当前工作目录，cwd 是 current work directory 的简称
+shotDF.to_csv('shotInfo.csv')
+print('数据已输出到外部文件：', os.getcwd() + '/shotInfo.csv')
+```
+
+
 
 熊猫先森等待数据的 5 个小时里，万分焦急，他数次拿起电话筒，呼叫又会唱跳，又会 rap，又会篮球的坤坤，约他出来打球，坤坤的回复总是寥寥四字，简洁明了。熊猫先森强忍着内心的愤怒，决定分析完他的投篮数据后，再找坤坤算笔总账，熊猫先森心里嘀咕：“不是不报，时候未到。”
 
@@ -47,14 +156,10 @@
 
 仔细看看 convert_df 函数，其实它只做了一件事情：那就是当某列去重后元素个数小于原来元素个数的 50 % 时，转换列类型为 category。老子爷爷的《道德经》说得好：万物之始，大道至简，衍化至繁。
 
-```
+```Python
 def convert_df(df):
-    dic = {
-           col: 'category' 
-           for col in df.columns
-           if df[col].nunique() /
-           df[col].shape[0] < 0.5
-          }
+    dic = {col: 'category' for col in df.columns
+           if df[col].nunique() / df[col].shape[0] < 0.5}
     return df.astype(dic)
 ```
  ![图片](https://uploader.shimo.im/f/UAfRURti4U0hbEaL.jpg!thumbnail)![图片](https://uploader.shimo.im/f/3slxIrM3s6whlBqN.jpg!thumbnail)![图片](https://uploader.shimo.im/f/54R6VPq4y0ID6Mzx.jpg!thumbnail)
@@ -71,27 +176,23 @@ def convert_df(df):
 
 进一步，我自定义了一个函数 exam_col_value 来查看各列的取值情况
 
-```
+```python
 def exam_col_value(df, col):
     if isinstance(col, int):
         colName = df.columns[col]
         colIndex = col
     else:
         colName = col
-        colIndex = df.columns.\
-        get_indexer([col])[0]
+        colIndex = df.columns.get_indexer([col])[0]
         
     dfCol = df[colName]
-    uniqueValues = (dfCol
-                  .drop_duplicates()
-                  .sort_values()
-                  .values)
-    uniqueValuesCount \
-    = uniqueValues.size
+    uniqueValues = (dfCol.drop_duplicates()
+                    .sort_values().values)
+    uniqueValuesCount = uniqueValues.size
+    
     nullMark = dfCol.isnull()
     if any(nullMark):
-        nullIndex = (dfCol[nullMark]
-                    .index.values)
+        nullIndex = dfCol[nullMark].index.values
     else:
         nullIndex = None
 
@@ -172,8 +273,7 @@ def exam_col_value(df, col):
 ### 3.1 前 4 个问题的处理
 **我们首先来看 PLAYER_NAME 列的缺失情况**
 
-```
-
+```Python
 con = shotDF.PLAYER_NAME.isnull()
 col = ['PLAYER_ID', 'PLAYER_NAME']
 shotDF[con][col]
@@ -182,23 +282,20 @@ shotDF[con][col]
 
 可以看到，缺失的 PLAYER_NAME 对应的 PLAYER_ID 只有两个：902 和 1489. 因此我们只要查一下 902 和 1489 对应的球员姓名就好了，902 对应的球员姓名为 Bimbo Coles，1489 对应的球员姓名为 Lionel Simmons，于是通过以下代码就解决了 PLAYER_NAME 列存在缺失的问题。
 
-```
+```Python
 col = 'PLAYER_NAME'
-new = ['Bimbo Coles'] + \
-      ['Lionel Simmons'] * 4
-      
+new = ['Bimbo Coles'] + ['Lionel Simmons'] * 4
 shotDF.loc[con, col] = new
 ```
 **接下来看 SHOT_TYPE 列存在的问题**
 
-```
+```Python
 con = shotDF.SHOT_TYPE.isnull()
 shotDF[con].index.tolist()
 ```
 >[2870012]
-```
-con = shotDF.SHOT_TYPE \
-      =='3PT Field Goal'
+```Python
+con = shotDF.SHOT_TYPE == '3PT Field Goal'
 col = 'SHOT_ZONE_BASIC'
 shotDF[con][col].unique().tolist()
 ```
@@ -212,7 +309,7 @@ shotDF[con][col].unique().tolist()
 
 SHOT_TYPE 列存在一个缺失值，这个问题并不严重，严重的是：SHOT_TYPE 列标识为 3 分的投篮，居然覆盖了 SHOT_ZONE_BASIC 的所有取值，**在油漆区和限制区投篮也被标记为 3 分，哦天哪，我以后也是可以随便投 3 分的人了！**下面的代码将依据 SHOT_ZONE_BASIC 的取值对 SHOT_TYPE 列重新赋值，这样也一并解决了 SHOT_TYPE 存在缺失的问题。
 
-```
+```Python
 def zone_to_type(x):
     if x in [
         'Mid-Range', 
@@ -223,31 +320,24 @@ def zone_to_type(x):
     else:
         return '3PT Field Goal'
 
-shotDF = shotDF.assign(
-             SHOT_TYPE=lambda df:
-             df.SHOT_ZONE_BASIC
-             .apply(zone_to_type)
-         )
+shotDF = shotDF.assign(SHOT_TYPE=lambda df:
+                       df.SHOT_ZONE_BASIC
+                       .apply(zone_to_type))
 ```
 **接下来看一下 ACTION_TYPE 列存在的问题**
 
-```
+```Python
 def type_to_detail(x):
-    import re
     L = re.split(' ', x)
     return L[-2] + ' ' + L[-1]
 
 
 shotDF = shotDF.assign(
-             ACTION_TYPE_BASIC
-             =lambda df: 
-             df.ACTION_TYPE
-             .apply(type_to_detail)
-          )
-(shotDF.ACTION_TYPE_BASIC
-        .sort_values()
-        .unique()
-)       
+             ACTION_TYPE_BASIC=lambda df: 
+             df.ACTION_TYPE.apply(type_to_detail)
+         )
+
+shotDF.ACTION_TYPE_BASIC.sort_values().unique()
 ```
 >array(['Bank Shot', 'Bank shot', 'Dunk Shot',    
 >           'Fadeaway shot', 'Hook Shot', 
@@ -257,12 +347,10 @@ shotDF = shotDF.assign(
 
 这里我新增了 1 列 ACTION_TYPE_BASIC，它对应 ACTION_TYPE 列的最后两个单词，代表投篮动作类型的大类，查看去重后这列的取值情况，Bank Shot、Jump Shot 和 Layup Shot 都有两个，难道去重童鞋罢工了？并没有，仔细看发现，两个名称一个是 Shot，一个是 shot，这怎么可以，两个明明代表的是同一类事物，于是我们需要对 ACTION_TYPE 列统一大小写，这里使用字符串类型的 lower 方法，它能使字符串中所有单词变成小写字母。
 
-```
+```Python
 shotDF = shotDF.assign(
-             shotDF.ACTION_TYPE
-             .apply(lambda str_: 
-                    str_.lower())
-         )
+  shotDF.ACTION_TYPE.apply(lambda str_: str_.lower())
+)
 ```
 ACTION_TYPE 列还存在缺失，这个缺失不是空值，而是 ‘No Shot’，这个缺失如何处理呢？使用机器学习方法或许可以，但我们需要找到与投篮类型的判断高度相关的变量，这份数据似乎缺乏这样的变量，因此对这个问题暂时不做处理。
 
@@ -281,9 +369,8 @@ col1, col2 = 'TEAM_ID', 'TEAM_NAME'
 
 类似地，执行以下代码即可完成替换
 
-```
-con = shotDF.TEAM_NAME \
-      =='LA Clippers'
+```Python
+con = shotDF.TEAM_NAME =='LA Clippers'
 col = 'TEAM_NAME'
 new = 'Los Angeles Clippers'
 shotDF.loc[con, col] = new
@@ -291,16 +378,14 @@ shotDF.loc[con, col] = new
 ### 3.2 第 5 个问题的处理
 第 5 个问题的处理相比前面 4 个问题的处理要复杂很多，首先来看 SHOT_ZONE_AREA 和 SHOT_ZONE_RANGE 列存在的问题
 
-```
-con = shotDF.SHOT_ZONE_AREA \
-      =='Back Court(BC)'
+```Python
+con = shotDF.SHOT_ZONE_AREA =='Back Court(BC)'
 col = 'SHOT_ZONE_BASIC'
 shotDF[con][col].unique().tolist()
 ```
 >['Backcourt', 'Above the Break 3']
-```
-con = shotDF.SHOT_ZONE_RANGE \
-      =='Back Court Shot'
+```Python
+con = shotDF.SHOT_ZONE_RANGE =='Back Court Shot'
 col = 'SHOT_ZONE_BASIC'
 shotDF[con][col].unique().tolist()
 ```
@@ -310,22 +395,17 @@ shotDF[con][col].unique().tolist()
 
 接下来我们筛选出 SHOT_ZONE_BASIC 取 Above the Break 3 的数据，选择投篮点坐标列 LOC_X,  LOC_Y 画个二维散点图，并对 SHOT_ZONE_AREA 的不同取值 （Left Side Center(LC)、Center(C) 、Right Side Center(RC) 、Back Court(BC)） 分别标绿色、红色、蓝色和黑色。
 
-```
+```Python
 import matplotlib.pyplot as plt
 
 
-con  = shotDF.SHOT_ZONE_BASIC \
-       == 'Above the Break 3'
+con  = shotDF.SHOT_ZONE_BASIC == 'Above the Break 3'
 data = shotDF[con]
 
-conLC = data.SHOT_ZONE_AREA \
-        == 'Left Side Center(LC)'
-conC  = data.SHOT_ZONE_AREA \
-        == 'Center(C)'
-conRC = data.SHOT_ZONE_AREA \
-        == 'Right Side Center(RC)'
-conBC = data.SHOT_ZONE_AREA \
-        == 'Back Court(BC)'
+conLC = data.SHOT_ZONE_AREA == 'Left Side Center(LC)'
+conC  = data.SHOT_ZONE_AREA == 'Center(C)'
+conRC = data.SHOT_ZONE_AREA == 'Right Side Center(RC)'
+conBC = data.SHOT_ZONE_AREA == 'Back Court(BC)'
 dataLC = data[conLC]
 dataC  = data[conC]
 dataRC = data[conRC]
@@ -343,18 +423,10 @@ yBC = dataBC['LOC_Y'].values
 # 请删除下面一行
 %matplotlib notebook
 plt.figure()
-plt.scatter(xLC, yLC,
-            s=1, alpha=0.3, 
-            color='green')
-plt.scatter(xC,  yC,  
-            s=1, alpha=0.3,
-            color='red')
-plt.scatter(xRC, yRC, 
-            s=1, alpha=0.3,
-            color='blue')
-plt.scatter(xBC, yBC,
-            s=1, alpha=0.3,
-            color='black')
+plt.scatter(xLC, yLC, s=1, alpha=0.3, color='green')
+plt.scatter(xC,  yC,  s=1, alpha=0.3, color='red')
+plt.scatter(xRC, yRC, s=1, alpha=0.3, color='blue')
+plt.scatter(xBC, yBC, s=1, alpha=0.3, color='black')
 plt.show()
 ```
 ![图片](https://uploader.shimo.im/f/5BT6wXnReUQKuaw9.png!thumbnail)
@@ -381,33 +453,22 @@ NBA 篮球场全长 94 英尺，半场长 47.5 英尺，数据中的 LOC_X=0, LO
 
 下面使用**支持向量机**技术，利用 **scikit-learn** 包里的 **svm** 模块获得划分蓝色和红色区域直线的方程（右侧直线的方程）。为了充分利用数据，我们将红色左半区域以及绿色区域的数据依 y 轴做个对称变换（新增 1 列 LOC_X_ABS，取 LOC_X 的绝对值），并新增 1 列 SHOT_ZONE_MARK，绿色、蓝色散点的 SHOT_ZONE_MARK 记为 0，红色散点的 SHOT_ZONE_MARK 记为 1。下面是相关代码，代码输出两条直线的近似方程。
 
-```
+```Python
 from sklearn import svm
 
 
 def area_to_num(x):
-    if x == 'Center(C)':
-        return 1
-    else:
-        return 0
+    return 1 if x == 'Center(C)' else 0
+  
 
-
-con1 = shotDF.SHOT_ZONE_BASIC \
-       == 'Above the Break 3'
-con2 = shotDF.SHOT_ZONE_AREA \
-       != 'Back Court(BC)'    
+con1 = shotDF.SHOT_ZONE_BASIC == 'Above the Break 3'
+con2 = shotDF.SHOT_ZONE_AREA != 'Back Court(BC)'    
 dataSvm = (shotDF[(con1) & (con2)]
            .assign(
-               SHOT_ZONE_MARK=
-                   lambda df: 
-                   df.SHOT_ZONE_AREA
-                   .apply(
-                       area_to_num
-                   ),
+               SHOT_ZONE_MARK=lambda df: 
+                   df.SHOT_ZONE_AREA.apply(area_to_num),
                LOC_X_ABS=
-                   lambda df:
-                   df.LOC_X
-                   .apply(abs)
+                   lambda df: df.LOC_X.apply(abs)
             )
           )
 col1 = ['LOC_X_ABS', 'LOC_Y']
@@ -421,29 +482,17 @@ omega1 = lin_clf.coef_[0, 0]
 omega2 = lin_clf.coef_[0, 1]
 b = lin_clf.intercept_[0]
 if omega2 > 0:
-    print(('右侧直线方程：{0:.4f}x + '
-           + '{1:.4f}y = {2:.4f}')
-          .format(omega1, 
-                  omega2, 
-                  -b)
+    print(('右侧直线方程：{0:.4f}x + {1:.4f}y = {2:.4f}')
+          .format(omega1, omega2, -b)
          )
-    print(('左侧直线方程：{0:.4f}x + '
-           + '{1:.4f}y = {2:.4f}')
-          .format(-omega1, 
-                   omega2, 
-                  -b)
+    print(('左侧直线方程：{0:.4f}x + {1:.4f}y = {2:.4f}')
+          .format(-omega1, omega2, -b)
          )
 else:
-    print(('右侧直线方程：{0:.4f}x - '
-           + '{1:.4f}y = {2:.4f}')
-          .format(omega1, 
-                  omega2, 
-                  -b))
-    print(('左侧直线方程：{0:.4f}x - '
-           + '{1:.4f}y = {2:.4f}')
-          .format(-omega1, 
-                   omega2, 
-                   -b))
+    print(('右侧直线方程：{0:.4f}x - {1:.4f}y = {2:.4f}')
+          .format(omega1, omega2, -b))
+    print(('左侧直线方程：{0:.4f}x - {1:.4f}y = {2:.4f}')
+          .format(-omega1, omega2, -b))
 ```
 
 >右侧直线方程：-11.3333x + 3.6667y = -4.0000
@@ -451,18 +500,15 @@ else:
 
 对上述方程左右两边同乘 3 得到：右侧直线方程为 -34x + 11y + 12 = 0，左侧直线方程为 34x + 11y + 12 = 0. 这样依据 LOC_X，LOC_Y 确定前场非底角三分的 SHOT_ZONE_AREA 取值的规则就有了，下面对 SHOT_ZONE_BASIC=‘Above the Break 3’ 的数据的 SHOT_ZONE_BASIC、SHOT_ZONE_AREA 和 SHOT_ZONE_RANGE 列重新赋值，由于整个数据集较大，重新赋值需要一定时间。
 
-```
+```Python
 # 对 LOC_Y 大于 417 的数据
 # 为后场投篮
 # SHOT_ZONE_BASIC 应取 Backcourt
-con1 = shotDF.SHOT_ZONE_BASIC \
-       == 'Above the Break 3'
-con2 = shotDF.LOC_Y.astype(int) \
-       > 417
+con1 = shotDF.SHOT_ZONE_BASIC == 'Above the Break 3'
+con2 = shotDF.LOC_Y.astype(int) > 417
 col  = 'SHOT_ZONE_BASIC'
 new  = 'Backcourt'
-shotDF.loc[(con1) & (con2), col] \
-     = new
+shotDF.loc[(con1) & (con2), col] = new
 # 对三分，SHOT_ZONE_RANGE 
 # 均为 24+ ft，即大于 24 英尺
 # 严格来说，底角三分应为 22+ ft
@@ -473,40 +519,26 @@ new = '24+ ft.'     
 shotDF.loc[con1, col] = new
 # 根据直线方程修改 SHOT_ZONE_AREA
 def modify_area(df):
-    con1  = df.SHOT_ZONE_BASIC \
-            == 'Above the Break 3'
-    con2  = df.SHOT_ZONE_AREA \
-            == 'Back Court(BC)'
-    equaL =   34 * df.LOC_X \
-            + 11 * df.LOC_Y + 12
-    equaR = - 34 * df.LOC_X \
-            + 11 * df.LOC_Y + 12
+    con1  = df.SHOT_ZONE_BASIC == 'Above the Break 3'
+    con2  = df.SHOT_ZONE_AREA == 'Back Court(BC)'
+    equaL =   34 * df.LOC_X + 11 * df.LOC_Y + 12
+    equaR = - 34 * df.LOC_X + 11 * df.LOC_Y + 12
     areaL = ['Left Side Center(LC)',
              'Center(C)',
              'Right Side Center(RC)'
             ]       
     if con1 and con2:
         if df.LOC_X >= 0:
-            if equaR >= 0:
-                return areaL[1]
-            else:
-                return areaL[2]
+            return areaL[1] if equaR >= 0 else areaL[2]
         else:
-            if equaL >= 0:
-                return areaL[1]
-            else:
-                return areaL[0]
+            return areaL[1] if equaL >= 0 else areaL[0]
     else:
         return df.SHOT_ZONE_AREA
 
 
 shotDF = shotDF.assign(
-             SHOT_ZONE_AREA=
-             lambda df: 
-             df.apply(
-                      modify_area, 
-                      axis=1
-                     )
+             SHOT_ZONE_AREA=lambda df: 
+             df.apply(modify_area, axis=1)
          )
 ```
 对修改以后的数据，再来画一下散点图，看看对上图中大部分黑色散点（注：本为前场非底角三分却被标记为后场投篮的部分，不包括 LOC_Y>417 即实际为后场投篮的部分）区域的分配是否合理。将上面画散点图的代码中定义 dataBC，xBC，yBC 的部分以及 plt.scatter(xBC, yBC...) 注释后，运行得到如下所示的图形
@@ -641,9 +673,11 @@ shotDF = shotDF.assign(
 进入梦乡前，我第一次得知了自己的身份：熊猫先森 1996 年 2 月阅读《物种起源》时意外创造的复制体。
 
 >以上摘自熊坤本人今年写于火星的散文集《我与我的复制体》，文中以熊猫先森指代熊坤本人，以我指代熊坤的第一个显式复制体熊熊，以坤坤指代熊坤的第二个显式复制体。熊坤先生还有另外四个隐式复制体：能能、点点、土土和申申，在熊熊沉睡的千年里，他们先后以不同方式推动人类完成了四次进化。
->>今天的史学家将人类自 21 世纪以来先后经历的六个时代命名为：科学时代、娱乐时代、长人时代、矮人时代、巨长时代、巨矮时代。
->>公元 3091 年 1 月 1 日，人均身高 0.33 米的人类正式开启大规模移民系外行星的浪潮。多名身高低于 0.11 米的时代楷模联名发文，将人类即将迈入的这个新时代称为黄金时代，以纪念一千多年前中国大陆著名社会学家李银河女士和她的丈夫著名作家王小波先生。
->>运筹OR帷幄火星总部
+>
+>今天的史学家将人类自 21 世纪以来先后经历的六个时代命名为：科学时代、娱乐时代、长人时代、矮人时代、巨长时代、巨矮时代。
+>公元 3091 年 1 月 1 日，人均身高 0.33 米的人类正式开启大规模移民系外行星的浪潮。多名身高低于 0.11 米的时代楷模联名发文，将人类即将迈入的这个新时代称为黄金时代，以纪念一千多年前中国大陆著名社会学家李银河女士和她的丈夫著名作家王小波先生。
+>
+>运筹OR帷幄火星总部
 >3091 年 12 月 5 日
 
 **参考资料：**

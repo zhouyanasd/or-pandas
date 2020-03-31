@@ -26,11 +26,21 @@ params  = {
            "Season":              '2019',
            "IsOnlyCurrentSeason": 0
           }
-headers = {
-           "User-Agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
-            + 'AppleWebKit/537.36 (KHTML, like Gecko) '
-            + 'Chrome/77.0.3865.90 Safari/537.36'
-          }
+headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
+                         'AppleWebKit/537.36 (KHTML, like Gecko) '
+                         'Chrome/77.0.3865.90 Safari/537.36',
+           'Referer': 'https://stats.nba.com/',
+           'Accept': 'application/json, text/plain, */*',
+           'Accept-Encoding': 'gzip, deflate, br',
+           'Accept-Language': 'en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7',
+           'Connection': 'keep-alive',
+           'Host': 'stats.nba.com',
+           'Sec-Fetch-Dest': 'empty',
+           'Sec-Fetch-Mode': 'cors',
+           'Sec-Fetch-Site': 'same-origin',
+           'x-nba-stats-origin': 'stats',
+           'x-nba-stats-token': 'true'
+           }
 try:
     idInfo = (requests.get(url, params=params, headers=headers)
                       .json()["resultSets"][0]
