@@ -72,15 +72,19 @@ from pyecharts.charts import Line
 
 ``` python
 # 获取球员 ID 信息
-url = "https://stats.nba.com/js/data/ptsd/stats_ptsd.js"
-headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; '
-           'Win64; x64) AppleWebKit/537.36 (KHTML, like '
-           'Gecko) Chrome/77.0.3865.90 Safari/537.36',
+url     = "https://stats.nba.com/stats/commonallplayers?"
+params  = {
+           "LeagueID":            '00',
+           "Season":              '2019',
+           "IsOnlyCurrentSeason": 0
+          }
+headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
+                         'AppleWebKit/537.36 (KHTML, like Gecko) '
+                         'Chrome/77.0.3865.90 Safari/537.36',
            'Referer': 'https://stats.nba.com/',
            'Accept': 'application/json, text/plain, */*',
            'Accept-Encoding': 'gzip, deflate, br',
-           'Accept-Language': 'en-US,en;q=0.9,zh-CN;'
-           'q=0.8,zh;q=0.7',
+           'Accept-Language': 'en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7',
            'Connection': 'keep-alive',
            'Host': 'stats.nba.com',
            'Sec-Fetch-Dest': 'empty',
@@ -89,23 +93,18 @@ headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; '
            'x-nba-stats-origin': 'stats',
            'x-nba-stats-token': 'true'
            }
-colName = ['PERSON_ID','DISPLAY_LAST_COMMA_FIRST',
-           'ROSTERSTATUS','FROM_YEAR','TO_YEAR',
-           'TEAM_ID','GAMES_PLAYED_FLAG']
 try:
-    idInfo = (requests.get(url, params=params, 
-                           headers=headers)
+    idInfo = (requests.get(url, params=params, headers=headers)
                       .json()["resultSets"][0]
              )
-except Exception:
-    print("\n错误：球员 ID 信息获取失败，"
-          "请确认网络连接正常后重启程序！")
+except Exception as e:
+    print("\n错误：球员 ID 信息获取失败，请确认网络连接正常后重启程序！")
     exit()
 else:
-    print("\n成功：球员 ID 信息获取成功\n")
-    idInfo = pd.DataFrame(idInfo["rowSet"], 
-                          columns=idInfo["headers"])
+    idInfo       = pd.DataFrame(idInfo["rowSet"], 
+                                columns=idInfo["headers"])
     playerIDList = idInfo["PERSON_ID"].tolist()
+    print("\n成功：球员 ID 信息获取成功\n")
 
 
 # 获取球员常规赛投篮数据
@@ -113,27 +112,26 @@ shotDF, errorList, emptyList = pd.DataFrame(), [], []
 # 若要获取所有球员数据，清修改 playerIDList[0:50] 为 playerIDList
 for i, playerID in enumerate(playerIDList[0:50]):
     url = 'https://stats.nba.com/stats/shotchartdetail?'
-    params = {
-        "SeasonType": "Regular Season",
-        "TeamID": 0,
-        "PlayerID": playerID,
-        "PlayerPosition": '',
-        "GameID": '',
-        "Outcome": '',
-        "Location": '',
-        "Month": 0,
-        "SeasonSegment": '',
-        "DateFrom": '',
-        "DateTo": '',
-        "OpponentTeamID": 0,
-        "VsConference": '',
-        "VsDivision": '',
-        "RookieYear": '',
-        "GameSegment": '',
-        "Period": 0,
-        "LastNGames": 0,
-        "ContextMeasure": "FGA",
-    }
+    params = {"SeasonType":     'Regular Season',
+              "TeamID":         0,
+              "PlayerID":       playerID,
+              "PlayerPosition": '',
+              "GameID":         '',
+              "Outcome":        '',
+              "Location":       '',
+              "Month":          0,
+              "SeasonSegment":  '',
+              "DateFrom":       '',
+              "DateTo":         '',
+              "OpponentTeamID": 0,
+              "VsConference":   '',
+              "VsDivision":     '',
+              "RookieYear":     '',
+              "GameSegment":    '',
+              "Period":         0,
+              "LastNGames":     0,
+              "ContextMeasure": 'FGA',
+             }
     try:
         shotDFSec = (requests.get(url, params=params,                             
                                   headers=headers)
