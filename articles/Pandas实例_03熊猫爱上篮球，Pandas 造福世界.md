@@ -1,13 +1,6 @@
-# **题目**
-数据科学 | 熊猫爱上篮球，Pandas 造福世界
+# **数据科学 | 熊猫爱上篮球，Pandas 造福世界**
 
-# **封面图**
-<div align='center'>
-<img src="https://uploader.shimo.im/f/FqhAhE4BScIk6UDb.jpg!thumbnail" width="70%"></img>
-</div>
-
-
-# 正文
+*作者：征帆  责编：征帆，邢昱  审稿责编：书生，周岩*
 
 11 年前，怀着激动的心情，我跟随着爸爸妈妈来到了新家。第一次住上过百平的房子，第一次有了自己的独立房间，第一次体验宽敞明亮的书房。那一年，对我来说，很特殊；那一年，对我们国家来说，更是如此。
 
@@ -204,8 +197,7 @@ def convert_df(df):
 <img src="https://uploader.shimo.im/f/54R6VPq4y0ID6Mzx.jpg!thumbnail" width="70%"></img>
 </div>
 
-
-
+<br>
 
 截止到 2018-19 赛季，这份包含 24 个变量的投篮数据，共计 446 万 3258 条（新赛季已经开始，总的数据量会继续增加）。稍有遗憾的是：这只是最近 20 多年的数据，因为 NBA 官方统计网站上只记载了 1996-97 赛季以来球员的详细投篮数据。
 
@@ -236,6 +228,7 @@ shotDF.head()
 <img src="https://uploader.shimo.im/f/6B7CbJcLx0EQhllw.png!thumbnail"></img>
 </div>
 
+<br>
 
 进一步，我自定义了一个函数 exam_col_value 来查看各列的取值情况
 
@@ -333,6 +326,7 @@ def exam_col_value(df, col):
 <img src="https://uploader.shimo.im/f/Utr3Mj76ed4G0uUs.jpeg!thumbnail"></img>
 </div>
 
+<br>
 
 **接下来的 “扫黑除恶” 工作可能冗长而乏味，虽然它很重要，但如果你对此缺乏兴趣，不要硬着头皮上，使劲儿滑屏幕，滑到后面看数据分析部分吧，常言道：画条曲线，也可以拯救一个国家。**
 
@@ -350,7 +344,6 @@ con = shotDF.PLAYER_NAME.isnull()
 col = ['PLAYER_ID', 'PLAYER_NAME']
 shotDF[con][col]
 ```
-
 
 ![图片](https://uploader.shimo.im/f/XL1ZKlh54dkuv0gn.png!thumbnail)
 
@@ -376,12 +369,12 @@ con = shotDF.SHOT_TYPE == '3PT Field Goal'
 col = 'SHOT_ZONE_BASIC'
 shotDF[con][col].unique().tolist()
 ```
->['Right Corner 3',
-> 'Above the Break 3',
-> 'Mid-Range',
-> 'Left Corner 3',
-> 'Backcourt',
-> 'Restricted Area',www
+>['Right Corner 3',<br>
+> 'Above the Break 3',<br>
+> 'Mid-Range',<br>
+> 'Left Corner 3',<br>
+> 'Backcourt',<br>
+> 'Restricted Area',<br>
 > 'In The Paint (Non-RA)']
 
 SHOT_TYPE 列存在一个缺失值，这个问题并不严重，严重的是：SHOT_TYPE 列标识为 3 分的投篮，居然覆盖了 SHOT_ZONE_BASIC 的所有取值，**在油漆区和限制区投篮也被标记为 3 分，哦天哪，我以后也是可以随便投 3 分的人了！**下面的代码将依据 SHOT_ZONE_BASIC 的取值对 SHOT_TYPE 列重新赋值，这样也一并解决了 SHOT_TYPE 存在缺失的问题。
@@ -450,6 +443,7 @@ col1, col2 = 'TEAM_ID', 'TEAM_NAME'
 <img src="https://uploader.shimo.im/f/0GuFkL1NOqAbhiB9.png!thumbnail"></img>
 </div>
 
+<br>
 
 类似地，执行以下代码即可完成替换
 
@@ -516,11 +510,11 @@ plt.scatter(xBC, yBC, s=1, alpha=0.3, color='black')
 plt.show()
 ```
 
-
 <div align='center'>
 <img src="https://uploader.shimo.im/f/5BT6wXnReUQKuaw9.png!thumbnail" width="90%"></img>
 </div>
 
+<br>
 
 NBA 篮球场全长 94 英尺，半场长 47.5 英尺，数据中的 LOC_X=0, LOC_Y=0 指代篮筐中心，这一中心距离底线 5.3 英尺，因此 LOC_Y 的取值范围为 -53-887，单位取 0.1 英尺，所以当 LOC_Y > 417 时，该投篮才是后场投篮。
 
@@ -544,6 +538,7 @@ NBA 篮球场全长 94 英尺，半场长 47.5 英尺，数据中的 LOC_X=0, LO
 <img src="https://uploader.shimo.im/f/3EeNWzCOpq4kR0GW.png!thumbnail" width="21%"></img> 
 </div>
 
+<br>
 
 虽然并不完美，但并不影响我们获得两个近似的直线方程。由于篮球场的对称性，我们只需要获得其中一条直线的方程，便可以得到另一条直线的方程。
 
@@ -641,6 +636,7 @@ shotDF = shotDF.assign(
 <img src="https://uploader.shimo.im/f/YfTjhl4wpREbCJEp.png!thumbnail" width="90%"></img>
 </div>
 
+<br>
 
 对比两张散点图，可以清晰地看到，对黑色散点所作的处理是成功的。至此，数据预处理工作就结束了。
 
@@ -650,6 +646,7 @@ shotDF = shotDF.assign(
 <img src="https://uploader.shimo.im/f/9aZysvzow50SwWR6.gif" width="26%"></img>
 </div>
 
+<br>
 
 ## 4 数据分析
 熊猫先森左顾右盼，终于从我这里盼来了梦寐以求的干净数据，现在，可以大干一场了。
@@ -670,6 +667,7 @@ shotDF = shotDF.assign(
 <img src="https://uploader.shimo.im/f/FhcdUr1V7mUeGuhh.jpg!thumbnail" width="35%"></img>
 </div>
 
+<br>
 
 坊间流传着这样的话：**在 NBA，球员们越来越多地选择三分或油漆区，中距离投篮越来越少。果真如此吗**？ 熊猫先森拿来数据，依据 GAME_ID 生成新列 SEASON，代表赛季，依据 SHOT_ZONE_BASIC 生成新列 SHOT_TYPE_DETAIL，代表详细投篮类型，包括 2 分（油漆区）、2 分（中投）和 3 分。而后熊猫先森根据这两列构建一个列联表（交叉表），统计各赛季不同投篮类型的占比情况，使用 pyecharts 包画了如下的折线图。
 
@@ -728,6 +726,7 @@ c.render_notebook()
 <img src="https://uploader.shimo.im/f/dtqHlkGTHM06Yrt2.png!thumbnail" width="90%"></img>
 </div>
 
+<br>
 
 自 1999-00 赛季以来，NBA 球员选择中投的比例一直在下降，特别是从 2012-13 赛季开始，降幅进一步加大。与之相对应的是：除了在 2009-10 赛季以及 2010-11 赛季有少许回落外，自 1999-00 赛季以来，NBA 球员选择三分的比例一直在上升，同样地从 2012-13 赛季开始，增幅进一步加大。
 
@@ -742,6 +741,7 @@ c.render_notebook()
 <img src="https://uploader.shimo.im/f/sIY3NfsElsoh3RyQ.jpeg!thumbnail" width="70%"></img>
 </div>
 
+<br>
 
 那时，人们不会想到，两个赛季后的 2014-15 赛季，库里以 286 记 3 分球再次打破自己所保持的 3 分球纪录，带领勇士时隔 40 年后再次捧起 NBA 总冠军奖杯，并以 98 记 3 分球打破季后赛三分球纪录。人们更不会想到，紧接着的 2015-16 赛季，库里以 402 记 3 分球第三次刷新常规赛 3 分球纪录，并带领勇士豪取 73 胜，打破了 1995-96 赛季公牛 72 胜纪录的同时成为史上第一支常规赛没有连败的球队。
 
@@ -750,6 +750,7 @@ c.render_notebook()
 <img src="https://uploader.shimo.im/f/NDYD21ZLu0wgbklH.jpeg!thumbnail" width="70%"></img>
 </div>
 
+<br>
 
 今天，在野球场上，远距离进攻正在得到大家的认同，我们能看到越来越多的人选择 3 分这样的进攻方式，人们不再固执地认为一定要往里打，一定要离篮筐越近越好，一定是得内线（油漆区）者才能得天下。
 
@@ -760,6 +761,7 @@ c.render_notebook()
 <img src="https://uploader.shimo.im/f/5Wph2AyppTornkcc.jpeg!thumbnail" width="70%"></img>
 </div>
 
+<br>
 
 随着杜兰特的离开，新赛季开局阶段的勇士战绩惨淡，西部垫底。库里掌骨骨折，更是雪上加霜。属于勇士的时代，或许还会以一种新的方式出现，或许就这样土崩瓦解一去不复返了。究竟如何，已经不重要了，勇士将篮球运动带入了崭新的时代，在这个全新的时代里，篮球不再是内线巨人的天下，篮球的各个位置开始变得模糊，3 分从篮球比赛的边缘成长为比赛的常规武器。而塑造这个时代的灵魂人物，库里，早已无需成为篮球之神了，因为他就是这个新时代的代名词。
 
@@ -805,6 +807,7 @@ c.render_notebook()
 <img src="https://uploader.shimo.im/f/wyptYY4WVsIp2oRA.png!thumbnail" width="90%"></img>
 </div>
 
+<br>
 
 **与投篮选择形成鲜明对比的是，NBA 球员各赛季油漆区、中投、三分的命中率无比平稳，三分出手比例的持续上升并没有带来三分命中率的提升**。曾记得很久以前看过一段话，命中率不断提升是篮球运动发展的趋势，而从 96-97 赛季至今的 NBA 常规赛投篮数据，显然否定了这种说法，虽然存在以偏概全的风险，但这种说法至少是值得怀疑的。
 
@@ -857,6 +860,7 @@ c.render_notebook()
 <img src="https://uploader.shimo.im/f/PyR4bCWog7g8rPg3.jpeg!thumbnail" width="70%"></img>
 </div>
 
+<br>
 
 夜深了，菜碟里只剩下三只八角，熊猫先森用纸巾擦拭着嘴角的口水，意犹未尽。它准备画一下**球员的投篮图**，而后心满意足地进入梦乡。熊猫先森首先完成了半个 NBA 篮球场的绘制，别看这篮球场小小的，把熊猫先森折腾得嗷嗷叫。
 
@@ -1068,6 +1072,7 @@ shot_plot('Stephen Curry', '2018-19')
 <img src="https://uploader.shimo.im/f/Bni2xL9wcIsf7ywf.png!thumbnail" width="70%"></img>
 </div>
 
+<br>
 
 最后的最后，熊猫先森从一堆堆的球员投篮图中抓出一幅，贴在了自己的办公桌前，他要向他致敬，向伟大致敬！熊猫先森想：**要是在这位球员的身上，注入库里划时代的三分球能力，会是怎样一番场景呢？**他知道，他不能这样想下去，但他控制不了自己，他睡着了，在他的梦中，他操控着这个世界，向着进化生物学家预言的方向，分毫不差地前进着。
 
@@ -1079,6 +1084,7 @@ shot_plot()
 <img src="https://uploader.shimo.im/f/otvFn2elIyEqeydF.png!thumbnail" width="70%"></img>
 </div>
 
+<br>
 
 这个方向是什么，今时今日的普罗大众还无从得知。
 
@@ -1102,6 +1108,7 @@ shot_plot()
 <img src="https://uploader.shimo.im/f/FqhAhE4BScIk6UDb.jpg!thumbnail" width="70%"></img>
 </div>
 
+<br>
 
 ## 5 尾声
 2090 年 8 月 2 日，37 岁的熊猫先森，接到了他的“仇人”，92 岁高龄的坤坤的电话，电话接通的一刹那，他们异口同声：
@@ -1153,8 +1160,3 @@ shot_plot()
 15. [大熊猫](https://baike.baidu.com/item/%E5%A4%A7%E7%86%8A%E7%8C%AB/34935?fromtitle=%E7%86%8A%E7%8C%AB&fromid=162918)，百度百科
 
 
-**作者：征帆**
-
-**责编：征帆，邢昱**
-
-**审稿责编：书生，周岩**
