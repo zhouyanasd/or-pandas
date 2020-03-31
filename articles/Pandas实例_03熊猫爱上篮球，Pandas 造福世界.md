@@ -14,8 +14,8 @@
 08 年的中国，写满着苦难与辉煌。1 月，中国南方遭遇数十年未遇的雪灾，数 10 万房屋倒塌，直接经济损失 1500 多亿；5 月，汶川发生新中国历史上破坏力最大的地震，全国仅 3 省没有震感，近 7 万鲜活生命离我们远去；8 月，第 29 届夏季奥林匹克运动会在北京成功举办，中国以 51 枚金牌的成绩首次登顶奥运会奖牌榜；9 月，神舟七号载人飞船发射升空，翟志刚走出舱门，迈出中国人在太空的第一步。
 
 <div align='center'>
-<img src="https://uploader.shimo.im/f/1dX1uMCMn4kTTrmd.jpeg!thumbnail" width="69.5%"></img><br><br>
-<img src="https://uploader.shimo.im/f/6MYbT25L7FUQAs3S.jpeg!thumbnail"></img>
+<img src="https://uploader.shimo.im/f/1dX1uMCMn4kTTrmd.jpeg!thumbnail" width="70%"></img><br><br>
+<img src="https://uploader.shimo.im/f/6MYbT25L7FUQAs3S.jpeg!thumbnail" width="70%"></img>
 </div>
 
 
