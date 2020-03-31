@@ -1,6 +1,8 @@
 <br>
 
-# **数据科学 | 熊猫爱上篮球，Pandas 造福世界**
+<div align='center'>
+<strong>数据科学 | 熊猫爱上篮球，Pandas 造福世界</strong>
+</div>
 
 <br>
 
