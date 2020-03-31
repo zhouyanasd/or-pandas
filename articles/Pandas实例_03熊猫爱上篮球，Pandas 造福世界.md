@@ -2,7 +2,7 @@
 数据科学 | 熊猫爱上篮球，Pandas 造福世界
 
 # **封面图**
-<div style="align: center">
+<div align='center'>
 <img src="https://uploader.shimo.im/f/FqhAhE4BScIk6UDb.jpg!thumbnail" width="70%"></img>
 </div>
 
