@@ -411,11 +411,11 @@ shotDF = shotDF.assign(
 
 shotDF.ACTION_TYPE_BASIC.sort_values().unique()
 ```
->array(['Bank Shot', 'Bank shot', 'Dunk Shot', <br>   
->           'Fadeaway shot', 'Hook Shot', <br>
->           'Jump Shot', 'Jump shot', 'Layup Shot', <br> 
->           'Layup shot', 'No Shot', 'Roll Shot', <br>
->           'Tip Shot'], dtype=object)
+>array(['Bank Shot', 'Bank shot', 'Dunk Shot', <br>
+>'Fadeaway shot', 'Hook Shot', <br>
+>'Jump Shot', 'Jump shot', 'Layup Shot', <br>
+>'Layup shot', 'No Shot', 'Roll Shot', <br>
+> 'Tip Shot'], dtype=object)
 
 这里我新增了 1 列 ACTION_TYPE_BASIC，它对应 ACTION_TYPE 列的最后两个单词，代表投篮动作类型的大类，查看去重后这列的取值情况，Bank Shot、Jump Shot 和 Layup Shot 都有两个，难道去重童鞋罢工了？并没有，仔细看发现，两个名称一个是 Shot，一个是 shot，这怎么可以，两个明明代表的是同一类事物，于是我们需要对 ACTION_TYPE 列统一大小写，这里使用字符串类型的 lower 方法，它能使字符串中所有单词变成小写字母。
 
