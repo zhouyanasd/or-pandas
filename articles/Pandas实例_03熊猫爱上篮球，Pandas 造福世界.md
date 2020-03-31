@@ -1,12 +1,12 @@
 # **数据科学 | 熊猫爱上篮球，Pandas 造福世界**
 
-*作者：征帆  责编：征帆，邢昱  审稿责编：书生，周岩*
+> **作者**：征帆 <br> 
+> **责编**：征帆，邢昱 <br> 
+> **审稿责编**：书生，周岩 <br>
 
 11 年前，怀着激动的心情，我跟随着爸爸妈妈来到了新家。第一次住上过百平的房子，第一次有了自己的独立房间，第一次体验宽敞明亮的书房。那一年，对我来说，很特殊；那一年，对我们国家来说，更是如此。
 
 08 年的中国，写满着苦难与辉煌。1 月，中国南方遭遇数十年未遇的雪灾，数 10 万房屋倒塌，直接经济损失 1500 多亿；5 月，汶川发生新中国历史上破坏力最大的地震，全国仅 3 省没有震感，近 7 万鲜活生命离我们远去；8 月，第 29 届夏季奥林匹克运动会在北京成功举办，中国以 51 枚金牌的成绩首次登顶奥运会奖牌榜；9 月，神舟七号载人飞船发射升空，翟志刚走出舱门，迈出中国人在太空的第一步。
-
-
 
 <div align='center'>
 <img src="https://uploader.shimo.im/f/1dX1uMCMn4kTTrmd.jpeg!thumbnail" width="70%"></img><br><br>
@@ -410,10 +410,10 @@ shotDF = shotDF.assign(
 
 shotDF.ACTION_TYPE_BASIC.sort_values().unique()
 ```
->array(['Bank Shot', 'Bank shot', 'Dunk Shot',    
->           'Fadeaway shot', 'Hook Shot', 
->           'Jump Shot', 'Jump shot', 'Layup Shot', 
->           'Layup shot', 'No Shot', 'Roll Shot',
+>array(['Bank Shot', 'Bank shot', 'Dunk Shot', <br>   
+>           'Fadeaway shot', 'Hook Shot', <br>
+>           'Jump Shot', 'Jump shot', 'Layup Shot', <br> 
+>           'Layup shot', 'No Shot', 'Roll Shot', <br>
 >           'Tip Shot'], dtype=object)
 
 这里我新增了 1 列 ACTION_TYPE_BASIC，它对应 ACTION_TYPE 列的最后两个单词，代表投篮动作类型的大类，查看去重后这列的取值情况，Bank Shot、Jump Shot 和 Layup Shot 都有两个，难道去重童鞋罢工了？并没有，仔细看发现，两个名称一个是 Shot，一个是 shot，这怎么可以，两个明明代表的是同一类事物，于是我们需要对 ACTION_TYPE 列统一大小写，这里使用字符串类型的 lower 方法，它能使字符串中所有单词变成小写字母。
@@ -1063,7 +1063,7 @@ def shot_plot(playerName = 'Kobe Bryant', season = '2005-06', color='#003370', l
 
 ```python
 shot_plot('Stephen Curry', '2009-10')
-shot_plot('Stephen Curry', '2018-19')
+shot_plot('Stephen Curry', '2015-16')
 ```
 
 
@@ -1072,7 +1072,6 @@ shot_plot('Stephen Curry', '2018-19')
 <img src="https://uploader.shimo.im/f/Bni2xL9wcIsf7ywf.png!thumbnail" width="70%"></img>
 </div>
 
-<br>
 
 最后的最后，熊猫先森从一堆堆的球员投篮图中抓出一幅，贴在了自己的办公桌前，他要向他致敬，向伟大致敬！熊猫先森想：**要是在这位球员的身上，注入库里划时代的三分球能力，会是怎样一番场景呢？**他知道，他不能这样想下去，但他控制不了自己，他睡着了，在他的梦中，他操控着这个世界，向着进化生物学家预言的方向，分毫不差地前进着。
 
@@ -1084,7 +1083,6 @@ shot_plot()
 <img src="https://uploader.shimo.im/f/otvFn2elIyEqeydF.png!thumbnail" width="70%"></img>
 </div>
 
-<br>
 
 这个方向是什么，今时今日的普罗大众还无从得知。
 
