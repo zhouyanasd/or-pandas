@@ -1,5 +1,5 @@
 <div align='center'>
-<h1><strong>pandas 实例 | 3 熊猫爱上篮球，Pandas 造福世界</strong></h1>
+<h1><strong>pandas 实例 3：熊猫爱上篮球，Pandas 造福世界</strong></h1>
 <p><strong>作者</strong>：征帆&nbsp;&nbsp;&nbsp;&nbsp;<strong>责编</strong>：征帆，邢昱&nbsp;&nbsp;&nbsp;&nbsp;<strong>审稿责编</strong>：书生，周岩</p>
 </div>
 
