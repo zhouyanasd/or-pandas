@@ -1,9 +1,6 @@
-<br>
-
 <div align='center'>
 <h1><strong>数据科学 | 熊猫爱上篮球，Pandas 造福世界</strong></h1>
-<br>
-<strong>作者</strong>：征帆 <br> <strong>责编</strong>：征帆，邢昱 <strong>审稿责编</strong>：书生，周岩
+<strong>作者</strong>：征帆 <strong>责编</strong>：征帆，邢昱 <strong>审稿责编</strong>：书生，周岩
 </div>
 
 11 年前，怀着激动的心情，我跟随着爸爸妈妈来到了新家。第一次住上过百平的房子，第一次有了自己的独立房间，第一次体验宽敞明亮的书房。那一年，对我来说，很特殊；那一年，对我们国家来说，更是如此。
