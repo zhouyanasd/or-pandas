@@ -13,6 +13,8 @@
 
 08 年的中国，写满着苦难与辉煌。1 月，中国南方遭遇数十年未遇的雪灾，数 10 万房屋倒塌，直接经济损失 1500 多亿；5 月，汶川发生新中国历史上破坏力最大的地震，全国仅 3 省没有震感，近 7 万鲜活生命离我们远去；8 月，第 29 届夏季奥林匹克运动会在北京成功举办，中国以 51 枚金牌的成绩首次登顶奥运会奖牌榜；9 月，神舟七号载人飞船发射升空，翟志刚走出舱门，迈出中国人在太空的第一步。
 
+
+
 <div align='center'>
 <img src="https://uploader.shimo.im/f/1dX1uMCMn4kTTrmd.jpeg!thumbnail" width="70%"></img><br><br>
 <img src="https://uploader.shimo.im/f/6MYbT25L7FUQAs3S.jpeg!thumbnail" width="70%"></img>
@@ -21,9 +23,12 @@
 
 下面这张照片，是那一年，我为自己房间选择的床头灯。一只卡通熊猫，咬着一根竹子，怀抱一个篮球，篮球上倒写着三个字母：NBA.  熟悉篮球的朋友都知道， NBA 全称 National Basketball Association（国家篮球协会），是美国的职业篮球联赛。曾经有段时间央视要求改称 NBA 为美职篮，后来应该是取消了这个规定，现在比赛解说叫的都是 NBA。
 
+
+
 <div align='center'>
 <img src="https://uploader.shimo.im/f/8YO2d8xZmWM4i4Vv.jpg!thumbnail" width="70%"></img>
 </div>
+
 
 一个多月前，央视停止转播 NBA 比赛，这一切缘于火箭队总经理莫雷发表的关于香港问题的不当言论。莫雷的言论，加上总裁肖华的补刀，彻底激怒了中国人民，NBA 走向舆论的风口浪尖，一时成为众矢之的。NBA 与中国关系的上空，依然乌云密布，何时散去尚未可知。但我希望，也相信，万里晴空终会到来。
 
@@ -70,12 +75,6 @@ from pyecharts.charts import Line
 至此，获取 NBA 所有球员投篮数据的途径就有了。这份数据的获取，包含上千次网络请求，其中第一次请求获取球员 ID 信息，后面的请求获取所有球员常规赛的详细投篮数据，不同球员对应的 URL 不同，有多少名球员，就有多少次请求。在我的个人电脑上，整个数据的获取花费了近 5 个小时，最终获得的数据量为 400 多万条，文件大小近 900 M。代码如下:
 
 ``` python
-import requests
-import pandas as pd
-import os
-import re
-
-
 # 获取球员 ID 信息
 url = "https://stats.nba.com/js/data/ptsd/stats_ptsd.js"
 headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; '
@@ -178,6 +177,7 @@ print('数据已输出到外部文件：', os.getcwd() + '/shotInfo.csv')
 
 熊猫先森等待数据的 5 个小时里，万分焦急，他数次拿起电话筒，呼叫又会唱跳，又会 rap，又会篮球的坤坤，约他出来打球，坤坤的回复总是寥寥四字，简洁明了。熊猫先森强忍着内心的愤怒，决定分析完他的投篮数据后，再找坤坤算笔总账，熊猫先森心里嘀咕：“不是不报，时候未到。”
 
+
 <div align='center'>
 <img src="https://uploader.shimo.im/f/FFILGqPzEbg7KWon.gif" width="35%"></img>
 <img src="https://uploader.shimo.im/f/CzZnLdDbUHQUCix8.jpg!thumbnail" width="35%"></img>
@@ -203,7 +203,29 @@ def convert_df(df):
 </div>
 
 
+
+
 截止到 2018-19 赛季，这份包含 24 个变量的投篮数据，共计 446 万 3258 条（新赛季已经开始，总的数据量会继续增加）。稍有遗憾的是：这只是最近 20 多年的数据，因为 NBA 官方统计网站上只记载了 1996-97 赛季以来球员的详细投篮数据。
+
+```python
+# 使数据框在显示时不隐藏部分行列
+pd.set_option('display.max_columns', None)
+pd.set_option('display.max_rows', None)
+
+# 读取外部文件，执行列类型转换，降低内存消耗
+# 请将 shotInfo.csv 置于当前目录下
+shotDF = (pd.read_csv(os.getcwd() + '/shotInfo.csv')
+            .iloc[:,1:]
+            .pipe(convert_df)
+         )
+# 如果需要 2019-20 赛季的数据，去掉这行筛选
+shotDF = shotDF[shotDF.GAME_DATE.astype(int)<20190901]
+         
+# 输出数据框大小，查看数据框前 5 行
+print('数据框大小:', shotDF.shape)
+shotDF.head()
+```
+
 
 <div align='center'>
 <img src="https://uploader.shimo.im/f/Haxrq0LXCOUKuGG6.png!thumbnail"></img><br><br>
@@ -211,6 +233,7 @@ def convert_df(df):
 <img src="https://uploader.shimo.im/f/LyjWRzyNPSQYEhrK.png!thumbnail"></img><br><br>
 <img src="https://uploader.shimo.im/f/6B7CbJcLx0EQhllw.png!thumbnail"></img>
 </div>
+
 
 进一步，我自定义了一个函数 exam_col_value 来查看各列的取值情况
 
@@ -246,6 +269,7 @@ def exam_col_value(df, col):
                  
     return examResult
 ```
+
 执行函数 exam_col_value(shotDF, 7) 或 exam_col_value(shotDF, 'PERIOD') 得到如下输出结果
 
 >{'col_index': 7,
@@ -300,17 +324,21 @@ def exam_col_value(df, col):
 
 这些问题需要得到处理，一方面，当我们的分析需要用到这些存在问题的列时，进行预处理将有利于提高我们分析结果的准确性，另一方面，预处理后的干净数据可以存储起来，等将来有了相关的新数据，需要结合起来分析时，这部分已经预处理过的数据就无需处理了，这就省了不少事。可以说，**数据预处理，是功在当代，利在千秋的好事情**，所以啊，不要嫌麻烦，要做，一定要做，加班加点也要做。
 
+
 <div align='center'>
 <img src="https://uploader.shimo.im/f/8DgjNQTFhfUT4u5d.jpg!thumbnail" width="70%"></img><br><br>
 <img src="https://uploader.shimo.im/f/MTc4cQkBY7U2lROt.jpeg!thumbnail"></img>
 <img src="https://uploader.shimo.im/f/Utr3Mj76ed4G0uUs.jpeg!thumbnail"></img>
 </div>
 
+
 **接下来的 “扫黑除恶” 工作可能冗长而乏味，虽然它很重要，但如果你对此缺乏兴趣，不要硬着头皮上，使劲儿滑屏幕，滑到后面看数据分析部分吧，常言道：画条曲线，也可以拯救一个国家。**
+
 
 <div align='center'>
 <img src="https://uploader.shimo.im/f/mruEBqdOqFkXoAd1.jpg!thumbnail"></img>
 </div>
+
 
 ### 3.1 前 4 个问题的处理
 **我们首先来看 PLAYER_NAME 列的缺失情况**
@@ -320,6 +348,7 @@ con = shotDF.PLAYER_NAME.isnull()
 col = ['PLAYER_ID', 'PLAYER_NAME']
 shotDF[con][col]
 ```
+
 
 ![图片](https://uploader.shimo.im/f/XL1ZKlh54dkuv0gn.png!thumbnail)
 
@@ -331,6 +360,7 @@ col = 'PLAYER_NAME'
 new = ['Bimbo Coles'] + ['Lionel Simmons'] * 4
 shotDF.loc[con, col] = new
 ```
+
 **接下来看 SHOT_TYPE 列存在的问题**
 
 ```Python
@@ -338,6 +368,7 @@ con = shotDF.SHOT_TYPE.isnull()
 shotDF[con].index.tolist()
 ```
 >[2870012]
+
 ```Python
 con = shotDF.SHOT_TYPE == '3PT Field Goal'
 col = 'SHOT_ZONE_BASIC'
@@ -368,6 +399,7 @@ shotDF = shotDF.assign(SHOT_TYPE=lambda df:
                        df.SHOT_ZONE_BASIC
                        .apply(zone_to_type))
 ```
+
 **接下来看一下 ACTION_TYPE 列存在的问题**
 
 ```Python
@@ -396,6 +428,7 @@ shotDF = shotDF.assign(
   shotDF.ACTION_TYPE.apply(lambda str_: str_.lower())
 )
 ```
+
 ACTION_TYPE 列还存在缺失，这个缺失不是空值，而是 ‘No Shot’，这个缺失如何处理呢？使用机器学习方法或许可以，但我们需要找到与投篮类型的判断高度相关的变量，这份数据似乎缺乏这样的变量，因此对这个问题暂时不做处理。
 
 **最后我们来看一下 TEAM_NAME 列存在的问题**
@@ -407,11 +440,14 @@ col1, col2 = 'TEAM_ID', 'TEAM_NAME'
  .sort_values(by=col1)
 )
 ```
+
 下面是截取的部分输出结果，在这张截图的最后两行，可以看到 LA Clippers 与 Los Angeles Clippers，这不是同一个名称吗，查询相关资料进一步确定了这个判断，因此这里需要将 LA 替换为 Los Angeles.
+
 
 <div align='center'>
 <img src="https://uploader.shimo.im/f/0GuFkL1NOqAbhiB9.png!thumbnail"></img>
 </div>
+
 
 类似地，执行以下代码即可完成替换
 
@@ -421,6 +457,7 @@ col = 'TEAM_NAME'
 new = 'Los Angeles Clippers'
 shotDF.loc[con, col] = new
 ```
+
 ### 3.2 第 5 个问题的处理
 第 5 个问题的处理相比前面 4 个问题的处理要复杂很多，首先来看 SHOT_ZONE_AREA 和 SHOT_ZONE_RANGE 列存在的问题
 
@@ -430,6 +467,7 @@ col = 'SHOT_ZONE_BASIC'
 shotDF[con][col].unique().tolist()
 ```
 >['Backcourt', 'Above the Break 3']
+
 ```Python
 con = shotDF.SHOT_ZONE_RANGE =='Back Court Shot'
 col = 'SHOT_ZONE_BASIC'
@@ -475,6 +513,8 @@ plt.scatter(xRC, yRC, s=1, alpha=0.3, color='blue')
 plt.scatter(xBC, yBC, s=1, alpha=0.3, color='black')
 plt.show()
 ```
+
+
 <div align='center'>
 <img src="https://uploader.shimo.im/f/5BT6wXnReUQKuaw9.png!thumbnail" width="90%"></img>
 </div>
@@ -496,9 +536,10 @@ NBA 篮球场全长 94 英尺，半场长 47.5 英尺，数据中的 LOC_X=0, LO
 
 我们能从这份数据中得到这两条直线的精确方程吗？答案是不能的，因为数据是不完美的。如果将图片放大仔细观察，你会发现，绿色、红色、蓝色的边界线并不笔直，怎么会不笔直呢？造成这种不笔直的原因可能有两个：一是 LOC_X、LOC_Y 只取整数而直线是实数域下的，二是部分数据本身存在错误。
 
+
 <div align='center'>
-<img src="https://uploader.shimo.im/f/QGMZRs2WvCIXwwur.png!thumbnail" width="25%"></img>
-<img src="https://uploader.shimo.im/f/3EeNWzCOpq4kR0GW.png!thumbnail" width="25%"></img> 
+<img src="https://uploader.shimo.im/f/QGMZRs2WvCIXwwur.png!thumbnail" width="29%"></img>
+<img src="https://uploader.shimo.im/f/3EeNWzCOpq4kR0GW.png!thumbnail" width="21%"></img> 
 </div>
 
 
@@ -507,21 +548,18 @@ NBA 篮球场全长 94 英尺，半场长 47.5 英尺，数据中的 LOC_X=0, LO
 下面使用**支持向量机**技术，利用 **scikit-learn** 包里的 **svm** 模块获得划分蓝色和红色区域直线的方程（右侧直线的方程）。为了充分利用数据，我们将红色左半区域以及绿色区域的数据依 y 轴做个对称变换（新增 1 列 LOC_X_ABS，取 LOC_X 的绝对值），并新增 1 列 SHOT_ZONE_MARK，绿色、蓝色散点的 SHOT_ZONE_MARK 记为 0，红色散点的 SHOT_ZONE_MARK 记为 1。下面是相关代码，代码输出两条直线的近似方程。
 
 ```Python
-from sklearn import svm
-
-
 def area_to_num(x):
     return 1 if x == 'Center(C)' else 0
   
 
 con1 = shotDF.SHOT_ZONE_BASIC == 'Above the Break 3'
-con2 = shotDF.SHOT_ZONE_AREA != 'Back Court(BC)'    
+con2 = shotDF.SHOT_ZONE_AREA  != 'Back Court(BC)'    
 dataSvm = (shotDF[(con1) & (con2)]
            .assign(
                SHOT_ZONE_MARK=lambda df: 
                    df.SHOT_ZONE_AREA.apply(area_to_num),
-               LOC_X_ABS=
-                   lambda df: df.LOC_X.apply(abs)
+               LOC_X_ABS=lambda df: 
+                   df.LOC_X.apply(abs)
             )
           )
 col1 = ['LOC_X_ABS', 'LOC_Y']
@@ -536,18 +574,15 @@ omega2 = lin_clf.coef_[0, 1]
 b = lin_clf.intercept_[0]
 if omega2 > 0:
     print(('右侧直线方程：{0:.4f}x + {1:.4f}y = {2:.4f}')
-          .format(omega1, omega2, -b)
-         )
+          .format( omega1, omega2, -b))
     print(('左侧直线方程：{0:.4f}x + {1:.4f}y = {2:.4f}')
-          .format(-omega1, omega2, -b)
-         )
+          .format(-omega1, omega2, -b))
 else:
     print(('右侧直线方程：{0:.4f}x - {1:.4f}y = {2:.4f}')
-          .format(omega1, omega2, -b))
+          .format( omega1, omega2, -b))
     print(('左侧直线方程：{0:.4f}x - {1:.4f}y = {2:.4f}')
           .format(-omega1, omega2, -b))
 ```
-
 >右侧直线方程：-11.3333x + 3.6667y = -4.0000
 >左侧直线方程：11.3333x + 3.6667y = -4.0000
 
@@ -562,6 +597,7 @@ con2 = shotDF.LOC_Y.astype(int) > 417
 col  = 'SHOT_ZONE_BASIC'
 new  = 'Backcourt'
 shotDF.loc[(con1) & (con2), col] = new
+
 # 对三分，SHOT_ZONE_RANGE 
 # 均为 24+ ft，即大于 24 英尺
 # 严格来说，底角三分应为 22+ ft
@@ -570,6 +606,7 @@ shotDF.loc[(con1) & (con2), col] = new
 col = 'SHOT_ZONE_RANGE'
 new = '24+ ft.'      
 shotDF.loc[con1, col] = new
+
 # 根据直线方程修改 SHOT_ZONE_AREA
 def modify_area(df):
     con1  = df.SHOT_ZONE_BASIC == 'Above the Break 3'
@@ -594,13 +631,17 @@ shotDF = shotDF.assign(
              df.apply(modify_area, axis=1)
          )
 ```
+
 对修改以后的数据，再来画一下散点图，看看对上图中大部分黑色散点（注：本为前场非底角三分却被标记为后场投篮的部分，不包括 LOC_Y>417 即实际为后场投篮的部分）区域的分配是否合理。将上面画散点图的代码中定义 dataBC，xBC，yBC 的部分以及 plt.scatter(xBC, yBC...) 注释后，运行得到如下所示的图形
 
+
 <div align='center'>
-<img src="https://uploader.shimo.im/f/YfTjhl4wpREbCJEp.png!thumbnail"></img>
+<img src="https://uploader.shimo.im/f/YfTjhl4wpREbCJEp.png!thumbnail" width="90%"></img>
 </div>
 
+
 对比两张散点图，可以清晰地看到，对黑色散点所作的处理是成功的。至此，数据预处理工作就结束了。
+
 
 <div align='center'>
 <img src="https://uploader.shimo.im/f/eUiZFkMi4KggnMMk.png!thumbnail"></img>
@@ -621,14 +662,14 @@ shotDF = shotDF.assign(
 
 熊猫先森一边吃着他的**八角炒竹笋**，一边分析着他的数据。
 
+
 <div align='center'>
 <img src="https://uploader.shimo.im/f/sRMBX35OZXkBE3KC.jpeg!thumbnail" width="35%"></img>
 <img src="https://uploader.shimo.im/f/FhcdUr1V7mUeGuhh.jpg!thumbnail" width="35%"></img>
 </div>
 
 
-
-坊间流传着这样的话：**在 NBA，球员们越来越多地选择三分或油漆区，中距离投篮越来越少。果真如此吗？**熊猫先森拿来数据，依据 GAME_ID 生成新列 SEASON，代表赛季，依据 SHOT_ZONE_BASIC 生成新列 SHOT_TYPE_DETAIL，代表详细投篮类型，包括 2 分（油漆区）、2 分（中投）和 3 分。而后熊猫先森根据这两列构建一个列联表（交叉表），统计各赛季不同投篮类型的占比情况，使用 pyecharts 包画了如下的折线图。
+坊间流传着这样的话：**在 NBA，球员们越来越多地选择三分或油漆区，中距离投篮越来越少。果真如此吗**？ 熊猫先森拿来数据，依据 GAME_ID 生成新列 SEASON，代表赛季，依据 SHOT_ZONE_BASIC 生成新列 SHOT_TYPE_DETAIL，代表详细投篮类型，包括 2 分（油漆区）、2 分（中投）和 3 分。而后熊猫先森根据这两列构建一个列联表（交叉表），统计各赛季不同投篮类型的占比情况，使用 pyecharts 包画了如下的折线图。
 
 ```python
 def proc_date(x):
@@ -680,6 +721,7 @@ c = (
 c.render_notebook()
 ```
 
+
 <div align='center'>
 <img src="https://uploader.shimo.im/f/dtqHlkGTHM06Yrt2.png!thumbnail" width="90%"></img>
 </div>
@@ -693,12 +735,14 @@ c.render_notebook()
 
 2012-13 赛季，或许是一个在当时看起来并不那么起眼的赛季，伤愈归来的库里，在他的第 4 个赛季里，投进了 272 记 3 分球，一举打破了尘封 7 年的常规赛 3 分球纪录：雷阿伦的 269 记 3 分球。那个赛季，库里以场均 22.9 分，4 个篮板，6.9 次助攻，1.6 次抢断的成绩单，成功带领勇士以西部第 6 的身份杀入季后赛。
 
+
 <div align='center'>
 <img src="https://uploader.shimo.im/f/sIY3NfsElsoh3RyQ.jpeg!thumbnail" width="70%"></img>
 </div>
 
 
 那时，人们不会想到，两个赛季后的 2014-15 赛季，库里以 286 记 3 分球再次打破自己所保持的 3 分球纪录，带领勇士时隔 40 年后再次捧起 NBA 总冠军奖杯，并以 98 记 3 分球打破季后赛三分球纪录。人们更不会想到，紧接着的 2015-16 赛季，库里以 402 记 3 分球第三次刷新常规赛 3 分球纪录，并带领勇士豪取 73 胜，打破了 1995-96 赛季公牛 72 胜纪录的同时成为史上第一支常规赛没有连败的球队。
+
 
 <div align='center'>
 <img src="https://uploader.shimo.im/f/NDYD21ZLu0wgbklH.jpeg!thumbnail" width="70%"></img>
@@ -709,6 +753,7 @@ c.render_notebook()
 
 2015-16 赛季的库里是恐怖的，当一个球员运球过中场线后就可以出手投篮，将离着 3 分线两三米的区域视作常规投篮区域时，如何防守呢？那个赛季过后，我以为库里将成为下一个篮球之神，遗憾的是，他没有成为。NBA 历史上首个全票当选常规赛最有价值球员的库里，带着 73 胜光环的勇士，在 3-1 领先的情况下被骑士连扳 3 局，惨遭逆转，输掉了当年的总决赛。随后，在一片谩骂声中，杜兰特加盟勇士，在拥有杜兰特的三个赛季里，他们三次杀入总决赛，两夺总冠军。
 
+
 <div align='center'>
 <img src="https://uploader.shimo.im/f/5Wph2AyppTornkcc.jpeg!thumbnail" width="70%"></img>
 </div>
@@ -718,7 +763,7 @@ c.render_notebook()
 
 熊猫先森娴熟地写着分析报告，八角的清香让他欲罢不能。
 
-**三分占比的大幅提升有没有带来三分命中率的提升？**熊猫先森想到了这个问题。于是他使用 pandas 中的 pivot_table 函数得到了各赛季各投篮类型的命中率，同样地，他使用 pyecharts 包画了如下的折线图
+**三分占比的大幅提升有没有带来三分命中率的提升**？熊猫先森想到了这个问题。于是他使用 pandas 中的 pivot_table 函数得到了各赛季各投篮类型的命中率，同样地，他使用 pyecharts 包画了如下的折线图
 
 ```python
 def rate(x):
@@ -753,15 +798,17 @@ c = (
 c.render_notebook()
 ```
 
+
 <div align='center'>
 <img src="https://uploader.shimo.im/f/wyptYY4WVsIp2oRA.png!thumbnail" width="90%"></img>
 </div>
+
 
 **与投篮选择形成鲜明对比的是，NBA 球员各赛季油漆区、中投、三分的命中率无比平稳，三分出手比例的持续上升并没有带来三分命中率的提升**。曾记得很久以前看过一段话，命中率不断提升是篮球运动发展的趋势，而从 96-97 赛季至今的 NBA 常规赛投篮数据，显然否定了这种说法，虽然存在以偏概全的风险，但这种说法至少是值得怀疑的。
 
 透过这张图，我们或许能从一个侧面理解为什么球员们会纷纷减少中投而增加三分的出手。中投命中率 40% 左右，只比三分命中率高出约 5 个百分点，相差并不大，按这样的命中率，投 100 个 3 分能得 105 分，而投 100 个中投只能得到 80 分，所以就像那句 “人生苦短，我用 Python” 一样，对于球员们而言，生涯苦短，我投三分！ 
 
-**自 1996-97 赛季以来，NBA 常规赛发生了多少 4 加时比赛？**熊猫先森想到了他的第 3 个问题，他对这些异常值们，总有着饱满的热情与浓厚的兴趣。熊猫先森熟练地敲击着键盘，系统为他返回了五场比赛，它们依次是：
+**自 1996-97 赛季以来，NBA 常规赛发生了多少 4 加时比赛**？熊猫先森想到了他的第 3 个问题，他对这些异常值们，总有着饱满的热情与浓厚的兴趣。熊猫先森熟练地敲击着键盘，系统为他返回了五场比赛，它们依次是：
 
 ```python
 (shotDF[shotDF.PERIOD==8]
@@ -771,31 +818,38 @@ c.render_notebook()
 ```
 
 * 1997 年 11 月 14 日，菲尼克斯太阳 vs 波特兰开拓者
+
 <div align='center'>
 <img src="https://uploader.shimo.im/f/HB8NeB4yey427BaJ.png!thumbnail" width="70%"></img>
 </div>
 
 * 2012 年 3 月 25 日，犹他爵士 vs 亚特兰大老鹰 
+
 <div align='center'>
 <img src="https://uploader.shimo.im/f/Lg6wOAk1aZwBZZc5.png!thumbnail" width="70%"></img>
 </div>
 
 * 2015 年 12 月 18 日，底特律活塞 vs 芝加哥公牛
+
 <div align='center'>
 <img src="https://uploader.shimo.im/f/xbdwYiP6gVAVelvL.png!thumbnail" width="70%"></img>
 </div>
 
 * 2017 年 1 月 29 日，纽约尼克斯 vs 亚特兰大老鹰 
+
 <div align='center'>
 <img src="https://uploader.shimo.im/f/s1ycvIK4NYMDU1af.png!thumbnail" width="70%"></img>
 </div>
 
 * 2019 年 3 月 1 日，芝加哥公牛 vs 亚特兰大老鹰 
+
 <div align='center'>
 <img src="https://uploader.shimo.im/f/NLx4E1UBdwMBAp3c.png!thumbnail" width="70%"></img>
 </div>
 
-**进入 21 世纪之后，亚特兰大老鹰如有神助，在仅有的四场 4 加时比赛中豪取三场，同时拿下其中两场的胜利，更加出色的是这三场比赛都是老鹰的主场，嗯，体验 4 加时，我选择定居亚特兰大！**老鹰加入 NBA 70 年了，自 1957-58 赛季拿到 NBA 总冠军后，球队再也没有收获过总冠军奖杯，2015 年老鹰更换了队徽，新的老鹰还能展翅翱翔，再现辉煌吗？亚特兰大，这座在南北战争废墟里成长起来的城市，这座拥有美国三大理工学院之一的城市，一直在静静等待着。
+
+**进入 21 世纪之后，亚特兰大老鹰如有神助，在仅有的四场 4 加时比赛中豪取三场，同时拿下其中两场的胜利，更加出色的是这三场比赛都是老鹰的主场，嗯，体验 4 加时，我选择定居亚特兰大**！老鹰加入 NBA 70 年了，自 1957-58 赛季拿到 NBA 总冠军后，球队再也没有收获过总冠军奖杯，2015 年老鹰更换了队徽，新的老鹰还能展翅翱翔，再现辉煌吗？亚特兰大，这座在南北战争废墟里成长起来的城市，这座拥有美国三大理工学院之一的城市，一直在静静等待着。
+
 
 <div align='center'>
 <img src="https://uploader.shimo.im/f/PyR4bCWog7g8rPg3.jpeg!thumbnail" width="70%"></img>
@@ -805,6 +859,7 @@ c.render_notebook()
 夜深了，菜碟里只剩下三只八角，熊猫先森用纸巾擦拭着嘴角的口水，意犹未尽。它准备画一下**球员的投篮图**，而后心满意足地进入梦乡。熊猫先森首先完成了半个 NBA 篮球场的绘制，别看这篮球场小小的，把熊猫先森折腾得嗷嗷叫。
 
 >NBA 篮球场与我们平常所见的篮球场有不少差异，最典型的就是 3 分线更远。此外，NBA 篮球场有自己独有的标记线，例如底线和罚球圈附近的 4 个用来标识低位防守区域的标记。低位防守区域的一个作用是：从该区域开始进攻的进攻球员若在限制区内冲撞事先占据合法防守位置的防守球员，可以吹罚进攻球员进攻犯规，也就是说限制区原本允许的合理冲撞在这种情况下失效了。法纳斯特公众号，乃至 NBA 官方统计网站，对 NBA 半个篮球场各标记线的绘制都是不完整的，此外它们还绘制了多余的两条标记线，这两条标记线标识以前的油漆区（12 英尺宽），在现今 NBA 比赛中已没有作用了（现在的油漆区是 16 英尺宽），当然 全美大学生篮球联赛仍旧使用 12 英尺宽的油漆区。
+
 
 <div align='center'>
 <img src="https://uploader.shimo.im/f/gd8BjuZ1z8U5lHCU.png!thumbnail" width="70%"></img>
@@ -1005,6 +1060,7 @@ shot_plot('Stephen Curry', '2009-10')
 shot_plot('Stephen Curry', '2018-19')
 ```
 
+
 <div align='center'>
 <img src="https://uploader.shimo.im/f/AWEZmuxmjZIEokre.png!thumbnail" width="70%"></img>
 <img src="https://uploader.shimo.im/f/Bni2xL9wcIsf7ywf.png!thumbnail" width="70%"></img>
@@ -1038,10 +1094,12 @@ shot_plot()
 
 **这一年，史称 “嘻哈熊猫”。**
 
+
 <div align='center'>
 <img src="https://uploader.shimo.im/f/fH4rfQrYgrgBIPNr.jpeg!thumbnail" width="70%"></img>
 <img src="https://uploader.shimo.im/f/FqhAhE4BScIk6UDb.jpg!thumbnail" width="70%"></img>
 </div>
+
 
 ## 5 尾声
 2090 年 8 月 2 日，37 岁的熊猫先森，接到了他的“仇人”，92 岁高龄的坤坤的电话，电话接通的一刹那，他们异口同声：
@@ -1074,23 +1132,23 @@ shot_plot()
 >运筹OR帷幄火星总部
 >3091 年 12 月 5 日
 
-**参考资料：**
+## 6 参考资料
 
->1. [库里 2018-19 赛季常规赛投篮图](https://stats.nba.com/events/?flag=3&CFID=33&CFPARAMS=2018-19&PlayerID=201939&ContextMeasure=FGA&Season=2018-19&section=player&sct=plot)，NBA 官方统计网站
->2. [NBA 球员投篮数据可视化](https://mp.weixin.qq.com/s/Qevx7ijb-ymn1YGpBw51Sw)， 法纳斯特
->3. [18-19 赛季球员出手位置统计图 - 湿乎乎的话题 - 虎扑社区](https://bbs.hupu.com/27991975.html)，crossin先生
->4. [虎扑热帖|Python数据分析|NBA的球星们喜欢在哪个位置出手](https://mp.weixin.qq.com/s/pumsu5IVpb3P5BSycBC1mA)，Crossin的编程教室
->5. [Github 项目 nba_py 的文档](https://github.com/seemethere/nba_py)
->6. [Python3 网络爬虫开发实战](https://book.douban.com/subject/30175598/)，崔庆才 著，人民邮电出版社
->7. [从小白到大师，这里有一份 Pandas 入门指南](https://mp.weixin.qq.com/s/8F8vvhOJgoNDtYf3qOWV9A)，Rudolf Höhn 著，机器之心 译
->8. [pandas 文档](https://pandas.pydata.org/pandas-docs/stable/)
->9. [scikit-learn 中关于 svm 的文档](https://scikit-learn.org/stable/modules/svm.html#svm-classification)
->10. [pyecharts 文档](https://pyecharts.org/#/zh-cn/intro)
->11. [Basketball court](https://en.wikipedia.org/wiki/Basketball_court)，维基百科
->12. [限制区不适用的情况](https://videorulebook.nba.com/rule/restricted-area-does-not-apply/)，NBA 规则视频手册
->13. [1869 年，戴维发现并命名大熊猫](http://mini.eastday.com/mobile/180223085752227.html)，凤凰网四川综合
->14. [走进神秘的宝兴的戴维新村](http://www.mafengwo.cn/i/12323830.html)，马蜂窝
->15. [大熊猫](https://baike.baidu.com/item/%E5%A4%A7%E7%86%8A%E7%8C%AB/34935?fromtitle=%E7%86%8A%E7%8C%AB&fromid=162918)，百度百科
+1. [库里 2018-19 赛季常规赛投篮图](https://stats.nba.com/events/?flag=3&CFID=33&CFPARAMS=2018-19&PlayerID=201939&ContextMeasure=FGA&Season=2018-19&section=player&sct=plot)，NBA 官方统计网站
+2. [NBA 球员投篮数据可视化](https://mp.weixin.qq.com/s/Qevx7ijb-ymn1YGpBw51Sw)， 法纳斯特
+3. [18-19 赛季球员出手位置统计图 - 湿乎乎的话题 - 虎扑社区](https://bbs.hupu.com/27991975.html)，crossin先生
+4. [虎扑热帖|Python数据分析|NBA的球星们喜欢在哪个位置出手](https://mp.weixin.qq.com/s/pumsu5IVpb3P5BSycBC1mA)，Crossin的编程教室
+5. [Github 项目 nba_py 的文档](https://github.com/seemethere/nba_py)
+6. [Python3 网络爬虫开发实战](https://book.douban.com/subject/30175598/)，崔庆才 著，人民邮电出版社
+7. [从小白到大师，这里有一份 Pandas 入门指南](https://mp.weixin.qq.com/s/8F8vvhOJgoNDtYf3qOWV9A)，Rudolf Höhn 著，机器之心 译
+8. [pandas 文档](https://pandas.pydata.org/pandas-docs/stable/)
+9. [scikit-learn 中关于 svm 的文档](https://scikit-learn.org/stable/modules/svm.html#svm-classification)
+10. [pyecharts 文档](https://pyecharts.org/#/zh-cn/intro)
+11. [Basketball court](https://en.wikipedia.org/wiki/Basketball_court)，维基百科
+12. [限制区不适用的情况](https://videorulebook.nba.com/rule/restricted-area-does-not-apply/)，NBA 规则视频手册
+13. [1869 年，戴维发现并命名大熊猫](http://mini.eastday.com/mobile/180223085752227.html)，凤凰网四川综合
+14. [走进神秘的宝兴的戴维新村](http://www.mafengwo.cn/i/12323830.html)，马蜂窝
+15. [大熊猫](https://baike.baidu.com/item/%E5%A4%A7%E7%86%8A%E7%8C%AB/34935?fromtitle=%E7%86%8A%E7%8C%AB&fromid=162918)，百度百科
 
 
 **作者：征帆**
