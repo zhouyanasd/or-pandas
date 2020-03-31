@@ -76,25 +76,26 @@ url     = 'https://stats.nba.com/stats/commonallplayers?'
 params  = {'LeagueID':            '00',
            'Season':              '2019',
            'IsOnlyCurrentSeason': 0}
-headers = {'User-Agent':         'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
-                                 'AppleWebKit/537.36 (KHTML, like Gecko) '
-                                 'Chrome/77.0.3865.90 Safari/537.36',
-           'Referer':            'https://stats.nba.com/',
-           'Accept':             'application/json, text/plain, */*',
-           'Accept-Encoding':    'gzip, deflate, br',
-           'Accept-Language':    'en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7',
-           'Connection':         'keep-alive',
-           'Host':               'stats.nba.com',
-           'Sec-Fetch-Dest':     'empty',
-           'Sec-Fetch-Mode':     'cors',
-           'Sec-Fetch-Site':     'same-origin',
-           'x-nba-stats-origin': 'stats',
-           'x-nba-stats-token':  'true'}
+headers = {'User-Agent':          'Mozilla/5.0 (Windows NT 10.0; '
+                                  'Win64; x64) AppleWebKit/537.36 '
+                                  '(KHTML, like Gecko) Chrome/77.0'
+                                  '.3865.90 Safari/537.36',
+           'Referer':             'https://stats.nba.com/',
+           'Accept':              'application/json, text/plain, */*',
+           'Accept-Encoding':     'gzip, deflate, br',
+           'Accept-Language':     'en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7',
+           'Connection':          'keep-alive',
+           'Host':                'stats.nba.com',
+           'Sec-Fetch-Dest':      'empty',
+           'Sec-Fetch-Mode':      'cors',
+           'Sec-Fetch-Site':      'same-origin',
+           'x-nba-stats-origin':  'stats',
+           'x-nba-stats-token':   'true'}
 try:
     idInfo = (requests.get(url, params=params, headers=headers)
                       .json()["resultSets"][0]
              )
-except Exception as e:
+except Exception:
     print("\n错误：球员 ID 信息获取失败，请确认网络连接正常后重启程序！")
     exit()
 else:
@@ -108,7 +109,7 @@ else:
 shotDF, errorList, emptyList = pd.DataFrame(), [], []
 # 若要获取所有球员数据，清修改 playerIDList[0:50] 为 playerIDList
 for i, playerID in enumerate(playerIDList[0:50]):
-    url = 'https://stats.nba.com/stats/shotchartdetail?'
+    url    = 'https://stats.nba.com/stats/shotchartdetail?'
     params = {'SeasonType':     'Regular Season',
               'TeamID':         0,
               'PlayerID':       playerID,
@@ -261,11 +262,12 @@ def exam_col_value(df, col):
 
 执行函数 exam_col_value(shotDF, 7) 或 exam_col_value(shotDF, 'PERIOD') 得到如下输出结果
 
->{'col_index': 7,
-> 'col_name': 'PERIOD',
-> 'unique_values_count': 8,
-> 'unique_values': array([1, 2, 3, 4, 5, 6, 7, 8]),
+>{'col_index': 7,<br>
+> 'col_name': 'PERIOD',<br>
+> 'unique_values_count': 8,<br>
+> 'unique_values': array([1, 2, 3, 4, 5, 6, 7, 8]),<br>
 > 'null_index': None}
+
 从中我们知道 shotDF 的第 8 列（PERIOD 列）去重后元素个数为 8，取 1-8 不等的整数，并且该列不存在空值。
 
 通过对 shotDF 每一列使用自定义函数 exam_col_value，并结合篮球背景知识，我们可以获知这 24 个变量的取值情况及含义：
