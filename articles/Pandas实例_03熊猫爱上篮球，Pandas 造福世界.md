@@ -231,15 +231,15 @@ shotDF.head()
 ```python
 def exam_col_value(df, col):
     if isinstance(col, int):
-        colName = df.columns[col]
+        colName  = df.columns[col]
         colIndex = col
     else:
-        colName = col
+        colName  = col
         colIndex = df.columns.get_indexer([col])[0]
         
     dfCol = df[colName]
-    uniqueValues = (dfCol.drop_duplicates()
-                    .sort_values().values)
+    uniqueValues      = (dfCol.drop_duplicates()
+                         .sort_values().values)
     uniqueValuesCount = uniqueValues.size
     
     nullMark = dfCol.isnull()
@@ -248,13 +248,11 @@ def exam_col_value(df, col):
     else:
         nullIndex = None
     examResult = {
-        'col_index': colIndex, 
-        'col_name':  colName,
-        'unique_values_count': 
-            uniqueValuesCount,  
-        'unique_values':         
-            uniqueValues, 
-        'null_index': nullIndex
+        'col_index':           colIndex, 
+        'col_name':            colName,
+        'unique_values_count': uniqueValuesCount,  
+        'unique_values':       uniqueValues, 
+        'null_index':          nullIndex
     }
                  
     return examResult
@@ -387,7 +385,7 @@ def zone_to_type(x):
         
 shotDF = shotDF.assign(SHOT_TYPE=lambda df:
                        df.SHOT_ZONE_BASIC
-                       .apply(zone_to_type))
+                         .apply(zone_to_type))
 ```
 
 **接下来看一下 ACTION_TYPE 列存在的问题**
@@ -399,9 +397,9 @@ def type_to_detail(x):
     
     
 shotDF = shotDF.assign(
-             ACTION_TYPE_BASIC=lambda df: 
-             df.ACTION_TYPE.apply(type_to_detail)
-         )
+    ACTION_TYPE_BASIC=lambda df: 
+    df.ACTION_TYPE.apply(type_to_detail)
+)
 shotDF.ACTION_TYPE_BASIC.sort_values().unique()
 ```
 >array(['Bank Shot', 'Bank shot', 'Dunk Shot', <br>
@@ -414,7 +412,7 @@ shotDF.ACTION_TYPE_BASIC.sort_values().unique()
 
 ```Python
 shotDF = shotDF.assign(
-  shotDF.ACTION_TYPE.apply(lambda str_: str_.lower())
+    shotDF.ACTION_TYPE.apply(lambda str_: str_.lower())
 )
 ```
 
@@ -602,7 +600,7 @@ shotDF.loc[con1, col] = new
 # 根据直线方程修改 SHOT_ZONE_AREA
 def modify_area(df):
     con1  = df.SHOT_ZONE_BASIC == 'Above the Break 3'
-    con2  = df.SHOT_ZONE_AREA == 'Back Court(BC)'
+    con2  = df.SHOT_ZONE_AREA  == 'Back Court(BC)'
     equaL =   34 * df.LOC_X + 11 * df.LOC_Y + 12
     equaR = - 34 * df.LOC_X + 11 * df.LOC_Y + 12
     areaL = ['Left Side Center(LC)',
