@@ -371,7 +371,7 @@ shotDF[con][col].unique().tolist()
 > 'Restricted Area',<br>
 > 'In The Paint (Non-RA)']
 
-SHOT_TYPE 列存在一个缺失值，这个问题并不严重，严重的是：SHOT_TYPE 列标识为 3 分的投篮，居然覆盖了 SHOT_ZONE_BASIC 的所有取值，**在油漆区和限制区投篮也被标记为 3 分，哦天哪，我以后也是可以随便投 3 分的人了！**下面的代码将依据 SHOT_ZONE_BASIC 的取值对 SHOT_TYPE 列重新赋值，这样也一并解决了 SHOT_TYPE 存在缺失的问题。
+SHOT_TYPE 列存在一个缺失值，这个问题并不严重，严重的是：SHOT_TYPE 列标识为 3 分的投篮，居然覆盖了 SHOT_ZONE_BASIC 的所有取值，**在油漆区和限制区投篮也被标记为 3 分，哦天哪，我以后也是可以随便投 3 分的人了**！下面的代码将依据 SHOT_ZONE_BASIC 的取值对 SHOT_TYPE 列重新赋值，这样也一并解决了 SHOT_TYPE 存在缺失的问题。
 
 ```Python
 def zone_to_type(x):
