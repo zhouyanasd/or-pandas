@@ -768,7 +768,9 @@ def rate(x):
     return x.sum() / x.size
 
 
-shotDF_pivtab = shotDF.pivot_table(values='SHOT_MADE_FLAG', index='SEASON', columns='SHOT_TYPE_DETAIL', aggfunc={'SHOT_MADE_FLAG': rate})
+shotDF_pivtab = shotDF.pivot_table(values='SHOT_MADE_FLAG', index='SEASON', 
+                                   columns='SHOT_TYPE_DETAIL', 
+                                   aggfunc={'SHOT_MADE_FLAG': rate})
 
 roundV = np.vectorize(round)
 datax = list(map(lambda x: str(x)[2:7], shotDF_pivtab.index.tolist()))
@@ -785,8 +787,8 @@ c = (
      .set_global_opts(
          title_opts=opts.TitleOpts(title="NBA 球员投篮命中率的变化"),
          xaxis_opts=opts.AxisOpts(
-                                  axistick_opts=opts.AxisTickOpts(is_align_with_label=True),
-                                  axislabel_opts=opts.LabelOpts(rotate=45, font_size=12, margin=14)
+             axistick_opts=opts.AxisTickOpts(is_align_with_label=True),
+             axislabel_opts=opts.LabelOpts(rotate=45, font_size=12, margin=14)
          ),
      )
 )
@@ -873,7 +875,8 @@ def Arc_fill(center, radius, theta1, theta2, resolution=50, **kwargs):
     return poly
     
     
-def shot_plot(playerName = 'Kobe Bryant', season = '2005-06', color='#003370', lw=2):
+def shot_plot(playerName = 'Kobe Bryant', season = '2005-06', 
+              color='#003370', lw=2):
     %matplotlib notebook
     # 新建一个大小为(6,6)的绘图窗口
     plt.figure(figsize=(5.36, 5.06), frameon=False)
@@ -906,7 +909,8 @@ def shot_plot(playerName = 'Kobe Bryant', season = '2005-06', color='#003370', l
     ax.add_patch(restricted_arc)
     # 油漆区，宽 16 ft，高 19 ft
     outer_rec_fill = Rectangle(xy=(-80, -53), width=160, height=190,
-                               linewidth=lw, color="#fefefe", fill=True, zorder=2)
+                               linewidth=lw, color="#fefefe", 
+                               fill=True, zorder=2)
     outer_rec = Rectangle(xy=(-80, -53), width=160, height=190,
                           linewidth=lw, color=color, fill=False, zorder=4)
     ax.add_patch(outer_rec_fill)
@@ -975,7 +979,8 @@ def shot_plot(playerName = 'Kobe Bryant', season = '2005-06', color='#003370', l
                                     ec="#dfdfdf", fc="#dfdfdf", 
                                     fill=True, zorder=1)
     three_left_rec = Rectangle(xy=(-220, -53), width=0, height=146,
-                               linewidth=lw, color=color, fill=False, zorder=4)
+                               linewidth=lw, color=color, 
+                               fill=False, zorder=4)
     ax.add_patch(three_left_rec_fill)
     ax.add_patch(three_left_rec)
     # 三分线右边线
@@ -986,7 +991,8 @@ def shot_plot(playerName = 'Kobe Bryant', season = '2005-06', color='#003370', l
     # 三分线圆弧, 圆心为 (0,0),半径为 238.66,起始角度为 22.8,结束角度为 157.2
     three_arc_fill = Arc_fill(center=(0, 0), radius=239, theta1=23, 
                               theta2=157, resolution=50, linewidth=0,
-                              ec="#dfdfdf", fc="#dfdfdf", fill=True, zorder=1)
+                              ec="#dfdfdf", fc="#dfdfdf", 
+                              fill=True, zorder=1)
     three_arc = Arc(xy=(0, 0), width=478, height=478, theta1=23,
                     theta2=157, linewidth=lw, color=color,
                     fill=False, zorder=4)
@@ -1016,13 +1022,18 @@ def shot_plot(playerName = 'Kobe Bryant', season = '2005-06', color='#003370', l
                                 linewidth=lw, color=color,
                                 fill=False, zorder=4)
     ax.add_patch(lines_outer_rec)
-    shotMade = shotDF[(shotDF.PLAYER_NAME==playerName) & (shotDF.SHOT_MADE_FLAG==1) & (shotDF.SEASON==season)][['LOC_X', 'LOC_Y']]
+    shotMade = shotDF[(shotDF.PLAYER_NAME==playerName) &
+                      (shotDF.SHOT_MADE_FLAG==1) & 
+                      (shotDF.SEASON==season)][['LOC_X', 'LOC_Y']]
     x_shotMade, y_shotMade = shotMade['LOC_X'], shotMade['LOC_Y']
-    shotMiss = shotDF[(shotDF.PLAYER_NAME==playerName) & (shotDF.SHOT_MADE_FLAG==0) & (shotDF.SEASON==season)][['LOC_X', 'LOC_Y']]
+    shotMiss = shotDF[(shotDF.PLAYER_NAME==playerName) & 
+                      (shotDF.SHOT_MADE_FLAG==0) & 
+                      (shotDF.SEASON==season)][['LOC_X', 'LOC_Y']]
     x_shotMiss, y_shotMiss = shotMiss['LOC_X'], shotMiss['LOC_Y']
-    plt.scatter(x_shotMiss, y_shotMiss, alpha=0.8, s=30, marker='x', c='#B02020', zorder=3)
-    plt.scatter(x_shotMade, y_shotMade, alpha=0.6, s=30, marker='o', c='#208020', zorder=3)
-    # plt.savefig('/home/xiaozhou/Pictures/'+playerName+'_'+season+'.png')
+    plt.scatter(x_shotMiss, y_shotMiss, alpha=0.8, s=30, 
+                marker='x', c='#B02020', zorder=3)
+    plt.scatter(x_shotMade, y_shotMade, alpha=0.6, s=30, 
+                marker='o', c='#208020', zorder=3)
     plt.show()
 ```
 
