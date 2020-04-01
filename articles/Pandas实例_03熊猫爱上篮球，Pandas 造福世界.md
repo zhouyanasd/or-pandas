@@ -383,6 +383,8 @@ def zone_to_type(x):
         return '2PT Field Goal'
     else:
         return '3PT Field Goal'
+        
+        
 shotDF = shotDF.assign(SHOT_TYPE=lambda df:
                        df.SHOT_ZONE_BASIC
                        .apply(zone_to_type))
@@ -394,6 +396,8 @@ shotDF = shotDF.assign(SHOT_TYPE=lambda df:
 def type_to_detail(x):
     L = re.split(' ', x)
     return L[-2] + ' ' + L[-1]
+    
+    
 shotDF = shotDF.assign(
              ACTION_TYPE_BASIC=lambda df: 
              df.ACTION_TYPE.apply(type_to_detail)
@@ -465,25 +469,29 @@ shotDF[con][col].unique().tolist()
 接下来我们筛选出 SHOT_ZONE_BASIC 取 Above the Break 3 的数据，选择投篮点坐标列 LOC_X,  LOC_Y 画个二维散点图，并对 SHOT_ZONE_AREA 的不同取值 （Left Side Center(LC)、Center(C) 、Right Side Center(RC) 、Back Court(BC)） 分别标绿色、红色、蓝色和黑色。
 
 ```Python
-import matplotlib.pyplot as plt
 con  = shotDF.SHOT_ZONE_BASIC == 'Above the Break 3'
 data = shotDF[con]
+
 conLC = data.SHOT_ZONE_AREA == 'Left Side Center(LC)'
 conC  = data.SHOT_ZONE_AREA == 'Center(C)'
 conRC = data.SHOT_ZONE_AREA == 'Right Side Center(RC)'
 conBC = data.SHOT_ZONE_AREA == 'Back Court(BC)'
+
 dataLC = data[conLC]
 dataC  = data[conC]
 dataRC = data[conRC]
 dataBC = data[conBC]
+
 xLC = dataLC['LOC_X'].values
 xC  = dataC ['LOC_X'].values
 xRC = dataRC['LOC_X'].values
 xBC = dataBC['LOC_X'].values
+
 yLC = dataLC['LOC_Y'].values
 yC  = dataC ['LOC_Y'].values
 yRC = dataRC['LOC_Y'].values
 yBC = dataBC['LOC_Y'].values
+
 # 若不是使用的 jupyter notebook
 # 请删除下面一行
 %matplotlib notebook
@@ -532,6 +540,7 @@ NBA 篮球场全长 94 英尺，半场长 47.5 英尺，数据中的 LOC_X=0, LO
 ```Python
 def area_to_num(x):
     return 1 if x == 'Center(C)' else 0
+
   
 con1 = shotDF.SHOT_ZONE_BASIC == 'Above the Break 3'
 con2 = shotDF.SHOT_ZONE_AREA  != 'Back Court(BC)'    
@@ -543,15 +552,18 @@ dataSvm = (shotDF[(con1) & (con2)]
                    df.LOC_X.apply(abs)
             )
           )
+          
 col1 = ['LOC_X_ABS', 'LOC_Y']
 col2 = 'SHOT_ZONE_MARK'
 xSvm = dataSvm[col1].values
 ySvm = dataSvm[col2].values
+
 lin_clf = svm.SVC(kernel='linear')
 lin_clf.fit(xSvm, ySvm)
 omega1 = lin_clf.coef_[0, 0]
 omega2 = lin_clf.coef_[0, 1]
 b = lin_clf.intercept_[0]
+
 if omega2 > 0:
     print(('右侧直线方程：{0:.4f}x + {1:.4f}y = {2:.4f}')
           .format( omega1, omega2, -b))
@@ -577,6 +589,7 @@ con2 = shotDF.LOC_Y.astype(int) > 417
 col  = 'SHOT_ZONE_BASIC'
 new  = 'Backcourt'
 shotDF.loc[(con1) & (con2), col] = new
+
 # 对三分，SHOT_ZONE_RANGE 
 # 均为 24+ ft，即大于 24 英尺
 # 严格来说，底角三分应为 22+ ft
@@ -585,6 +598,7 @@ shotDF.loc[(con1) & (con2), col] = new
 col = 'SHOT_ZONE_RANGE'
 new = '24+ ft.'      
 shotDF.loc[con1, col] = new
+
 # 根据直线方程修改 SHOT_ZONE_AREA
 def modify_area(df):
     con1  = df.SHOT_ZONE_BASIC == 'Above the Break 3'
@@ -602,6 +616,8 @@ def modify_area(df):
             return areaL[1] if equaL >= 0 else areaL[0]
     else:
         return df.SHOT_ZONE_AREA
+        
+        
 shotDF = shotDF.assign(
              SHOT_ZONE_AREA=lambda df: 
              df.apply(modify_area, axis=1)
@@ -658,6 +674,8 @@ def proc_date(x):
         return str(int(year) - 1) + '-' + year[2:]
     else:
         return year + '-' + str(int(year) + 1)[2:]
+        
+        
 def proc_zone(x):
     if x == 'Mid-Range':
         return '2 PT (Mid-Range)'
@@ -665,12 +683,14 @@ def proc_zone(x):
         return '2 PT (Paint)'
     else:
         return '3 PT'
+        
+        
 shotDF = (shotDF.assign(SEASON=lambda df: df.GAME_DATE.apply(proc_date),
                         SHOT_TYPE_DETAIL=lambda df: df.SHOT_ZONE_BASIC.apply(proc_zone)
                        )
                 .pipe(convert_df))
 shotDF_crosstab = pd.crosstab(shotDF.SEASON, shotDF.SHOT_TYPE_DETAIL).apply(lambda _row: _row/sum(_row), 1)
-print(shotDF_crosstab)
+
 roundV = np.vectorize(round)
 datax = list(map(lambda x: str(x)[2:7], shotDF_crosstab.index.tolist()))
 datay = roundV(shotDF_crosstab.values.T, 4)
@@ -746,8 +766,10 @@ c.render_notebook()
 def rate(x):
     x = x.astype(int)
     return x.sum() / x.size
+
+
 shotDF_pivtab = shotDF.pivot_table(values='SHOT_MADE_FLAG', index='SEASON', columns='SHOT_TYPE_DETAIL', aggfunc={'SHOT_MADE_FLAG': rate})
-print(shotDF_pivtab)
+
 roundV = np.vectorize(round)
 datax = list(map(lambda x: str(x)[2:7], shotDF_pivtab.index.tolist()))
 datay = roundV(shotDF_pivtab.values.T, 4)
@@ -849,6 +871,8 @@ def Arc_fill(center, radius, theta1, theta2, resolution=50, **kwargs):
     # build the polygon and add it to the axes
     poly = Polygon(points.T, closed=True, **kwargs)
     return poly
+    
+    
 def shot_plot(playerName = 'Kobe Bryant', season = '2005-06', color='#003370', lw=2):
     %matplotlib notebook
     # 新建一个大小为(6,6)的绘图窗口
