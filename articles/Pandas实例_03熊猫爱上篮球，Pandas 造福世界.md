@@ -6,7 +6,7 @@
 <br>
 
 > 本文于 2019 年 12 月 10 日首发于[运筹OR帷幄](https://mp.weixin.qq.com/s/8TaRzXhx5gfsuV81sZUhdg)公众号，这里做了适当修改以解决原有爬虫代码失效的问题，您可点击如下链接获取相关资源：<br>
-> [Python 源代码](../code/Pandas实例_03熊猫爱上篮球，Pandas 造福世界/pandas_love_basketball.py)，[jupyter notebook 文件](../code/Pandas实例_03熊猫爱上篮球，Pandas 造福世界/熊猫爱篮球.ipynb)，[爬取得到的投篮数据](../code/Pandas实例_03熊猫爱上篮球，Pandas 造福世界/data_download)
+> [Python 源代码](https://github.com/zhouyanasd/or-pandas/blob/master/code/Pandas实例_03熊猫爱上篮球，Pandas 造福世界/pandas_love_basketball.py)，[jupyter notebook 文件](https://github.com/zhouyanasd/or-pandas/blob/master/code/Pandas实例_03熊猫爱上篮球，Pandas 造福世界/熊猫爱篮球.ipynb)，[爬取得到的投篮数据](https://github.com/zhouyanasd/or-pandas/blob/master/code/Pandas实例_03熊猫爱上篮球，Pandas 造福世界/data_download)
 
 11 年前，怀着激动的心情，我跟随着爸爸妈妈来到了新家。第一次住上过百平的房子，第一次有了自己的独立房间，第一次体验宽敞明亮的书房。那一年，对我来说，很特殊；那一年，对我们国家来说，更是如此。
 
