@@ -7,6 +7,16 @@
 
 > 本文于 2019 年 12 月 10 日首发于[运筹OR帷幄](https://mp.weixin.qq.com/s/8TaRzXhx5gfsuV81sZUhdg)公众号，这里做了适当修改以解决原有爬虫代码失效的问题，您可点击相关链接获取相应资源：[Python 源代码](https://github.com/zhouyanasd/or-pandas/blob/master/code/Pandas%E5%AE%9E%E4%BE%8B_03%E7%86%8A%E7%8C%AB%E7%88%B1%E4%B8%8A%E7%AF%AE%E7%90%83%EF%BC%8CPandas%20%E9%80%A0%E7%A6%8F%E4%B8%96%E7%95%8C/pandas_love_basketball.py)，[jupyter notebook 文件](https://github.com/zhouyanasd/or-pandas/blob/master/code/Pandas%E5%AE%9E%E4%BE%8B_03%E7%86%8A%E7%8C%AB%E7%88%B1%E4%B8%8A%E7%AF%AE%E7%90%83%EF%BC%8CPandas%20%E9%80%A0%E7%A6%8F%E4%B8%96%E7%95%8C/%E7%86%8A%E7%8C%AB%E7%88%B1%E7%AF%AE%E7%90%83.ipynb)，[爬取得到的投篮数据](https://github.com/zhouyanasd/or-pandas/blob/master/code/Pandas%E5%AE%9E%E4%BE%8B_03%E7%86%8A%E7%8C%AB%E7%88%B1%E4%B8%8A%E7%AF%AE%E7%90%83%EF%BC%8CPandas%20%E9%80%A0%E7%A6%8F%E4%B8%96%E7%95%8C/data_download)
 
+## 目录
+* [1 数据获取](#1 数据获取)
+* [2 数据概览](#2 数据概览)
+* 3 数据预处理
+  + 3.1 前 4 个问题的处理
+  + 3.2 第 5 个问题的处理
+* 4 数据分析
+* 5 尾声
+* 6 参考资料
+
 11 年前，怀着激动的心情，我跟随着爸爸妈妈来到了新家。第一次住上过百平的房子，第一次有了自己的独立房间，第一次体验宽敞明亮的书房。那一年，对我来说，很特殊；那一年，对我们国家来说，更是如此。
 
 08 年的中国，写满着苦难与辉煌。1 月，中国南方遭遇数十年未遇的雪灾，数 10 万房屋倒塌，直接经济损失 1500 多亿；5 月，汶川发生新中国历史上破坏力最大的地震，全国仅 3 省没有震感，近 7 万鲜活生命离我们远去；8 月，第 29 届夏季奥林匹克运动会在北京成功举办，中国以 51 枚金牌的成绩首次登顶奥运会奖牌榜；9 月，神舟七号载人飞船发射升空，翟志刚走出舱门，迈出中国人在太空的第一步。
