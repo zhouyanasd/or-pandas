@@ -1,17 +1,8 @@
-**题目：**数据科学| 手把手教你用 pandas 索引、汇总、处理缺失数据
-
-**封面图**
-
 ![图片](https://uploader.shimo.im/f/LwD8GfJrNxA7SmvC.jpg!thumbnail)
 
-**作者信息：**佘亮
+# 第二章：索引、汇总和处理缺失数据
 
-**公众号预览摘要：**本文介绍pandas中基本的索引、汇总和处理缺失数据的基本操作。
-
-**编者按：** pandas作为python中非常重要的数据处理工具，它提供了很多灵活的数学和统计方法。在数据处理中，经常需要对数据进行索引的转换，以适应不同的统计和作图的需要；另外在许多数据分析工作中，缺失数据是经常发生的。因此，作为pandas系列文章的一部分，本文将重点关注pandas对数据索引、汇总和缺失数据的处理的相关方法。本文十分详细地列出了具体实例介绍了这些方法，十分建议各位对pandas学习感兴趣的同学下载代码亲自运行进行实际操作。
-
-
-## **pandas 索引对象**
+## **1. pandas 索引对象**
 pandas的索引负责管理轴标签和其他如轴名称等元数据。构建Series或DataFrame时，所用到的任何数组或其他序列的标签都会被转换成一个Index。
 
 Index对象是不可修改的（immutable），因此用户不能对其进行修改。不可修改性非常重要，因为这样才能使Index对象在多个数据结构之间安全共享。
@@ -80,7 +71,7 @@ print('2003' in frame3.index)
 ![图片](https://uploader.shimo.im/f/xRDNc3yUzmURIHFY.png!thumbnail)
 
 
-### **Pandas 重新索引**
+### **1.1 重新索引**
 有时我们需要重新对pandas对象进行索引赋值。
 
 * Series的reindex将创建一个适应新索引的新对象并根据新索引进行重排。当某个索引值不存在时，引入缺失值进行填充。
@@ -136,7 +127,7 @@ print
 ```
 ![图片](https://uploader.shimo.im/f/DnLNkpWGpGQSM8SF.png!thumbnail)
 
-**丢弃****/删除指定的行或者列**
+### **1.2 丢弃指定索引** 
 
 删除某一列或者行上的一个或多个项很容易，只需要这些数据的索引组成的数组或列表即可。由于需要执行一些数据整理和集合逻辑，所以drop方法返回的是一个在指定轴上删除了指定值的新对象：
 
@@ -161,7 +152,7 @@ print(data.drop(['two', 'four'], axis = 1))
 ```
 ![图片](https://uploader.shimo.im/f/hDzgIs077cIsbQkl.png!thumbnail)
 
-### **Pandas 索引、选取和过滤**
+### **1.3 索引、选取和过滤**
 *  Series索引的工作方式和NumPy数组的索引相似，只是Series的索引值不只是整数。
 *  利用标签的切片运算与普通的Python切片运算不同，其末端是包含的（inclusive）。
 *  对DataFrame进行索引其实就是获取一个或多个列
@@ -214,7 +205,7 @@ print(data)
 ```
 ![图片](https://uploader.shimo.im/f/XoFxNj8pxYYLGmEH.png!thumbnail)
 
-### **Pandas 算术运算和数据对齐**
+### **1.4 算术运算和数据对齐**
 * 对不同的索引对象进行算术运算
 * 自动数据对齐在不重叠的索引处引入了NA值，缺失值会在算术运算过程中传播。
 * 对于DataFrame，对齐操作会同时发生在行和列上。
@@ -275,7 +266,7 @@ print(frame.sub(series3, axis = 0))  # 按列减
 ```
 ![图片](https://uploader.shimo.im/f/cM1K5Y8R8AMQdQyF.png!thumbnail)
 
-### **Pandas 函数应用和映射**
+### **1.5 函数应用和映射**
 * numpy的ufuncs（元素级数组方法）
 * DataFrame的apply方法
 * 对象的applymap方法（因为Series有一个应用于元素级的map方法）
@@ -308,7 +299,7 @@ print(frame['e'].map(_format))
 ```
 ![图片](https://uploader.shimo.im/f/B5BXsb8Z31YnipbP.png!thumbnail)
 
-### **Pandas 排序和排名**
+### **1.6 排序和排名**
 * 对行或列索引进行排序
 * 对于DataFrame，根据任意一个轴上的索引进行排序
 * 可以指定升序降序
@@ -358,7 +349,7 @@ print(frame)
 ```
 ![图片](https://uploader.shimo.im/f/8wnT2k7mW2wnt4HV.png!thumbnail)
 
-### **Pandas 带有重复值的索引**
+### **1.7 带有重复值的索引**
 * 对于重复索引，返回Series，对应单个值的索引则返回标量。
 ```
 print('重复的索引')
@@ -373,22 +364,25 @@ print(df.ix['b'].ix[1])
 ```
 ![图片](https://uploader.shimo.im/f/Bj1ebTOeHGMkWjLA.png!thumbnail)
 
-## **Pandas 汇总和计算描述统计**
+## **2. 汇总和计算描述统计**
 * 常用方法选项
-  * axis：指定轴，DataFrame的行用0，列用1
-  * skipna：排除缺失值，默认值为True
-  * level：如果轴是层次化索引的，则根据level选取分组
->Pandas 常用描述和汇总统计函数
->count：非NA值得数量
->describe：针对Series或者各DataFrame列计算汇总统计
->min,max：计算最小值和最大值
->argmin,argmax：计算能够获取到的最小值和最大值的索引位置
->idxmin,idxmax：计算能够获取到的最小值和最大值的索引值
->sum：值的总和
->mean：值的平均数
->median：值得算术中位数
->mad：根据平均值计算平均绝对离差
-* 数值型和非数值型的区别
+    * axis：指定轴，DataFrame的行用0，列用1
+    * skipna：排除缺失值，默认值为True
+    * level：如果轴是层次化索引的，则根据level选取分组
+
+* Pandas 常用描述和汇总统计函数
+    * count：非NA值得数量
+    * describe：针对Series或者各DataFrame列计算汇总统计
+    * min,max：计算最小值和最大值
+    * argmin,argmax：计算能够获取到的最小值和最大值的索引位置
+    * idxmin,idxmax：计算能够获取到的最小值和最大值的索引值
+    * sum：值的总和
+    * mean：值的平均数
+    * median：值得算术中位数
+    * mad：根据平均值计算平均绝对离差
+
+* 数值型和非数值型的区别: 
+
 * NA值被自动排查，除非通过skipna选项
 ```
 print('求和')
@@ -418,15 +412,17 @@ print(obj.describe())
 ```
 ![图片](https://uploader.shimo.im/f/jo3jyQHMkuAKgi8g.png!thumbnail)
 
-### **Pandas 汇总和计算描述统计 相关系数与协方差**
+### **2.1 相关系数与协方差**
 * 相关系数：相关系数是用以反映变量之间相关关系密切程度的统计指标。（百度百科）
 * 协方差：从直观上来看，协方差表示的是两个变量总体误差的期望。如果两个变量的变化趋势一致，也就是说如果其中一个大于自身的期望值时另外一个也大于自身的期望值，那么两个变量之间的协方差就是正值；如果两个变量的变化趋势相反，即其中一个变量大于自身的期望值时另外一个却小于自身的期望值，那么两个变量之间的协方差就是负值。
-### **Pandas 汇总和计算描述统计 唯一值以及成员资格**
-常用方法
 
+
+### **2.2 唯一值以及成员资格**
+常用方法:
 * is_in：计算一个表示Series各值是否包含于传入的值序列中的布尔型数组
 * unique：计算Series中唯一值数组，按发现的顺序返回
 * value_counts：返回一个Series，其索引为唯一值，其值为频率，按计算数值降序排列
+
 ```
 print('去重')
 obj = Series(['c', 'a', 'd', 'a', 'a', 'b', 'b', 'c', 'c'])
@@ -449,7 +445,7 @@ print(data.apply(pd.value_counts, axis = 1).fillna(0))
 ```
 ![图片](https://uploader.shimo.im/f/H6xsNdNgvWo2TvWE.png!thumbnail)
 
-## **Pandas 处理缺失数据**
+## **3. 处理缺失数据**
 * NA处理方法
   *  dropna：根据各标签的值中是否存在缺少数据du
   *  fillba：样本值的标准差
@@ -466,7 +462,7 @@ print(string_data.isnull())
 ```
 ![图片](https://uploader.shimo.im/f/BRH6NlhWJuMNmqag.png!thumbnail)
 
-### **Pandas 滤除缺失数据**
+### **3.1 滤除缺失数据**
 * dropna
 * 布尔索引
 * DatFrame默认丢弃任何含有缺失值的行
@@ -496,7 +492,7 @@ print(data.dropna(thresh = 2)) # 每行至少要有2个非NA元素
 ```
 ![图片](https://uploader.shimo.im/f/vpEZ3lV0IdE5pGw5.png!thumbnail)
 
-### **Pandas 填充缺失数据**
+### **3.2 填充缺失数据**
 * fillna
 * inplace参数控制返回新对象还是就地修改
 ```
@@ -534,7 +530,7 @@ print(data.fillna(data.mean()))
 ```
 ![图片](https://uploader.shimo.im/f/Og3rlZHXsVghrxh6.png!thumbnail)
 
-## **Pandas 层次化索引**
+## **4. 层次化索引**
 * 使你能在一个轴上拥有多个（两个以上）索引级别。抽象的说，它使你能以低纬度形式处理高维度数据。
 * 通过stack与unstack变换DataFrame
 ```
@@ -575,7 +571,7 @@ print(MultiIndex.from_arrays([['Ohio', 'Ohio', 'Colorado'], ['Gree', 'Red', 'Gre
 ```
 ![图片](https://uploader.shimo.im/f/kIbwj16C4b45nPl0.png!thumbnail)
 
-### **重新分级顺序**
+### **4.1 重新分级顺序**
 * 索引交换
 * 索引重新排序
 ```
@@ -590,7 +586,7 @@ print(frame_swapped.swaplevel(0, 1))
 ```
 ![图片](https://uploader.shimo.im/f/sP8EBNtwz88ZL2ED.png!thumbnail)
 
-### **根据级别汇总统计**
+### **4.2 根据级别汇总统计**
 * 指定索引级别和轴
 ```
 print('根据指定的key计算统计信息')
@@ -603,7 +599,7 @@ print(frame.sum(level = 'key2'))
 ```
 ![图片](https://uploader.shimo.im/f/51au0IweyRwEjtcQ.png!thumbnail)
 
-### **层次化索引 使用DataFrame的列**
+### **4.3 使用DataFrame的列**
 * 将指定列变为索引
 * 移除或保留对象
 * reset_index恢复
@@ -621,7 +617,7 @@ print(frame2.reset_index())
 ```
 ![图片](https://uploader.shimo.im/f/im3Hzd9VFw8Endhv.png!thumbnail)
 
-### **整数索引**
+### **4.4 整数索引**
 * 歧义的产生
 * 可靠的，不考虑索引类型的，基于位置的索引。
 ```
@@ -648,7 +644,7 @@ print(frame.iloc[:, 1])
 ```
 ![图片](https://uploader.shimo.im/f/cACa4c3zIlEnTjgv.png!thumbnail)
 
-### **面板(Pannel)数据**
+### **4.5 面板(Pannel)数据**
 通过三维ndarray创建pannel对象
 
 * 通过ix[...]选取需要的数据
@@ -659,74 +655,15 @@ data = np.random.rand(2,4,5)
 p = pd.Panel(data)
 print(p)
 ```
-**正文结束：**
-# **参考文献：**
-1. pandas toolkit
 
-  2 . pandas官方文档：[https://pandas.pydata.org/pandas-docs/stable/index.html](https://pandas.pydata.org/pandas-docs/stable/index.html)
 
-这是Jupyter Notebook文件的地址
 
-链接：[https://pan.baidu.com/s/1Snw8JjG2HdcG4qhQihA-QA](https://pan.baidu.com/s/1Snw8JjG2HdcG4qhQihA-QA) 
+**参考文献：**
 
-提取码：28pt 
-
-今天的文章就分享到这里啦！那么你想学习这部分的内容，主要是希望可以应用在学习中还是工作中呢？
-
-A. 学习
-
-B. 工作
-
-你希望这些技巧可以帮助你更好地应用在哪些场景呢？
-
-A. 导入数据集，后续对数据进行处理和分析
-
-B. 将其他格式数据导入数据库
-
-C. 查询和筛选数据库数据 
-
-D. 其他（可在留言区写下具体内容哦）
-
-欢迎参与投票让我们更了解你，我们才能提供更适合你的有趣内容哦！
-
-# **相关文章推荐**
-读完这篇文章不过瘾？请继续关注我们上一期的文章，来看看我们是如何用python分析周杰伦专辑所有的歌词，并用热词重写《说好不哭》。
-
-**点击****蓝字标题****，即可阅读**[ ](https://mp.weixin.qq.com/s/Scx3fo587RpFpkb0za292A)[数据科学 | 分析周杰伦75775字歌词后，我们用他最爱的词重写了《说好不哭》](https://mp.weixin.qq.com/s/QRKyostsuASV2rmnmwvYeA)
-
-其他
-
-[数据科学 | 避坑！Python特征重要性分析中存在的问题](https://mp.weixin.qq.com/s/6qpps08Gj2KLqRRD_7GocA)
-
-[数据科学 | 『运筹OR帷幄』数据分析、可视化、爬虫系列教程征稿通知](https://mp.weixin.qq.com/s/fHvE5V7HWwn3t5m1xKy-jg)
-
-**号外！『运筹OR帷幄』入驻知识星球！**
-
- 随着算法相关专业热度和难度岗位对专业人才要求的提高，考研、读博、留学申请、求职的难度也在相应飙升。
-
-『运筹OR帷幄』特建立[『算法社区』](https://mp.weixin.qq.com/s?__biz=Mzg2MTA0NzA0Mw==&mid=2247488733&idx=1&sn=b81b60a8b0502b3cbd2c80d54e5f0e5d&scene=21#wechat_redirect)知识星球，依托社区30w+专业受众和25+细分领域硕博微信群，特邀国内外名校教授、博士及腾讯、百度、阿里、华为等公司大咖与大家一起聊算法。快来扫码加入，点对点提问50位大咖嘉宾！ ![图片](https://uploader.shimo.im/f/lmat0HBdrEQ4kgdv.png!thumbnail)
-
-**# 加入知识星球，您将收获以下福利 #**
-
-* 全球Top名校教授|博士和名企研发高管一起交流算法相关学术|研发干货
-* 中国你能说出名字的几乎所有大厂|欧美数家大厂（资深）算法工程师入驻
-* 依托『运筹OR帷幄』30w+专业受众和25+细分领域硕博微信群的算法技术交流
-* 以上所有公司|高校独家内推招聘|实习机会、多家offer选择指导
-* 以面试题|作业题|业界项目为学习资料学习算法干货，从小白变成大咖
-* 享受『运筹OR帷幄』各大城市线下Meetup免费入场资格，拓展人脉
-
-**关键字回复: 若有特殊关键词，请填写特殊关键词，并注明资料名称，如：**
-
-本文有全套jupyter的代码可供学习下载用，可以在 **本公众号后台 **回复关键词“  **pandas 索引**** **”获得本文的示例代码与文件。
-
-关键词： pandas索引
-
-回复内容：链接：[https://pan.baidu.com/s/1Snw8JjG2HdcG4qhQihA-QA](https://pan.baidu.com/s/1Snw8JjG2HdcG4qhQihA-QA) 提取码：28pt 
+* pandas toolkit
+* pandas官方文档：[https://pandas.pydata.org/pandas-docs/stable/index.html](https://pandas.pydata.org/pandas-docs/stable/index.html)
 
 **作者：**Paul
 
 **责编：**Paul，周岩
-
-**是否原创：是**
-
 
