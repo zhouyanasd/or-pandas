@@ -11,9 +11,9 @@
 * [2 数据](#2-数据)
 * [3 内存优化](#3-内存优化)
 * [4 索引](#4-索引)
-  + [了解更多](##了解更多)
+  + [了解更多](#了解更多)
 * [5 方法链](#5-方法链)
-* [6 最后的（随机给出的）小建议](#6-最后的（随机给出的）小建议)
+* [6 最后的（随机给出的）小建议](#6-最后的随机给出的小建议)
 * [7 总结](#7-总结)
 
 # 正文
@@ -567,6 +567,8 @@ df = (pd.DataFrame({'a_column': [1, -999, -999],
 
 <div align='center'>获得每个年龄段世代的简单方法链</div>
 
+<br>
+
 <div align='center'>
 <table>
 <thead>
@@ -605,6 +607,8 @@ df = (pd.DataFrame({'a_column': [1, -999, -999],
 </div>
 <div align='center'>产生数据框，age 列为索引</div>
 
+<br>
+
 从上表我们知道 “世代 X” 覆盖三个年龄段（译者注：作者笔误，实为 4 个），此外让我们来分解一下这条方法链。第一步按年龄段分组，这一方法返回一个 DataFrameGroupBy 对象，在这个对象中，每一组将汇总该组对应的世代标签。
 
 尽管在这个案例中，汇总方法采用 unique，但实际上任何（匿名）函数都是可以的。
@@ -625,6 +629,8 @@ df = (pd.DataFrame({'a_column': [1, -999, -999],
 
 <div align="center">使用 sort_values 和 head 获得自杀率较高的国家和年份</div>
 
+<br>
+
 ```python
 (df
  .groupby(['country', 'year'])
@@ -637,6 +643,8 @@ df = (pd.DataFrame({'a_column': [1, -999, -999],
 ```
 
 <div align="center">使用 nlargest 获得自杀率较高的国家和年份</div>
+
+<br>
 
 这两段程序的输出是相同的：拥有二水平（two level）索引的一个 DataFrame 和包含最大 10 个值的一个新列 suicides_sum.
 
@@ -792,6 +800,8 @@ df = (pd.DataFrame({'a_column': [1, -999, -999],
 
 <div align='center'>“age” 是索引，列 “suicides_no” 和 “population” 有第二个水平列 “sex”</div>
 
+<br>
+
 下一个方法 pipe 是用途最广泛的方法之一，就像 shell 脚本一样，pipe 方法执行管道运算，它让方法链可以执行更丰富的运算。
 
 pipe 的一个简单却强大的用法是用来记录不同信息。
@@ -812,6 +822,8 @@ def log_shape(df):
 
 <div align="center">使用管道的不同记录函数</div>
 
+<br>
+
 例如，我们想通过比较列 year 验证列 country_year 是否正确。
 
 ```python
@@ -825,6 +837,8 @@ def log_shape(df):
 ```
 
 <div align="center">验证列 “country_year” 的管道</div>
+
+<br>
 
 尽管管道的输出是一个 DataFrame，但它也打印标准输出（console / REPL）。
 
@@ -849,6 +863,8 @@ shape = (0, 13)
 ```
 
 <div align='center'>在女性中，自杀率较高的国家和年份</div>
+
+<br>
 
 产生的 DataFrame 如下所示：
 
@@ -918,6 +934,8 @@ shape = (0, 13)
 
 <div align='center'>索引是 “year” 和 “country”</div>
 
+<br>
+
 标准输出中的打印结果如下所示：
 
 ```python
@@ -955,6 +973,8 @@ for sex in ['male', 'female']:
 ```
 
 <div align='center'>自杀数的增长与 GDP 的降低有关吗？自杀数与性别相关吗？</div>
+
+<br>
 
 在命令行解释器中，上面的代码打印出如下结果：
 
