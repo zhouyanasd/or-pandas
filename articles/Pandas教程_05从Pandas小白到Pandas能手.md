@@ -1,4 +1,4 @@
-<div align='center'><h1>pandas 教程 5：从 pandas 小白到 pandas 能手</h1><p><strong>作者</strong>：Rudolf Höhn&nbsp;&nbsp;&nbsp;&nbsp;<strong>原译</strong>：机器之心&nbsp;&nbsp;&nbsp;&nbsp;<strong>重译</strong>：运筹OR帷幄&nbsp;&nbsp;&nbsp;&nbsp;<strong>责编</strong>：征帆</p></div>
+<div align='center'><h1>pandas 教程 5：从 pandas 小白到 pandas 能手</h1><p><strong>作者</strong>：Rudolf Höhn&nbsp;&nbsp;&nbsp;&nbsp;<strong>首译</strong>：机器之心&nbsp;&nbsp;&nbsp;&nbsp;<strong>重译</strong>：运筹OR帷幄&nbsp;&nbsp;&nbsp;&nbsp;<strong>责编</strong>：征帆</p></div>
 
 <br>
 
