@@ -1,5 +1,7 @@
 <div align='center'><h1>pandas 教程 5：从 pandas 小白到 pandas 能手</h1><p><strong>作者</strong>：Rudolf Höhn&nbsp;&nbsp;&nbsp;&nbsp;<strong>原译</strong>：机器之心&nbsp;&nbsp;&nbsp;&nbsp;<strong>重译</strong>：运筹OR帷幄&nbsp;&nbsp;&nbsp;&nbsp;<strong>责编</strong>：征帆</p></div>
 
+<br>
+
 > 本文译自 Unit8 数据科学家 [Rudolf Höhn](https://medium.com/@rudolfhohn) 先生的文章 "[from pandas-wan to pandas-master](https://medium.com/unit8-machine-learning-publication/from-pandas-wan-to-pandas-master-4860cf0ce442)"，文章发表在博客平台 Medium 上，文章介绍了 pandas 的发展现状、内存优化、索引和方法链等内容，作者在文章中给出了许多提升程序运行性能的建议。[Unit8](https://unit8.co/) 是一家位于瑞士莫尔日，成立于 2017 年的初创公司，致力于利用大数据和人工智能技术解决各行各业问题。2019 年 5 月 21 日，公司加入[数字瑞士](https://digitalswitzerland.com/)（digitalswitzerland）组织，该组织包括 150 多家公司、学术和政府机构，其使命是将瑞士打造为全球领先的数字创新中心。
 
 > "[from pandas-wan to pandas-master](https://medium.com/unit8-machine-learning-publication/from-pandas-wan-to-pandas-master-4860cf0ce442)" 的译文于 2019 年 8 月 15 日首发于[机器之心](https://mp.weixin.qq.com/s/8F8vvhOJgoNDtYf3qOWV9A)微信公众号，由李诗萌、张倩翻译，其译文标题为 “从小白到大师，这里有一份 pandas 入门指南”，[运筹OR帷幄](https://mp.weixin.qq.com/s/U8Y0gVt66PuVhRAPecQwsg)公众号于 2019 年 9 月 7 日转载了这篇翻译。鉴于译文中的一些错误，译文对原文部分内容的删节，以及译文对原文表格处理不当导致部分内容不可见等原因，我们参考机器之心的翻译对原文作了重译，限于水平，翻译可能还有不少问题，欢迎大家批评指正。
