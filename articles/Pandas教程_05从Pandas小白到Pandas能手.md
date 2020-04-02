@@ -496,9 +496,7 @@ CPU times: user 10.8 ms, sys: 2.2 ms, total: 13 ms
 当你想要查看数据框时，采用 .loc[] / .iloc[] 方法的效果非常好，但当你要修改数据框时，采用它们的效果就没那么好了。如果你需要手动（例如：使用循环）构建数据框，请考虑其他数据结构（例如：字典，列表）并在你准备好了所有数据时创建你的 DataFrame. 否则，对 DataFrame 中的每一个新行，pandas 都会更新索引，而这种更新并不是一次简单的哈希映射。
 
 ```python
->>> (pd.DataFrame({'a':range(2), 'b': range(2)}, index=['a', 'a'])
- .loc['a']
-)
+>>> pd.DataFrame({'a':range(2), 'b': range(2)}, index=['a', 'a']).loc['a']
    a  b
 a  0  0
 a  1  1
