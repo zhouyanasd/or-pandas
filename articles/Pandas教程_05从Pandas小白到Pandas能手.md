@@ -46,6 +46,8 @@
 
 <div align='center'><img src='https://www.longzf.com/assets/img/Natural_Science/Computer_Science/Python/Pandas/1.jpeg'></img></div>
 
+<br>
+
 是的，pandas 正走在通往 1.0 版本的道路上，而要到达那里，就不得不改变一点点人们已经习惯的用法。这里有一个非常有趣的演讲：pandas 核心贡献者 [Marc Garcia](https://datapythonista.github.io/) 的 “[走向 pandas 1.0](https://www.youtube.com/watch?v=hK6o_TDXXN8)”。
 
 下一个版本 v0.25 的发行定在 2019 年 7 月（v0.25rc0 已于 7 月 4 日发行），它与 v1.0 有相同的代码库，但在使用即将弃用的方法时会显示警告信息（warning messages）。所以，如果你计划使用 v1.0, 那么当你运行你的 v0.25 代码库时，请务必关注所有的弃用警告（deprecation wranings）。
@@ -552,9 +554,13 @@ df = (pd.DataFrame({'a_column': [1, -999, -999],
 
 <div align='center'><img src='https://www.longzf.com/assets/img/Natural_Science/Computer_Science/Python/Pandas/2.jpeg'></img></div>
 
+<br>
+
 方法链的工具箱中包含许多将 DataFrame 或者 Series (或者 DataFrameGroupBy) 对象作为输出的方法（例如：apply, assign, loc, query, pipe, groupby, agg）。
 
 理解这些方法最好的方式就是实践，让我们从一些简单的例子开始。
+
+<br>
 
 ```python
 (df
@@ -615,6 +621,8 @@ df = (pd.DataFrame({'a_column': [1, -999, -999],
 
 尽管在这个案例中，汇总方法采用 unique，但实际上任何（匿名）函数都是可以的。
 
+<br>
+
 > 在最新的发行版本（v0.25）中，pandas 引入了一种[新的使用 agg 的方式](https://dev.pandas.io/whatsnew/v0.25.0.html#groupby-aggregation-with-relabeling)。
 
 ```python
@@ -649,6 +657,8 @@ df = (pd.DataFrame({'a_column': [1, -999, -999],
 <br>
 
 这两段程序的输出是相同的：拥有二水平（two level）索引的一个 DataFrame 和包含最大 10 个值的一个新列 suicides_sum.
+
+<br>
 
 <div>
 <table>
@@ -714,11 +724,15 @@ df = (pd.DataFrame({'a_column': [1, -999, -999],
 </table>
 </div>
 
-列 “国家” 和 “年份” 均是索引
+> 列 “国家” 和 “年份” 均是索引
+
+<br>
 
 > nlargest(10) 比 sort_values(ascending=False).head(10) 更有效率
 
 另一个有趣的方法是 unstack，它能旋转索引水平。
+
+<br>
 
 ```python
 (mi_df
@@ -804,9 +818,9 @@ df = (pd.DataFrame({'a_column': [1, -999, -999],
 
 <br>
 
-下一个方法 pipe 是用途最广泛的方法之一，就像 shell 脚本一样，pipe 方法执行管道运算，它让方法链可以执行更丰富的运算。
+下一个方法 pipe 是用途最广泛的方法之一，就像 shell 脚本一样，pipe 方法执行管道运算，它让方法链可以执行更丰富的运算。pipe 的一个简单却强大的用法是用来记录不同信息。
 
-pipe 的一个简单却强大的用法是用来记录不同信息。
+<br>
 
 ```python
 def log_head(df, head_count=10):
@@ -827,6 +841,8 @@ def log_shape(df):
 <br>
 
 例如，我们想通过比较列 year 验证列 country_year 是否正确。
+
+<br>
 
 ```python
 (df
@@ -850,6 +866,8 @@ shape = (0, 13)
 
 你也可以将不同的 pipe 放到一个方法链中。
 
+<br>
+
 ```python
 (df
  .pipe(log_shape)
@@ -869,6 +887,8 @@ shape = (0, 13)
 <br>
 
 产生的 DataFrame 如下所示：
+
+<br>
 
 <div>
 <table>
@@ -946,6 +966,8 @@ shape = (2321, 1)
 ```
 
 除了向命令行解释器输出记录，我们还可以使用 pipe 直接将函数作用到数据框列上。
+
+<br>
 
 ```python
 from sklearn.preprocessing import MinMaxScaler
@@ -1035,6 +1057,8 @@ CPU times: user 55.9 ms, sys: 2.85 ms, total: 58.8 ms
 这个[笔记本](https://github.com/unit8co/medium-pandas-wan)是一个支持文档，其中除了包含本文展示的所有代码，还在性能上比较了单数值索引数据框（df）和多索引数据框（mi_df）。
 
 <div align='center'><img src='https://www.longzf.com/assets/img/Natural_Science/Computer_Science/Python/Pandas/3.jpeg' width="70%"></div>
+
+<br>
 
 实践出真知，持续提高你的技能并帮助我们建设一个更好的世界吧。
 
