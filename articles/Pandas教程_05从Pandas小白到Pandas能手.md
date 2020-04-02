@@ -81,7 +81,7 @@ df = (pd.read_csv(filepath_or_buffer=os.path.join(data_path, 'master.csv'))
 
 下面是数据集的部分展示：
 
-<div style='text-align:center'>
+<div align='center'>
 <table style='width:80%;margin:auto'>
 <thead>
 <tr>
@@ -570,7 +570,7 @@ df = (pd.DataFrame({'a_column': [1, -999, -999],
 
 <br>
 
-<div style='text-align:center'>
+<div align='center'>
 <table style='width:80%;margin:auto'>
 <thead>
 <tr>
@@ -649,7 +649,7 @@ df = (pd.DataFrame({'a_column': [1, -999, -999],
 
 这两段程序的输出是相同的：拥有二水平（two level）索引的一个 DataFrame 和包含最大 10 个值的一个新列 suicides_sum.
 
-<div style='text-align:center'>
+<div align='center'>
 <table style='width:80%;margin:auto'>
 <thead>
 <tr>
@@ -727,7 +727,7 @@ df = (pd.DataFrame({'a_column': [1, -999, -999],
 )
 ```
 
-<div style='text-align:center'>
+<div align='center'>
 <table style='width:80%;margin:auto'>
 <thead>
 <tr>
