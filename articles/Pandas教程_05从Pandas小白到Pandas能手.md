@@ -1,13 +1,3 @@
-<style type="text/css">
-.table{
-width: 80%;
-margin: auto;
-}
-.tableCenter{
-text-align: center;
-}
-</style>
-
 <div align='center'><h1>pandas 教程 5：从 pandas 小白到 pandas 能手</h1><p><strong>作者</strong>：Rudolf Höhn&nbsp;&nbsp;&nbsp;&nbsp;<strong>原译</strong>：机器之心&nbsp;&nbsp;&nbsp;&nbsp;<strong>重译</strong>：运筹OR帷幄&nbsp;&nbsp;&nbsp;&nbsp;<strong>责编</strong>：征帆</p></div>
 
 > 本文译自 Unit8 数据科学家 [Rudolf Höhn](https://medium.com/@rudolfhohn) 先生的文章 "[from pandas-wan to pandas-master](https://medium.com/unit8-machine-learning-publication/from-pandas-wan-to-pandas-master-4860cf0ce442)"，文章发表在博客平台 Medium 上，文章介绍了 pandas 的发展现状、内存优化、索引和方法链等内容，作者在文章中给出了许多提升程序运行性能的建议。[Unit8](https://unit8.co/) 是一家位于瑞士莫尔日，成立于 2017 年的初创公司，致力于利用大数据和人工智能技术解决各行各业问题。2019 年 5 月 21 日，公司加入[数字瑞士](https://digitalswitzerland.com/)（digitalswitzerland）组织，该组织包括 150 多家公司、学术和政府机构，其使命是将瑞士打造为全球领先的数字创新中心。
@@ -91,8 +81,8 @@ df = (pd.read_csv(filepath_or_buffer=os.path.join(data_path, 'master.csv'))
 
 下面是数据集的部分展示：
 
-<div class="tableCenter">
-<table class="table" style="table-layout: fixed;">
+<div style="text-align: center;">
+<table style="width: 80%;margin: auto;table-layout: fixed;">
 <thead>
 <tr>
 <th>country</th>
@@ -580,8 +570,8 @@ df = (pd.DataFrame({'a_column': [1, -999, -999],
 
 <br>
 
-<div class="tableCenter">
-<table class="table" style="table-layout: fixed;">
+<div style="text-align: center;">
+<table style="width: 80%;margin: auto;table-layout: fixed;">
 <thead>
 <tr>
 <th>age</th>
@@ -659,8 +649,8 @@ df = (pd.DataFrame({'a_column': [1, -999, -999],
 
 这两段程序的输出是相同的：拥有二水平（two level）索引的一个 DataFrame 和包含最大 10 个值的一个新列 suicides_sum.
 
-<div class="tableCenter">
-<table class="table" style="table-layout: fixed;">
+<div style="text-align: center;">
+<table style="width: 80%;margin: auto;table-layout: fixed;">
 <thead>
 <tr>
 <th>country</th>
@@ -737,8 +727,8 @@ df = (pd.DataFrame({'a_column': [1, -999, -999],
 )
 ```
 
-<div class="tableCenter">
-<table class="table" style="table-layout: fixed;">
+<div style="text-align: center;">
+<table style="width: 80%;margin: auto;table-layout: fixed;">
 <thead>
 <tr>
 <th></th>
