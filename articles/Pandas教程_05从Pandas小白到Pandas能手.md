@@ -34,7 +34,7 @@
 
 在你阅读本文时，我推荐你查阅那些你看不懂的函数的帮助信息（docstrings）。做个简单的谷歌搜索以及花上几秒钟阅读 pandas 文档，将会让你的阅读更加愉快。
 
-> 译者注：docstrings 是紧跟在 def 或 class 后的第一个字符串，这个字符串通常用来记录函数或类的帮助信息，以函数为例，这些信息可能包括函数的功能、参数的数据类型和含义、返回值的类型和含义以及使用示例等内容，这个字符串存储在对象属性 __doc__ 中，可以使用对象名.__doc__ 查看，此外也可以使用 help(对象名) 命令查看。
+> 译者注：docstrings 是紧跟在 def 或 class 后的第一个字符串，这个字符串通常用来记录函数或类的帮助信息，以函数为例，这些信息可能包括函数的功能、参数的数据类型和含义、返回值的类型和含义以及使用示例等内容，这个字符串存储在对象属性 \_\_doc\_\_ 中，可以使用对象名.\_\_doc\_\_ 查看，此外也可以使用 help(对象名) 命令查看。
 
 # 1 pandas 的定义与现状
 
@@ -81,8 +81,8 @@ df = (pd.read_csv(filepath_or_buffer=os.path.join(data_path, 'master.csv'))
 
 下面是数据集的部分展示：
 
-<div style="text-align: center;">
-<table style="width: 80%;margin: auto;table-layout: fixed;">
+<div>
+<table>
 <thead>
 <tr>
 <th>country</th>
@@ -267,7 +267,7 @@ Index(['country', 'year', 'sex', 'age', 'suicides_no', 'population',
 
 *   describe() 为每一个数值列输出不同的统计数字（例如：最小值，最大值，均值，个数），如果设置参数 'include=all' 则还会显示每个对象列去重后的元素个数以及顶部元素（即频率最高的元素）的个数。
 
-<div align="center">
+<div>
 <table>
 <thead>
 <tr>
@@ -566,12 +566,12 @@ df = (pd.DataFrame({'a_column': [1, -999, -999],
 )
 ```
 
-<div align='center'>获得每个年龄段世代的简单方法链</div>
+> 获得每个年龄段世代的简单方法链
 
 <br>
 
-<div style="text-align: center;">
-<table style="width: 80%;margin: auto;table-layout: fixed;">
+<div>
+<table>
 <thead>
 <tr>
 <th>age</th>
@@ -606,7 +606,8 @@ df = (pd.DataFrame({'a_column': [1, -999, -999],
 </tbody>
 </table>
 </div>
-<div align='center'>产生数据框，age 列为索引</div>
+
+> 产生数据框，age 列为索引
 
 <br>
 
@@ -628,7 +629,7 @@ df = (pd.DataFrame({'a_column': [1, -999, -999],
 )
 ```
 
-<div align="center">使用 sort_values 和 head 获得自杀率较高的国家和年份</div>
+> 使用 sort_values 和 head 获得自杀率较高的国家和年份
 
 <br>
 
@@ -643,14 +644,14 @@ df = (pd.DataFrame({'a_column': [1, -999, -999],
 )
 ```
 
-<div align="center">使用 nlargest 获得自杀率较高的国家和年份</div>
+> 使用 nlargest 获得自杀率较高的国家和年份
 
 <br>
 
 这两段程序的输出是相同的：拥有二水平（two level）索引的一个 DataFrame 和包含最大 10 个值的一个新列 suicides_sum.
 
-<div style="text-align: center;">
-<table style="width: 80%;margin: auto;table-layout: fixed;">
+<div>
+<table>
 <thead>
 <tr>
 <th>country</th>
@@ -727,8 +728,8 @@ df = (pd.DataFrame({'a_column': [1, -999, -999],
 )
 ```
 
-<div style="text-align: center;">
-<table style="width: 80%;margin: auto;table-layout: fixed;">
+<div>
+<table>
 <thead>
 <tr>
 <th></th>
@@ -799,7 +800,7 @@ df = (pd.DataFrame({'a_column': [1, -999, -999],
 </table>
 </div>
 
-<div align='center'>“age” 是索引，列 “suicides_no” 和 “population” 有第二个水平列 “sex”</div>
+> “age” 是索引，列 “suicides_no” 和 “population” 有第二个水平列 “sex”
 
 <br>
 
@@ -821,7 +822,7 @@ def log_shape(df):
     return df
 ```
 
-<div align="center">使用管道的不同记录函数</div>
+> 使用管道的不同记录函数
 
 <br>
 
@@ -837,7 +838,7 @@ def log_shape(df):
 )
 ```
 
-<div align="center">验证列 “country_year” 的管道</div>
+> 验证列 “country_year” 的管道
 
 <br>
 
@@ -863,13 +864,13 @@ shape = (0, 13)
 )
 ```
 
-<div align='center'>在女性中，自杀率较高的国家和年份</div>
+> 在女性中，自杀率较高的国家和年份
 
 <br>
 
 产生的 DataFrame 如下所示：
 
-<div align="center">
+<div>
 <table>
 <thead>
 <tr>
@@ -933,7 +934,7 @@ shape = (0, 13)
 </table>
 </div>
 
-<div align='center'>索引是 “year” 和 “country”</div>
+> 索引是 “year” 和 “country”
 
 <br>
 
@@ -973,7 +974,7 @@ for sex in ['male', 'female']:
     print('\n')
 ```
 
-<div align='center'>自杀数的增长与 GDP 的降低有关吗？自杀数与性别相关吗？</div>
+> 自杀数的增长与 GDP 的降低有关吗？自杀数与性别相关吗？
 
 <br>
 
