@@ -29,6 +29,9 @@
 
 分析实例三：[NBA 投篮数据分析](articles/Pandas%E5%AE%9E%E4%BE%8B_03%E7%86%8A%E7%8C%AB%E7%88%B1%E4%B8%8A%E7%AF%AE%E7%90%83%EF%BC%8CPandas%20%E9%80%A0%E7%A6%8F%E4%B8%96%E7%95%8C.md)[(code)](code/Pandas%E5%AE%9E%E4%BE%8B_03%E7%86%8A%E7%8C%AB%E7%88%B1%E4%B8%8A%E7%AF%AE%E7%90%83%EF%BC%8CPandas%20%E9%80%A0%E7%A6%8F%E4%B8%96%E7%95%8C)
 
-分析实例四：[运筹学薪资分析](articles/Pandas%E5%AE%9E%E4%BE%8B_04%E6%89%8B%E6%8A%8A%E6%89%8B%E7%94%A8Python%E6%95%99%E4%BD%A0%E5%88%86%E6%9E%90%E8%BF%90%E7%AD%B9%E5%AD%A6%E8%96%AA%E8%B5%84%E7%8A%B6%E5%86%B5.md)[(code)](code/Pandas%E5%AE%9E%E4%BE%8B_04%E6%89%8B%E6%8A%8A%E6%89%8B%E7%94%A8Python%E6%95%99%E4%BD%A0%E5%88%86%E6%9E%90%E8%BF%90%E7%AD%B9%E5%AD%A6%E8%96%AA%E8%B5%84%E7%8A%B6%E5%86%B5)
+分析实例四：[运筹学薪资分析](/articles/Pandas%E5%AE%9E%E4%BE%8B_04%E6%89%8B%E6%8A%8A%E6%89%8B%E7%94%A8Python%E6%95%99%E4%BD%A0%E5%88%86%E6%9E%90%E8%BF%90%E7%AD%B9%E5%AD%A6%E8%96%AA%E8%B5%84%E7%8A%B6%E5%86%B5.md)[(code)](code/Pandas%E5%AE%9E%E4%BE%8B_04%E6%89%8B%E6%8A%8A%E6%89%8B%E7%94%A8Python%E6%95%99%E4%BD%A0%E5%88%86%E6%9E%90%E8%BF%90%E7%AD%B9%E5%AD%A6%E8%96%AA%E8%B5%84%E7%8A%B6%E5%86%B5)
 
 *注：本电子书中的预备章为转载文章，其余均为【运筹OR帷幄】原创文章。转载文章已经表明出处，且所有文章均在公众号中发布并获得授权*
+
+**特别感谢参与本书编辑的同学：**
+[yeungsk](https://github.com/yeungsk), [tiny-boat](https://github.com/tiny-boat), [xingyu321](https://github.com/xingyu321), [qiu-pinggaizi](https://github.com/qiu-pinggaizi)
