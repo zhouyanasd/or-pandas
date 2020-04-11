@@ -1,9 +1,30 @@
+<div align='center'><h1>(预备章)始于Jupyter Notebooks：一份全面的初学者实用指南</h1>
+<p><strong>作者</strong>：机器之心&nbsp;&nbsp;&nbsp;&nbsp; <strong>责编</strong>：疑疑</p></div>
+
+> 本文由[运筹OR帷幄](https://mp.weixin.qq.com/s/U8Y0gVt66PuVhRAPecQwsg)公众号于 2019 年 4 月 24 日转载自机器之心公众号。
+
+# 目录
+* [1 引言](#1-引言)
+* [2 学习目录](#2-学习目录)
+	- [2.1 Jupyter Notebooks 是什么？](#2.1-Jupyter Notebooks 是什么？)
+	- [2.2 如何安装 Jupyter Notebooks？](#2.2-如何安装 Jupyter Notebooks？)
+	- [2.3 开始上手！](#2.3-开始上手！)
+	- [2.4 使用 Jupyter Notebooks 的神奇功能](#2.4-使用 Jupyter Notebooks 的神奇功能)
+	- [2.5 不只限于 Python——在 Jupyter Notebooks 中使用 R、Julia 和 JavaScript](#2.5-不只限于 Python——在 Jupyter Notebooks 中使用 R、Julia 和 JavaScript)
+	- [2.6 Jupyter Notebooks 中的交互式仪表盘——何乐不为？](#2.6-Jupyter Notebooks 中的交互式仪表盘——何乐不为？)
+	- [2.7 键盘快捷键——节省时间且更有生产力！](#2.7-键盘快捷键——节省时间且更有生产力！)
+	- [2.8 保存和共享你的笔记本](2.8-保存和共享你的笔记本)
+* [3 最佳实践](#3-最佳实践)
+* [4 结语](#4-结语)
+
+
+# 正文
+
 ![图片](https://uploader.shimo.im/f/6L4ZE20Imr8fbWzK.jpg!thumbnail)
 
-# 预备章
 Jupyter Notebooks是一款非常实用的工具，对于测试算法和分析数据非常方便，不仅功能强大而且可以直接部署在服务器上，通过浏览器运行。利用Github或者Jupyterhub还可以多用户共享，帮助提升用户工作效率和代码的可读性，是数据科学家最常用的工具之一。本文是一篇简单易上手的Jupyter Notebooks 使用指南，从安装到基本功能进行了简洁清晰的介绍，准备好学习了吗？现在开始动手吧！
 
-# **引言:**
+## 1 引言:
 应该使用哪个 IDE/环境/工具？这是人们在做数据科学项目时最常问的问题之一。可以想到，我们不乏可用的选择——从 R Studio 或 PyCharm 等语言特定的 IDE 到 Sublime Text 或 Atom 等编辑器——选择太多可能会让初学者难以下手。
 
 如果说有什么每个数据科学家都应该使用或必须了解的工具，那非 Jupyter Notebooks 莫属了（之前也被称为 iPython 笔记本）。Jupyter Notebooks 很强大，功能多，可共享，并且提供了在同一环境中执行数据可视化的功能。
@@ -16,7 +37,7 @@ Jupyter Notebooks 允许数据科学家创建和共享他们的文档，从代�
 
 准备好学习了吗？现在开始吧！
 
-# **1.学习目录**
+## 2 学习目录
 * Jupyter Notebooks 是什么？
 * 如何安装 Jupyter Notebooks？
 * 开始上手！
@@ -28,7 +49,7 @@ Jupyter Notebooks 允许数据科学家创建和共享他们的文档，从代�
 * 保存和共享你的笔记本
 * JupyterLab——Jupyter Notebooks 的进化
 * 最佳实践和技巧
-## **1.1Jupyter Notebooks 是什么？**
+### 2.1 Jupyter Notebooks 是什么？
 Jupyter Notebooks 是一款开源的网络应用，我们可以将其用于创建和共享代码与文档。
 
 其提供了一个环境，你无需离开这个环境，就可以在其中编写你的代码、运行代码、查看输出、可视化数据并查看结果。因此，这是一款可执行端到端的数据科学工作流程的便捷工具，其中包括数据清理、统计建模、构建和训练机器学习模型、可视化数据等等。
@@ -37,7 +58,7 @@ Jupyter Notebooks 是一款开源的网络应用，我们可以将其用于创�
 
 正如你将在本文中看到的那样，这些笔记本非常灵活，能为数据科学家提供强大的交互能力和工具。它们甚至允许你运行 Python 之外的其它语言，比如 R、SQL 等。因为它们比单纯的 IDE 平台更具交互性，所以它们被广泛用于以更具教学性的方式展示代码。
 
-## **1.2如何安装 Jupyter Notebooks？**
+### 2.2 如何安装 Jupyter Notebooks？
 你可能已经猜到了，你首先需要在你的机器上安装 Python。Python 2.7 或 Python 3.3（或更新版本）都可以。
 
 a.Anaconda
@@ -70,7 +91,7 @@ pip3 install jupyter
 
 你可以在这里查看官方的 Jupyter 安装文档：[https://jupyter.readthedocs.io/en/latest/install.html](https://jupyter.readthedocs.io/en/latest/install.html)
 
-## **1.3 开始上手！**
+### 2.3 开始上手！
 现在你已经知道这些笔记本是什么以及如何将其安装到你的机器上了。现在开始使用吧！
 
 要运行你的 Jupyter Notebooks，只需在命令行输入以下命令即可！
@@ -112,7 +133,7 @@ Terminal 完全类似于在 Mac 或 Linux 机器上的终端（或 Windows 上�
 * Markdown——这是写文本的地方。你可以在运行一段代码后添加你的结论、添加注释等。
 * Raw NBConvert——这是一个可将你的笔记本转换成另一种格式（比如 HTML）的命令行工具。
 * Heading——这是你添加标题的地方，这样你可以将不同的章节分开，让你的笔记本看起来更整齐更清晰。这个现在已经被转换成 Markdown 选项本身了。输入一个「##」之后，后面输入的内容就会被视为一个标题。
-## **1.4 使用 Jupyter Notebooks 的神奇功能**
+### 2.4 使用 Jupyter Notebooks 的神奇功能
 Jupyter Notebooks 的开发者已经在其中内置了一些预定义的神奇功能，能让你的生活更轻松，让你的工作更具交互性。你可以运行下面的命令来查看功能列表（注：% 符号通常不需要，因为自动补齐功能通常是开启的）：
 
 %lsmagic
@@ -138,7 +159,7 @@ min(a)
 
 我建议你运行这些代码，亲自看看它们的不同之处！
 
-## **1.5 不只限于 Python——在 Jupyter Notebooks 中使用 R、Julia 和 JavaScript**
+### 2.5 不只限于 Python——在 Jupyter Notebooks 中使用 R、Julia 和 JavaScript
 神奇之处可不止这点。你甚至能在你的笔记本中使用其它语言，比如 R、Julia、JavaScript 等。我个人很喜欢 R 中的 ggplot2 软件包，所以使用它来进行探索性的数据分析具有很大很大的优势。
 
 要在 Jupyter 中启用 R，你需要 IRKernel。这是针对 R 的专用 kernel，你可以在 GitHub 上获取。这需要 8 个步骤，已经有详细的解释了，另外还有截图指导，参阅：[https://discuss.analyticsvidhya.com/t/how-to-run-r-on-jupyter-ipython-notebooks/5512](https://discuss.analyticsvidhya.com/t/how-to-run-r-on-jupyter-ipython-notebooks/5512)
@@ -147,7 +168,7 @@ min(a)
 
 如果你更偏爱 JavaScript，那么我推荐使用 IJavascript kernel。这个 GitHub 库包含了在不同操作系统上安装这个 kernel 的各个步骤：[https://github.com/n-riesco/ijavascript](https://github.com/n-riesco/ijavascript)。注意，在使用它之前，你必需要先安装好 Node.js 和 npm。
 
-## **1.6 Jupyter Notebooks 中的交互式仪表盘——何乐不为？**
+### 2.6 Jupyter Notebooks 中的交互式仪表盘——何乐不为？
 在你考虑添加小部件之前，你需要导入 widgets 软件包：
 
 from ipywidgets import widgets
@@ -158,7 +179,7 @@ from ipywidgets import widgets
 
 关于小部件的完整指南，请参阅：[https://blog.dominodatalab.com/interactive-dashboards-in-jupyter/](https://blog.dominodatalab.com/interactive-dashboards-in-jupyter/)
 
-## **1.7 键盘快捷键——节省时间且更有生产力！**
+### 2.7 键盘快捷键——节省时间且更有生产力！
 快捷方式是 Jupyter Notebooks 最大的优势之一。当你想运行任意代码块时，只需要按 Ctrl+Enter 就行了。Jupyter Notebooks 提供了很多键盘快捷键，可以帮助我们节省很多时间。
 
 下面是我们手动选择的一些对你的上手会有莫大帮助的快捷方式。我强烈建议你在阅读本文时逐一尝试一下。未来你会离不开它们的！
@@ -212,7 +233,7 @@ jupyter contrib nbextension install –user
 
 这只是少量几个扩展。我强烈建议你查看完整扩展列表并实验它们的功能。
 
-## **1.8 保存和共享你的笔记本**
+### 2.8 保存和共享你的笔记本
 这是 Jupyter Notebooks 最重要且最出色的功能之一。当我必须写一篇博客文章时，我的代码和评论都会在一个 Jupyter 文件中，我需要首先将它们转换成另一个格式。记住这些笔记本是 json 格式的，这在进行共享时不会很有帮助。我总不能在电子邮件和博客上贴上不同单元块，对不对？
 
 进入「Files」菜单，你会看到「Download As」选项：
@@ -232,7 +253,7 @@ JupyterLab 让你能在一个窗口中排布你的笔记本、终端、文本文
 
 如果你想在你的机器上试用 JupyterLab，可查看安装说明：[http://jupyterlab.readthedocs.io/en/stable/getting_started/installation.html](http://jupyterlab.readthedocs.io/en/stable/getting_started/installation.html)。JupyterLab 的开发者的长期目标是最终替代 Jupyter Notebooks。但目前来看这还需要一些时间。
 
-# **2.最佳实践**
+## 3.最佳实践
 尽管独自工作可能很有趣，但大多数时候你都是团队的一员。在这种情况下，遵循指导原则和最佳实践是很重要的，能确保你的代码和 Jupyter Notebooks 都有适当的注释，以便与你的团队成员保持一致。这里我列出了一些最佳实践指标，你在 Jupyter Notebooks 上工作时一定要遵守：
 
 * 对任何程序员而言都是最重要的事情之一——总是确保你为你的代码添加了适当的注释！
@@ -251,7 +272,7 @@ JupyterLab 让你能在一个窗口中排布你的笔记本、终端、文本文
 
 你最好试试每个选项，以便更好地理解它们。这能改变你展示代码的方式！
 
-# **3.结语**
+## 4.结语
 注意，这篇文章远没有完全覆盖 Jupyter Notebooks 的功能。还有很多东西要在你使用得更多之后才会用到。功能虽多，但关键在于实践出真知。
 
 这个 GitHub 库包含了一些有趣迷人的 Jupyter Notebooks：[https://github.com/jupyter/jupyter/wiki/A-gallery-of-interesting-Jupyter-Notebooks](https://github.com/jupyter/jupyter/wiki/A-gallery-of-interesting-Jupyter-Notebooks)
@@ -260,15 +281,11 @@ JupyterLab 让你能在一个窗口中排布你的笔记本、终端、文本文
 
 参考文献：无
 
-作者：机器之心
+作者：
 
 责编：疑疑
 
 审稿责编：书生，周岩
-
-
-
-![图片](https://uploader.shimo.im/f/MTwrF5I2XW8HAWoI.gif)
 
 
 
