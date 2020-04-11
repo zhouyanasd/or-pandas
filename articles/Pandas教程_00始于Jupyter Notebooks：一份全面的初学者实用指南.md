@@ -9,7 +9,7 @@
 	- [2.1 Jupyter Notebooks 是什么？](#2.1-Jupyter-Notebooks-是什么？)
 	- [2.2 如何安装 Jupyter Notebooks？](#2.2-如何安装-Jupyter-Notebooks？)
 	- [2.3 开始上手！](#2.3-开始上手！)
-	- [2.4 使用 Jupyter Notebooks 的神奇功能](#2.4-使用-Jupyter Notebooks-的神奇功能)
+	- [2.4 使用 Jupyter Notebooks 的神奇功能](#2.4-使用-Jupyter-Notebooks-的神奇功能)
 	- [2.5 不只限于 Python——在 Jupyter Notebooks 中使用 R、Julia 和 JavaScript](#2.5-不只限于-Python——在-Jupyter-Notebooks-中使用-R-Julia-和-JavaScript)
 	- [2.6 Jupyter Notebooks 中的交互式仪表盘——何乐不为？](#2.6-Jupyter-Notebooks-中的交互式仪表盘——何乐不为？)
 	- [2.7 键盘快捷键——节省时间且更有生产力！](#2.7-键盘快捷键——节省时间且更有生产力！)
