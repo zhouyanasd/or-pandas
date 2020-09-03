@@ -1,6 +1,6 @@
 ![图片](https://uploader.shimo.im/f/LwD8GfJrNxA7SmvC.jpg!thumbnail)
 
-# 第二章：索引、汇总和处理缺失数据
+# 第四章：索引、汇总和处理缺失数据
 
 ## **1. pandas 索引对象**
 pandas的索引负责管理轴标签和其他如轴名称等元数据。构建Series或DataFrame时，所用到的任何数组或其他序列的标签都会被转换成一个Index。
