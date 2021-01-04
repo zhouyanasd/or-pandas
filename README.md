@@ -34,4 +34,4 @@
 *注：本电子书中的预备章为转载文章，其余均为【运筹OR帷幄】原创文章。转载文章已经表明出处，且所有文章均在公众号中发布并获得授权*
 
 **特别感谢参与本书编辑的同学：**
-[yeungsk](https://github.com/yeungsk), [tiny-boat](https://github.com/tiny-boat), [xingyu321](https://github.com/xingyu321), [qiu-pinggaizi](https://github.com/qiu-pinggaizi)
+[yeungsk](https://github.com/yeungsk), [tiny-boat](https://github.com/tiny-boat), [xingyu321](https://github.com/xingyu321), [qiu-pinggaizi](https://github.com/qiu-pinggaizi), [shanshanxu33](https://github.com/shanshanxu33)
