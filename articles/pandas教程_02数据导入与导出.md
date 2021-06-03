@@ -1,4 +1,4 @@
-![图片](https://uploader.shimo.im/f/DplvFF8jn7Y4RbkH.png!thumbnail)
+[![28PmlD.png](https://z3.ax1x.com/2021/06/03/28PmlD.png)](https://imgtu.com/i/28PmlD)
 
 # 第二章：数据的导入与导出
 
