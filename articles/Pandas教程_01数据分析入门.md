@@ -1,4 +1,4 @@
-![图片](https://uploader.shimo.im/f/hebPzvm91sYc2vIU.jpg!thumbnail)
+[![28p6pD.png](https://z3.ax1x.com/2021/06/03/28p6pD.png)](https://imgtu.com/i/28p6pD)
 
 # 第一章：数据分析入门
 
@@ -57,13 +57,13 @@ Pandas有两个数据结构：Series和DataFrame。
 
 * 	Series是一种类似于以为NumPy数组的对象，它由一组数据（各种NumPy数据类型）和与之相关的一组数据标签（即索引）组成的。可以用index和values分别规定索引和值。如果不规定索引，会自动创建 0 到 N-1 索引。
 
-![图片](https://uploader.shimo.im/f/LQQ819xX650Z6X8Q.png!thumbnail)
+[![28poh8.png](https://z3.ax1x.com/2021/06/03/28poh8.png)](https://imgtu.com/i/28poh8)
 
 > pd.Series:创建pandas列表
 
 * 	DataFrame是一种表格型结构，含有一组有序的列，每一列可以是不同的数据类型。既有行索引，又有列索引。
 
-![图片](https://uploader.shimo.im/f/dEp24H6IQCAhJRu1.png!thumbnail)
+[![289C3F.png](https://z3.ax1x.com/2021/06/03/289C3F.png)](https://imgtu.com/i/289C3F)
 
 **1.从具有索引标签的字典数据创建一个DataFrame df.**
 
@@ -79,7 +79,7 @@ df.head(3)
 ```
 
 运行结果如下：
-![图片](https://uploader.shimo.im/f/dfxNRwvm5jgfQZvL.png!thumbnail)
+[![289ijJ.png](https://z3.ax1x.com/2021/06/03/289ijJ.png)](https://imgtu.com/i/289ijJ)
    
 **2.从numpy 数组构造DataFrame**
 
@@ -89,7 +89,7 @@ df2 = pd.DataFrame(np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]]),
 df2
 ```
 运行结果如下
-![图片](https://uploader.shimo.im/f/u2K8mbMOMA4HoB0S.png!thumbnail)
+[![289ABR.png](https://z3.ax1x.com/2021/06/03/289ABR.png)](https://imgtu.com/i/289ABR)
 
 **3.通过其他DataFrame来创建DataFrame df3**
 
@@ -98,7 +98,7 @@ df3 = df2[["a","b","c"]].copy()
 df3
 ```
 运行结果如下： 
-![图片](https://uploader.shimo.im/f/u2K8mbMOMA4HoB0S.png!thumbnail)
+[![289eN6.png](https://z3.ax1x.com/2021/06/03/289eN6.png)](https://imgtu.com/i/289eN6)
 
 **4.从csv文件中每隔n行来创建Dataframe**
 
@@ -107,7 +107,7 @@ df = pd.read_csv('https://raw.githubusercontent.com/selva86/datasets/master/Bost
 df2 = pd.DataFrame()
       
 ```
-![图片](https://uploader.shimo.im/f/8V8Z9POam2oBZST9.png!thumbnail)
+[![2893DA.png](https://z3.ax1x.com/2021/06/03/2893DA.png)](https://imgtu.com/i/2893DA)
 
 **5.用Series创建DataFrame**
 
@@ -121,7 +121,7 @@ pd_2
 ```
 
 运行结果如下：
-![图片](https://uploader.shimo.im/f/F267EkZFe9Ib80GF.png!thumbnail)
+[![289t4f.png](https://z3.ax1x.com/2021/06/03/289t4f.png)](https://imgtu.com/i/289t4f)
 
 ### **pandas处理NaN值** 
 > dropna(axis=, how=)：丢弃NaN数据，{axis：0(按行丢弃)，1(按列丢弃)} {how：'any'(只要含有NaN数据就丢弃)，'all'(所有数据都为NaN时丢弃)}
@@ -178,7 +178,7 @@ print(df)
 ```
 
 运行结果：
-![图片](https://uploader.shimo.im/f/qqi3Sli9CSAbgKwr.png!thumbnail)
+[![289dgg.png](https://z3.ax1x.com/2021/06/03/289dgg.png)](https://imgtu.com/i/289dgg)
 
 或者也可以将两个DataFrame连接起来。
 
@@ -190,7 +190,7 @@ print(df)
 ```
 
 运行结果：
-![图片](https://uploader.shimo.im/f/uw5iY5MUQPssCJkv.png!thumbnail)
+[![289yEq.png](https://z3.ax1x.com/2021/06/03/289yEq.png)](https://imgtu.com/i/289yEq)
 
 需要注意的是，append方法并不能像list的append方法一样对原来的df继续修改，而是建立了一个新的对象。如果要修改df，那么需要重新对df赋值，所以append的方法执行效率并不是很高。
 
@@ -202,7 +202,7 @@ other = pd.DataFrame({'key':['A0','A1','A2'],'C':['C0','C1','C2']})
 caller.join(other,lsuffix='_caller',rsuffix='_other',how='inner')
 ```
 运行结果如下：
-![图片](https://uploader.shimo.im/f/lVd9DR4CGFsX2Axm.png!thumbnail)
+[![2892CT.png](https://z3.ax1x.com/2021/06/03/2892CT.png)](https://imgtu.com/i/2892CT)
 
 **另外，还有一种merge方法与Join方法类似，不过语法略有不同。**
 
@@ -215,7 +215,7 @@ df = pd.merge(caller,other,on = ['key'],how = 'inner')
 ```
 
 运行结果如下：
-![图片](https://uploader.shimo.im/f/NFFb7c0V9gU45zba.png!thumbnail)
+[![2894KJ.png](https://z3.ax1x.com/2021/06/03/2894KJ.png)](https://imgtu.com/i/2894KJ)
 
 **参考文献：无**
 
