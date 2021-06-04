@@ -597,7 +597,7 @@ frame.index.names = ['key1', 'key2']
 print(frame)
 print(frame.sum(level = 'key2'))
 ```
-[![2YCNNR.png](https://z3.ax1x.com/2021/06/04/2YCNNR.png)](https://imgtu.com/i/2YCNNR)
+[![2YPA8x.png](https://z3.ax1x.com/2021/06/04/2YPA8x.png)](https://imgtu.com/i/2YPA8x)
 
 ### **4.3 使用DataFrame的列**
 * 将指定列变为索引
@@ -615,7 +615,7 @@ print(frame.set_index(['c', 'd'], drop = False)) # 列依然保留
 frame2 = frame.set_index(['c', 'd'])
 print(frame2.reset_index())
 ```
-[![2YCU41.png](https://z3.ax1x.com/2021/06/04/2YCU41.png)](https://imgtu.com/i/2YCU41)
+[![2YCNNR.png](https://z3.ax1x.com/2021/06/04/2YCNNR.png)](https://imgtu.com/i/2YCNNR)
 
 ### **4.4 整数索引**
 * 歧义的产生
@@ -633,7 +633,7 @@ print(ser2[-1])
 ser3 = Series(range(3), index = [-5, 1, 3])
 print(ser3.iloc[2])  # 避免直接用[2]产生的歧义
 ```
-[![2YCruD.png](https://z3.ax1x.com/2021/06/04/2YCruD.png)](https://imgtu.com/i/2YCruD)
+[![2YCU41.png](https://z3.ax1x.com/2021/06/04/2YCU41.png)](https://imgtu.com/i/2YCU41)
 
 ```
 print('对DataFrame使用整数索引')
