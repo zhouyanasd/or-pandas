@@ -1,5 +1,4 @@
-![图片](https://images-cdn.shimo.im/fonvIZrJd7ELPNUJ/封面.jpg!thumbnail)
-
+[![2UZKq1.png](https://z3.ax1x.com/2021/06/06/2UZKq1.png)](https://imgtu.com/i/2UZKq1)
 
 # 1 前言
 
@@ -24,7 +23,9 @@
 
 具体示例如下：
 
-![图片](https://images-cdn.shimo.im/aaoN3tydqC8UwpP7/数据描述.png!thumbnail)
+[![2UZNMd.png](https://z3.ax1x.com/2021/06/06/2UZNMd.png)](https://imgtu.com/i/2UZNMd)
+
+
 
 # 3 数据清洗 
 
@@ -50,7 +51,7 @@
 ### 4.1.1 总体发展趋势
 虽然今天的我们到电影院或者在网上看电影已经是十分平常的事情了，可是对于上个世纪可能还是属于一项相对“奢侈”的活动，那么我们就首先从电影行业的整体发展情况来分析一下近些年来华语电影的趋势。
 
-![图片](https://images-cdn.shimo.im/QLRif9jSvtQ6Ggf3/华语电影年产量趋势.png!thumbnail)
+[![2UZaqI.png](https://z3.ax1x.com/2021/06/06/2UZaqI.png)](https://imgtu.com/i/2UZaqI)
 
 注：此数据截止到2018年10月初
 
@@ -58,11 +59,11 @@
 
 下面以每年电影的均分来看，在数量增加的同时，质量是否有提升呢？
 
-![图片](https://images-cdn.shimo.im/EBdNCUwNdAM42Vcr/华语电影评分趋势.png!thumbnail)
+[![2UZBIf.png](https://z3.ax1x.com/2021/06/06/2UZBIf.png)](https://imgtu.com/i/2UZBIf)
 
 从图中看出，近些年来华语电影评分总体上呈现下降的趋势，到2016年开始才略有回升。那到底是什么导致了这个评分趋势呢？接下来，我们画个箱体图来看下每年评分的分布情况。
 
-![图片](https://images-cdn.shimo.im/auhvS9O7ry0goNda/华语电影评分箱体图趋势.png!thumbnail)
+[![2UZbQJ.png](https://z3.ax1x.com/2021/06/06/2UZbQJ.png)](https://imgtu.com/i/2UZbQJ)
 
 可以看到之前电影的分数段都比较集中，而近些年评分分布越来越广，从2分到接近10分的电影都有。在箱体图中，q1（图中每个长条形的下方）代表的是第一四分位，即有25%的电影评分小于此值。同理，q3（图中每个长条形的上方）有75%的电影评分小于此值。通过观察可以发现，q1、q3的值同均值的趋势一致，近些年呈现下降的趋势。这也就代表了，近年来高分片数量减少而烂片的比例增加，导致均分的下降。而此状况的好转，是2016年均分开始有所回升的原因。
 
@@ -71,11 +72,11 @@
 ### 4.1.2 地区对比
 华语电影主要有大陆、香港、台湾这几个制作地区，那么接下来，我们来对比这些地区的情况。
 
-![图片](https://images-cdn.shimo.im/d9pgobN7XvkjBlh3/不同地区电影年产量对比.png!thumbnail)
+[![2UZvo6.png](https://z3.ax1x.com/2021/06/06/2UZvo6.png)](https://imgtu.com/i/2UZvo6)
 
 从图中可以发现，香港电影是华语电影的先驱者，20世纪整个华语电影几乎是由香港主导的。但进入2000年后，香港电影的产量下降，与此同时，大陆电影发展迅速，于2005年开始反超香港地区，替代其成为华语电影新的主导者。而台湾地区，除了六七十年代有一波发展之外，几乎处于停滞不前的状态。
 
-![图片](https://images-cdn.shimo.im/2mxABQZSZL0E6fBv/不同地区电影评分趋势对比.png!thumbnail)
+[![2UZzFK.png](https://z3.ax1x.com/2021/06/06/2UZzFK.png)](https://imgtu.com/i/2UZzFK)
 
 可以看到虽然台湾的产量较少，但从1983年以来，平均质量优于其他地区。而印象里，八九十年代的香港电影还不错，但从图中观察到，那时候香港电影的均值低于总体水平，反而是大陆地区的电影在那个年代整体质量比较高。
 
@@ -84,29 +85,29 @@
 ## 4.2 影片类型分析
 电影的题材有很多种，那么华语电影中不同题材情况是怎样的呢？我们首先分析一下不同类型的电影的数量情况。
 
-![图片](https://images-cdn.shimo.im/cvaXvGIUT6kQ0sUa/不同电影类型数量.png!thumbnail)
+[![2UeSJO.png](https://z3.ax1x.com/2021/06/06/2UeSJO.png)](https://imgtu.com/i/2UeSJO)
 
 从图中可以看到，剧情、喜剧、动作、爱情这几类的电影数量远超其他类型，其中剧情类最多，约为第二名喜剧类的1.85倍。而数量最少的类型是情色、灾难、西部片。那么哪种类型的电影关注度最多呢？
 
-![图片](https://images-cdn.shimo.im/k8wMTAJNW18fuCg2/不同类型电影关注度.png!thumbnail)
+[![2UeCSe.png](https://z3.ax1x.com/2021/06/06/2UeCSe.png)](https://imgtu.com/i/2UeCSe)
 
 电影的评分人数越多，说明此电影看过的人数越多，可以从侧面反映电影的关注度。所以我们用平均评分人数的指标，来看不同类型电影的关注度。数量最少的西部片竟然是排名第一的，为什么关注度会这么高呢？华语有哪些电影是属于西部片呢？
 
-![图片](https://images-cdn.shimo.im/kGChzP9PK6Y3mKrY/华语西部片.png!thumbnail)
+[![2Ueiyd.png](https://z3.ax1x.com/2021/06/06/2Ueiyd.png)](https://imgtu.com/i/2Ueiyd)
 
 原来是让子弹飞和无人区这两部电影拉高了西部片的平均评分人数。另外，让子弹飞是在本次爬取的全部电影中关注度Top2的，第一名为霸王别姬，一共有848429条评分。
 
 接着，我们来看一下不同电影类型的质量。
 
-![图片](https://images-cdn.shimo.im/3rWoT9V8iy8B6TZY/不同电影质量.png!thumbnail)
+[![2UeEwt.png](https://z3.ax1x.com/2021/06/06/2UeEwt.png)](https://imgtu.com/i/2UeEwt)
 
 西部、传记、歌舞这三类质量为Top3，且这三者间差距都在0.1分以内。而排名垫底的是情色、惊悚、悬疑，而这几类关注度并不是很高。评分人数与评分之间会不会有什么关系呢？
 
-![图片](https://images-cdn.shimo.im/DWVhBiwuVMQnS0Rb/不同类型电影评分人数与评分的关系.png!thumbnail)
+[![2UemY8.png](https://z3.ax1x.com/2021/06/06/2UemY8.png)](https://imgtu.com/i/2UemY8)
 
 似乎没发现什么值得关注的结果，如果不以类别的平均值，而是以每部电影为维度呢？在这里我们将评分人数小于500的电影剔除，避免一些因为评分人少而出现的偏颇情况。
 
-![图片](https://images-cdn.shimo.im/LeHXpMaI8zYGvYON/评分人数与评分的关系.png!thumbnail)
+[![2UenfS.png](https://z3.ax1x.com/2021/06/06/2UenfS.png)](https://imgtu.com/i/2UenfS)
 
 从图中可以看到，评分较低的，关注人数也较少。如评分小于5分，除少数几部外，其他的评分人数是在200k以下。而评分很高的电影，并不是都有很高的关注度，也有一些没什么人关注的。
 
@@ -115,21 +116,25 @@
 ## 4.3 导演和演员分析
 这一部分，我们来看一下哪个导演、演员属于好片或者烂片的专业户。这里好片的定义为评分大于等于8.5分，烂片为评分小于6分的电影。另外，此部分分析只针对执导或主演5部以上电影的导演和演员。
 
-![图片](https://images-cdn.shimo.im/lfnAvg2KQVQwJQV3/好片占比排名前10的导演.png!thumbnail)
+[![2UeMlQ.png](https://z3.ax1x.com/2021/06/06/2UeMlQ.png)](https://imgtu.com/i/2UeMlQ)
 
 图中为好片占比Top10的导演，排名Top2分为是台湾导演杨德昌和香港导演王家卫，他们是拿过戛纳电影节最佳导演奖的仅有的两名华语导演。可能大家对王家卫比较熟悉，这里就科普一下杨德昌。他是台湾新电影的重要代表人物之一，一共执导过8部电影，其中5部评分在8.5分以上，好片占比为62%，他的五部好片分别是《一一》、《独立时代》、《牯岭街少年杀人事件》、《恐怖分子》以及《麻将》。
 
 另外，这10名导演中，除魏德圣、桑弧这两位导演各有一部烂片外，其他的导演均没有执导过6分以下的电影。
 
-![图片](https://images-cdn.shimo.im/1nzkBuh9SkMORJWp/烂片占比排名前10的导演.png!thumbnail)
+[![2Ue3mn.png](https://z3.ax1x.com/2021/06/06/2Ue3mn.png)](https://imgtu.com/i/2Ue3mn)
 
 接着我们来看一下烂片占比排名10的导演，郑成峰、姜国民、管晓杰、黄柏基这四位导演的烂片比例达到了100%！
 
-![图片](https://images-cdn.shimo.im/B9XISnbXI0MOMizN/好片占比排名前10的演员.png!thumbnail)
+[![2Ue8wq.png](https://z3.ax1x.com/2021/06/06/2Ue8wq.png)](https://imgtu.com/i/2Ue8wq)
 
-而在演员中，台湾演员文英的好片占比最高，为50%。值得注意的是在这10位演员中，台湾和内地演员各占50%，台湾演员除澎恰恰外，其他几位近10年内都有作品；而内地演员不是配音演员，就是活跃在上个世纪的已经息影或离世的演员。![图片](https://images-cdn.shimo.im/I00sU8r51UwzhG0d/烂片占比前10的演员.png!thumbnail)
+而在演员中，台湾演员文英的好片占比最高，为50%。值得注意的是在这10位演员中，台湾和内地演员各占50%，台湾演员除澎恰恰外，其他几位近10年内都有作品；而内地演员不是配音演员，就是活跃在上个世纪的已经息影或离世的演员。
 
-烂片占比前10的演员榜中，除邓家佳外，其他演员的烂片占比都为100%。其中大部分为内地新生代且小透明的演员。![图片](https://images-cdn.shimo.im/w7x6Wzt2qU8rhTmA/部分演员好烂片分布情况.png!thumbnail)
+[![2UetYT.png](https://z3.ax1x.com/2021/06/06/2UetYT.png)](https://imgtu.com/i/2UetYT)
+
+烂片占比前10的演员榜中，除邓家佳外，其他演员的烂片占比都为100%。其中大部分为内地新生代且小透明的演员。
+
+[![2UeDmR.png](https://z3.ax1x.com/2021/06/06/2UeDmR.png)](https://imgtu.com/i/2UeDmR)
 
 可能大家在刚刚的分析中都没看到自己比较熟悉的演员，这里将一些比较有名的演员挑出来。从图中可以看到，部分演员参演作品的数量惊人，但好片数量却只有几部；也有几位演员的演技是大家都比较认可的，但可能挑电影的眼光不太好，其参演的作品风评都比较一般。
 
