@@ -1,4 +1,4 @@
-![图片](https://uploader.shimo.im/f/AYH8s3G4yv4X15ah.png!thumbnail)
+[![fU5XcR.png](https://z3.ax1x.com/2021/08/11/fU5XcR.png)](https://imgtu.com/i/fU5XcR)
 
 # 第三章：分组和聚合
 
@@ -36,14 +36,14 @@ data_df = pd.DataFrame(data_dict,index=index)
 data_df
 ```
 简单展示一下我们的数据：
-![图片](https://uploader.shimo.im/f/wQKonE5B0rwmfBH2.png!thumbnail)
+[![fU5xnx.png](https://z3.ax1x.com/2021/08/11/fU5xnx.png)](https://imgtu.com/i/fU5xnx)
 
 ## 2. 分组
 
 ### 2.1 groupby函数说明
 分组功能主要利用pandas的groupby函数。虽然分组功能用其他函数也可以完成，但是groupby函数是相对来说比较方便的。这个函数有很多神奇的功能，熟练后功能十分强大。groupby函数的[官方参数说明](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.groupby.html)如下：
 
-![图片](https://uploader.shimo.im/f/XbpXtZpAON4rdAPi.png!thumbnail)
+[![fUIP4e.png](https://z3.ax1x.com/2021/08/11/fUIP4e.png)](https://imgtu.com/i/fUIP4e)
 
 
 ### 2.2 一个简单的分组
@@ -56,7 +56,7 @@ for i in list(group_1):
 ```
 从print结果可见，转换后的list按照4种size（L，M，S，XL）生成了4个组：
 
-![图片](https://uploader.shimo.im/f/Mo88KQimqF4aMIDT.png!thumbnail)
+[![fUIk3d.png](https://z3.ax1x.com/2021/08/11/fUIk3d.png)](https://imgtu.com/i/fUIk3d)
 
 ### 2.3 分组后的运算
 在取得group_1分组后，对group_1进行分组运算（如sum），并对属性名称添加前缀sum_。
@@ -68,11 +68,11 @@ group_1.sum().add_prefix('sum_')
 ```
 将计算得到的数据添加表头前缀后输出：
 
-![图片](https://uploader.shimo.im/f/xHywPZlJ1LwOpM77.png!thumbnail)
+[![fUIZut.png](https://z3.ax1x.com/2021/08/11/fUIZut.png)](https://imgtu.com/i/fUIZut)
 
 另外，可以进行分组计算的函数如下，这里就不一一展示用法了，各位读者可以自行尝试：
 
-![图片](https://uploader.shimo.im/f/ItXDQw8caL8dbcut.png!thumbnail)
+[![fUIKUS.png](https://z3.ax1x.com/2021/08/11/fUIKUS.png)](https://imgtu.com/i/fUIKUS)
 
 除了进行上述的运算，我们还可以用如下代码在group_1中获得所有size为M的行向量：
 
@@ -81,7 +81,7 @@ group_1.get_group('M')
 ```
 结果如下：
 
-![图片](https://uploader.shimo.im/f/KzZb5HZzxcQ722pm.png!thumbnail)
+[![fUIlCQ.png](https://z3.ax1x.com/2021/08/11/fUIlCQ.png)](https://imgtu.com/i/fUIlCQ)
 
 
 ### 2.4 多重分组方法
@@ -94,7 +94,7 @@ for i in list(group_2):
 ```
 结果如下：
 
-![图片](https://uploader.shimo.im/f/2vTXJdam3tse79jn.png!thumbnail)
+[![fUI8vn.png](https://z3.ax1x.com/2021/08/11/fUI8vn.png)](https://imgtu.com/i/fUI8vn)
 
 对分组后的数据，可以利用size函数获得组别个数：
 
@@ -103,7 +103,7 @@ print(group_1.size())
 print(group_2.size())
 ```
 得到结果：
-![图片](https://uploader.shimo.im/f/OQ2gLTaemFMMnDOu.png!thumbnail)
+[![fUIYD0.png](https://z3.ax1x.com/2021/08/11/fUIYD0.png)](https://imgtu.com/i/fUIYD0)
 
 
 ### 2.5 利用预先设定的函数进行分组
@@ -121,7 +121,7 @@ for i in list(data_df.groupby(get_letter_type, axis=1)):
 ```
 得到结果如下：
 
-![图片](https://uploader.shimo.im/f/CG4Pi5GBDrcytVcl.png!thumbnail)
+[![fUIaUU.png](https://z3.ax1x.com/2021/08/11/fUIaUU.png)](https://imgtu.com/i/fUIaUU)
 
 
 ### 2.6 利用索引分组
@@ -132,7 +132,7 @@ for i in list(data_df.groupby(level=[0,1])):
     print(i)
 ```
 结果如下：
-![图片](https://uploader.shimo.im/f/IIcWPdU7maEsv2PG.png!thumbnail)
+[![fUIB8J.png](https://z3.ax1x.com/2021/08/11/fUIB8J.png)](https://imgtu.com/i/fUIB8J)
 
 ## 3. 聚合
 
@@ -145,7 +145,7 @@ for i in list(data_df.groupby(level=[0,1])):
 group_2.agg({'feature_1' : np.min,'feature_2' : np.mean})
 ```
 结果如下：
-![图片](https://uploader.shimo.im/f/bTW3vUhCYMg61N0s.png!thumbnail)
+[![fUID29.png](https://z3.ax1x.com/2021/08/11/fUID29.png)](https://imgtu.com/i/fUID29)
 
 
 ### 3.2 transform函数
@@ -156,7 +156,7 @@ data_range = lambda x: x.max() - x.min()
 data_df.groupby('size').transform(data_range)
 ```
 结果如下：
-![图片](https://uploader.shimo.im/f/uUBekCwREDUsClLU.png!thumbnail)
+[![fUI6Dx.png](https://z3.ax1x.com/2021/08/11/fUI6Dx.png)](https://imgtu.com/i/fUI6Dx)
 
 另外我们还常常通过transform函数将缺失值替换为组间平均值。
 
@@ -167,9 +167,9 @@ df_trans = group_1.transform(f)
 df_trans
 ```
 结果如下：
-![图片](https://uploader.shimo.im/f/I2GAAitekeQFFMUt.png!thumbnail)
+[![fUIcb6.png](https://z3.ax1x.com/2021/08/11/fUIcb6.png)](https://imgtu.com/i/fUIcb6)
 
-![图片](https://uploader.shimo.im/f/rjz7HJgdUj8z1NL1.png!thumbnail)
+[![fUIqVf.png](https://z3.ax1x.com/2021/08/11/fUIqVf.png)](https://imgtu.com/i/fUIqVf)
 
 
 ### 3.3 rolling和expanding方法
@@ -179,7 +179,7 @@ df_trans
 data_df.groupby('color').rolling(3).feature_1.mean()
 ```
 结果如下：
-![图片](https://uploader.shimo.im/f/2vUcM7iWwUI7qSup.png!thumbnail)
+[![fUIzxs.png](https://z3.ax1x.com/2021/08/11/fUIzxs.png)](https://imgtu.com/i/fUIzxs)
 
 expanding函数相对rolling方法而言，不是固定的窗口而是扩展窗口，因此会对给定的操作进行叠加。如下例中的sum方法，其中的数值是不断叠加扩大的，也就是说窗口从3一直增加，rolling方法则是一直保持窗口大小为3不变。
 
@@ -187,7 +187,7 @@ expanding函数相对rolling方法而言，不是固定的窗口而是扩展窗�
 data_df.groupby('color').expanding(3).feature_1.sum()
 ```
 结果如下：
-![图片](https://uploader.shimo.im/f/ti4m4G4jGbkrOzYA.png!thumbnail)
+[![fUoCq0.png](https://z3.ax1x.com/2021/08/11/fUoCq0.png)](https://imgtu.com/i/fUoCq0)
 
 
 ### 3.4 filter函数
@@ -197,7 +197,7 @@ filter函数的参数是作用于整个组，返回值为True或False的函数�
 data_df.groupby('class').filter(lambda x: len(x) > 3)
 ```
 结果如下：
-![图片](https://uploader.shimo.im/f/3GQH2WoI360SmibY.png!thumbnail)
+[![fUoFaT.png](https://z3.ax1x.com/2021/08/11/fUoFaT.png)](https://imgtu.com/i/fUoFaT)
 
 有些分组数据用transform和aggregate都很难完成处理，这时候我们需要使用apply函数。在apply中可使用自定义函数，因此apply相较前两者更加灵活。例如如下代码输出feature_1的数据描述：
 
@@ -205,7 +205,7 @@ data_df.groupby('class').filter(lambda x: len(x) > 3)
 data_df.groupby('class')['feature_1'].apply(lambda x: x.describe())
 ```
 结果如下：
-![图片](https://uploader.shimo.im/f/Fl06j6IQ8DQ8qsUr.png!thumbnail)
+[![fUohwV.png](https://z3.ax1x.com/2021/08/11/fUohwV.png)](https://imgtu.com/i/fUohwV)
 
 又例如这里将每组的feature_1的数据进行提取运算，并变成了列数据original和demeaned。
 
@@ -215,7 +215,7 @@ def f(group):
 data_df.groupby('class')['feature_1'].apply(f)
 ```
 结果如下：
-![图片](https://uploader.shimo.im/f/01y7OFAiUzcjdQsv.png!thumbnail)
+[![fUoLO1.png](https://z3.ax1x.com/2021/08/11/fUoLO1.png)](https://imgtu.com/i/fUoLO1)
 
 ## 最后总结
 
